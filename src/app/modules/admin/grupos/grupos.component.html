@@ -1,0 +1,156 @@
+<!-- 
+<div class="table-container">
+  <div class="header-container">
+    <h2>Grupos</h2>
+    
+    <button class="btn-nuevo" (click)="openModal()">Nuevo</button>
+    <div class="search-container">
+      <input type="text" placeholder="Búsqueda Rápida" class="search-input">
+      <i class="fa fa-search search-icon"></i>
+    </div>
+    <button class="btn-exportar">Exportar</button>
+  </div>
+
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>ID de Grupo</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><i class="fa fa-pencil"></i></td>
+        <td>1</td>
+        <td>Administrador</td>
+      </tr>
+      <tr>
+        <td><i class="fa fa-pencil"></i></td>
+        <td>2</td>
+        <td>Consultores</td>
+      </tr>
+      <tr>
+        <td><i class="fa fa-pencil"></i></td>
+        <td>3</td>
+        <td>Recepción/Fruta</td>
+      </tr>
+      <tr>
+        <td><i class="fa fa-pencil"></i></td>
+        <td>4</td>
+        <td>Coordinadores</td>
+      </tr>
+      <tr>
+        <td><i class="fa fa-pencil"></i></td>
+        <td>5</td>
+        <td>Soporte</td>
+      </tr>
+      <tr>
+        <td><i class="fa fa-pencil"></i></td>
+        <td>6</td>
+        <td>Contable</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination-container">
+    <button class="pagination-btn">&laquo;</button>
+    <span>1</span>
+    <button class="pagination-btn">&raquo;</button>
+    <span>[1 a 6 de 6]</span>
+  </div>
+</div>
+
+
+<div id="myModal" class="modal" [class.show]="isModalOpen">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    
+    <div class="modal-header">
+    <h2>Nuevo Grupo</h2>
+    </div>
+    <form (ngSubmit)="onSubmit()">
+      
+      <div class="modal-body">
+        <label for="groupName">Nombre del grupo:</label>
+        <input type="text" id="groupName" [(ngModel)]="newGroupName" name="groupName" required>
+      </div>
+   
+      <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="closeModal()">Cancelar</button>
+      <button type="button" class="btn btn-primary" (click)="submitForm()">Agregar</button>
+      </div>
+      
+    </form>
+  </div>
+</div>
+-->
+
+<!-- table.component.html -->
+<div class="table-container">
+  <div class="header-container">
+    <h2>Roles</h2>
+    <!-- Botón que abre el formulario de creación de roles -->
+    <button class="btn-nuevo" (click)="toggleFormulario()">
+      {{ mostrarFormulario ? 'Cancelar' : 'Nuevo' }}
+    </button>
+  </div>
+
+  <!-- Mostrar el formulario de creación de roles si mostrarFormulario es verdadero -->
+  <div *ngIf="mostrarFormulario">
+    <form [formGroup]="rolForm" (ngSubmit)="submitForm()">
+      <label for="roleName">Nombre del rol:</label>
+      <input type="text" id="roleName" formControlName="nombre" required>
+      <button type="submit" class="btn btn-primary">Agregar</button>
+    </form>
+  </div>
+
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>ID de Rol</th>
+        <th>Nombre del Rol</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rol of roles">
+        <td>
+          <i class="fa fa-pencil" (click)="editarRol(rol)"></i>
+          <i class="fa fa-trash" (click)="bajaRol(rol.id)"></i>
+        </td>
+        <td>{{ rol.id }}</td>
+        <td>{{ rol.nombre }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal para modificar un rol -->
+<!-- Modal para modificar un rol -->
+<div id="myModal" class="modal" [ngClass]="{'show': rolSeleccionado !== null}" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modificar Rol</h5>
+        <button type="button" class="close" (click)="rolSeleccionado = null" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form [formGroup]="modificarRolForm" (ngSubmit)="submitModificarForm()">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="modificarRoleName">Nombre del rol:</label>
+            <input type="text" id="modificarRoleName" class="form-control" formControlName="nombre" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="rolSeleccionado = null">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Modificar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
