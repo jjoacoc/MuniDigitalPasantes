@@ -1,22 +1,25 @@
-
 <!-- table.component.html -->
 <div class="table-container">
   <div class="header-container">
-    <h2>Roles</h2>
+    <h2 class="h2Color">Grupos</h2>
     <!-- Botón que abre el formulario de creación de grupos -->
     <button class="btn-nuevo" (click)="toggleFormulario()">
       {{ mostrarFormulario ? 'Cancelar' : 'Nuevo' }}
     </button>
   </div>
 
-  <!-- Mostrar el formulario de creación de grupos si mostrarFormulario es verdadero -->
-  <div *ngIf="mostrarFormulario">
+
+  <!-- Modal -->
+<div id="myModal" class="modal" [ngClass]="{'show': mostrarFormulario}">
+  <div class="modal-content">
+    <span class="close" (click)="toggleFormulario()">&times;</span>
     <form [formGroup]="grupoForm" (ngSubmit)="submitForm()">
-      <label for="roleName">Nombre del grupo:</label>
+      <label for="roleName" class="h2Color">Nombre del grupo:</label>
       <input type="text" id="roleName" formControlName="Nombres" required>
       <button type="submit" class="btn btn-primary">Agregar</button>
     </form>
   </div>
+</div>
 
   <table class="styled-table">
     <thead>
@@ -39,31 +42,21 @@
   </table>
 </div>
 
-<!-- Modal para modificar un grupo -->
-<!-- Modal para modificar un grupo -->
-<div id="myModal" class="modal" [ngClass]="{'show': grupoSeleccionado !== null}" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
+<div class="modal fade " id="editGroup" tabindex="-1" aria-labelledby="editGroupLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen-sm-down ">
+    <div class="modal-content m">
       <div class="modal-header">
-        <h5 class="modal-title">Modificar Rol</h5>
-        <button type="button" class="close" (click)="grupoSeleccionado = null" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <h5 class="modal-title" id="editGroupLabel">Modificar Usuario</h5>
       </div>
-      <form [formGroup]="modificarGrupoForm" (ngSubmit)="submitModificarForm()">
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="modificarRoleName">Nombre del grupo:</label>
-            <input type="text" id="modificarRoleName" class="form-control" formControlName="Nombres" required>
+      <div class="modal-body">
+        <form *ngIf="grupoSeleccionado" [formGroup]="modificarGrupoForm" (ngSubmit)="submitModificarForm()">
+          <div>
+            <label for="modificardescripcion">descripcion:</label>
+            <input id="modificardescripcion" formControlName="descripcion" type="text" />
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="grupoSeleccionado = null">Cancelar</button>
-          <button type="submit" class="btn btn-primary">Modificar</button>
-        </div>
-      </form>
+          <button type="submit" [disabled]="modificarGrupoForm.invalid" data-bs-dismiss="modal">Guardar Cambios</button>
+        </form>
+      </div>
+
     </div>
   </div>
-</div>
-
-

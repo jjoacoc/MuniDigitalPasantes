@@ -16,6 +16,18 @@
   margin-bottom: 20px;
 }
 
+.h2Color{
+  color: #333;
+}
+
+th,
+td {
+  color: #333;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #638805;
+}
+
 h2 {
   margin: 0;
   font-size: 18px;
@@ -23,7 +35,7 @@ h2 {
 
 .btn-nuevo, .btn-exportar {
   padding: 8px 16px;
-  background-color: #2196f3;
+  background-color: #638805;
   color: white;
   border: none;
   border-radius: 4px;
@@ -32,25 +44,6 @@ h2 {
 
 .btn-exportar {
   background-color: #f44336;
-}
-
-.search-container {
-  position: relative;
-}
-
-.search-input {
-  padding: 8px;
-  padding-right: 30px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-.search-icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #aaa;
 }
 
 .styled-table {
@@ -72,15 +65,15 @@ h2 {
 }
 
 .styled-table tbody tr {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #638805;
 }
 
 .styled-table tbody tr:last-of-type {
-  border-bottom: 2px solid #2196f3;
+  border-bottom: 2px solid #638805;
 }
 
 .fa-pencil {
-  color: #2196f3;
+  color: #638805;
   cursor: pointer;
 }
 
@@ -92,8 +85,8 @@ h2 {
 }
 
 .pagination-btn {
-  background-color: #2196f3;
-  color: white;
+  background-color: #638805;
+  color: #638805;
   border: none;
   padding: 8px;
   border-radius: 4px;
@@ -125,7 +118,7 @@ h2 {
   background-color: #fff;
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #888;
+  border: 1px solid #638805;
   width: 30%;
 }
 
