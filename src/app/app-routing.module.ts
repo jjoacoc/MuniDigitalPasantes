@@ -22,6 +22,9 @@ const routes: Routes = [
     {
       path:"",loadChildren:()=>import('./modules/inicio/inicio.module').then(m=>m.InicioModule)
     },
+    {
+      path:"",loadChildren:()=>import('./modules/incidentes/incidentes.module').then(m=>m.IncidentesModule)
+    }
 
 
 ];

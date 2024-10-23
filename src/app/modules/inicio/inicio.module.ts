@@ -5,9 +5,10 @@ import { InicioRoutingModule } from './inicio-routing.module';
 import { InicioComponent } from './pages/inicio/inicio.component';
 
 
+
 @NgModule({
   declarations: [
-    InicioComponent
+    InicioComponent,
   ],
   imports: [
     CommonModule,
