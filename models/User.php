@@ -16,6 +16,18 @@ class User
         $this->conn = $db;
     }
 
+    #Hasheo pass
+    // public function setPassword($password) {
+    //     // Aquí podrías agregar hashing de la contraseña
+    //     $this->password = password_hash($password, PASSWORD_BCRYPT);
+    // }
+
+    #Verificacion Pass    
+    // public function checkPassword($password) {
+    //     return password_verify($password, $this->password);
+    //   }
+ 
+
     // Obtener todos los productos
     public function getAll()
     {
@@ -35,10 +47,19 @@ class User
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+      
+    public function getUserByEmail($email) {
+        $query = "SELECT * FROM Usuarios WHERE email = :email";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':email', $email);  // Corregido: pasar el correo como valor
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     // Crear un usuario nuevo
     public function create()
     {
-        $query = "INSERT INTO " . $this->table . " (Nombres, email, Pass, Id_Usuarios) VALUES (:Nombres, :email, :Pass, :Id_Usuarios)";
+        $query = "INSERT INTO " . $this->table . " (Nombres, email, Pass, Id_Grupos) VALUES (:Nombres, :email, :Pass, :Id_Grupos)";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':Nombres', $this->Nombres);
         $stmt->bindParam(':email', $this->email);
@@ -50,7 +71,7 @@ class User
     // Actualizar un usuario
     public function update($Id_Usuarios)
     {
-        $query = "UPDATE " . $this->table . " SET Nombres = :Nombres, email = :email, Pass = :Pass, Id_Usuarios = :Id_Usuarios WHERE Id_Usuarios = :Id_Usuarios";
+        $query = "UPDATE " . $this->table . " SET Nombres = :Nombres, email = :email, Pass = :Pass, Id_Grupos = :Id_Grupos WHERE Id_Grupos = :Id_Grupos";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':Id_Usuarios', $Id_Usuarios);
         $stmt->bindParam(':Nombres', $this->Nombres);

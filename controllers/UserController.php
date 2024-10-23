@@ -32,7 +32,7 @@ class UserController {
         $this->user->Nombres = $data->Nombres;
         $this->user->email = $data->email;
         $this->user->Pass = $data->Pass;
-        $this->user->Id_Usuarios = $data->Id_Usuarios;
+        $this->user->Id_Grupos = $data->Id_Grupos;
         if ($this->user->create()) {
             return json_encode(["message" => "OK"]);
         }
@@ -44,7 +44,7 @@ class UserController {
         $this->user->Nombres = $data->Nombres;
         $this->user->email = $data->email;
         $this->user->Pass = $data->Pass;
-        $this->user->Id_Usuarios = $data->Id_Usuarios;
+        $this->user->Id_Grupos = $data->Id_Grupos;
         if ($this->user->update($Id_Usuarios)) {
             return json_encode(["message" => "OK"]);
         }
