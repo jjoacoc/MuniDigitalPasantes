@@ -1,0 +1,23 @@
+<!-- src/app/components/user-table/user-table.component.html -->
+<table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Pass</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users"> <!-- Recorremos el array de usuarios -->
+        <td>{{ user.id }}</td> <!-- Mostramos el ID -->
+        <td>{{ user.email }}</td> 
+        <td>{{user.pass}}</td><!-- Mostramos el nombre de usuario -->
+        <td>
+          <button (click)="editUser(user.id)">Editar</button>
+          <button (click)="deleteUser(user.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

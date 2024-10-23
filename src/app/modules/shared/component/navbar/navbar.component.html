@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+    <span>Mi Aplicación</span>
+    <span class="spacer"></span>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="subMenu">Seguridad</button>
+    </mat-menu>
+    <mat-menu #subMenu="matMenu">
+      <button mat-menu-item>Usuario</button>
+      <button mat-menu-item>Grupo</button>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="menu">Menú</button>
+  </mat-toolbar>
+  
