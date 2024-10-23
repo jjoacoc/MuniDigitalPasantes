@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class UsuarioComponent implements OnInit {
   usuarioForm: FormGroup;  // Formulario reactivo para manejar los datos del usuario
   usuarios: any[] = [];  // Variable para almacenar los usuarios recuperados de la base de datos
+  grupos: any [] = []
 
   modificarUsuarioForm: FormGroup; // Formulario para modificar usuario
   usuarioSeleccionado: any = null; // Variable para almacenar el usuario seleccionado
@@ -31,16 +32,18 @@ export class UsuarioComponent implements OnInit {
 
     // Inicializamos el formulario con tres campos: NombreUsuario, Mail y Clave
     this.usuarioForm = this.fb.group({
-      nombre: ['', Validators.required],  // Campo obligatorio
+      Nombres: ['', Validators.required],  // Campo obligatorio
       email: ['', [Validators.required, Validators.email]],  // Campo obligatorio y validación de formato de email
-      pass: ['', [Validators.required, Validators.minLength(6)]],  // Campo obligatorio con longitud mínima de 6 caracteres
+      Pass: ['', [Validators.required, Validators.minLength(6)]],  // Campo obligatorio con longitud mínima de 6 caracteres
+      Id_Grupos: ['', Validators.required],
     });
 
      // Formulario de modificación de usuarios
      this.modificarUsuarioForm = this.fb.group({
-      nombre: ['', Validators.required],
+      Nombres: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      pass: ['', [Validators.required, Validators.minLength(6)]],
+      Pass: ['', [Validators.required, Validators.minLength(6)]],
+      Id_Grupos: ['', Validators.required],
     });
   }
   
@@ -52,7 +55,8 @@ export class UsuarioComponent implements OnInit {
     this.modificarUsuarioForm.patchValue({
       NombreUsuario: usuario.NombreUsuario,
       Mail: usuario.Mail,
-      pass: usuario.pass
+      Pass: usuario.Pass,
+      Id_Grupos: usuario.Id_Grupos,
     });
   }
 
@@ -64,7 +68,7 @@ export class UsuarioComponent implements OnInit {
         ...this.usuarioSeleccionado,
         ...this.modificarUsuarioForm.value
       };
-      this.database.modificarUsuarios(usuarioModificado, usuarioModificado.id).subscribe({
+      this.database.modificarUsuarios(usuarioModificado, usuarioModificado.Id_Usuarios).subscribe({
         next: (response) => {
           console.log('Respuesta del servidor: ', response)
           if (response && response['message'] == 'OK') {
@@ -86,6 +90,7 @@ export class UsuarioComponent implements OnInit {
   // Este método se ejecuta cuando el componente se inicializa
   ngOnInit(): void {
     this.recuperarUsuarios();  // Al iniciar el componente, se recuperan los usuarios de la base de datos
+    this.recuperarGrupo(); //Al inciciar el componente, se recuperan los grupos de la base de datos
   }
 
   // Método para manejar el envío del formulario
@@ -97,6 +102,7 @@ export class UsuarioComponent implements OnInit {
       this.database.altaUsuarios(usuarioData).subscribe({
         next: (response) => {
           // Si la respuesta es correcta y el servidor indica que el usuario fue creado
+          console.log('Respuesta del Servidor', response)
           if (response && response['message'] == 'OK') {
             alert('Usuario creado con éxito');  // Se muestra un mensaje de éxito
             this.usuarioForm.reset();  // Se resetea el formulario
@@ -119,6 +125,29 @@ export class UsuarioComponent implements OnInit {
     }
   }
 
+  
+  recuperarGrupo() {
+    this.database.recuperarGrupo().subscribe({
+      next: (response) => {
+        if (Array.isArray(response)) {
+          this.grupos = response;  // Aquí debes tener un array de objetos que contengan Id_Grupos y descripcion
+        } else {
+          console.error('La respuesta del servidor no es un array:', response);
+          this.grupos = [];
+        }
+      },
+      error: (error) => {
+        console.error('Error al recuperar Grupos:', error);
+      }
+    });
+
+  }
+  obtenerDescripcionGrupo(Id_Grupos: any): string {
+    const grupo = this.grupos.find(g => g.Id_Grupos === Id_Grupos);
+    return grupo ? grupo.Nombres : 'Sin grupo'; // Si no encuentra el grupo, muestra un mensaje
+  }
+  
+
   // Método para recuperar la lista de usuarios de la base de datos
   recuperarUsuarios() {
     this.database.recuperarUsuarios().subscribe({
@@ -138,8 +167,8 @@ export class UsuarioComponent implements OnInit {
     });
   }
 
-  bajaUsuario(id: number) {
-    this.database.bajaUsuarios(id).subscribe({
+  bajaUsuario(Id_Usuarios: number) {
+    this.database.bajaUsuarios(Id_Usuarios).subscribe({
       next: (response) => {
         console.log(response);  // Revisa qué está devolviendo la API
         if (response && response['message'] == 'OK') {

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { InicioComponent } from './modules/inicio/pages/inicio/inicio.component';
 
 const routes: Routes = [
    
@@ -11,6 +12,9 @@ const routes: Routes = [
     //{path:"",loadChildren:()=>import('./modules/movimientos/movimientos.module').then(m=>m.MovimientosModule)}
     //{path: '', redirectTo: '/inicio', pathMatch: 'full'},
 
+    {
+      path:"",component:InicioComponent
+    },
     {
       path:"",loadChildren:()=>import('./modules/autentificacion/autentificacion.module').then(m=>m.AutentificacionModule)
     },

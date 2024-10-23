@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DatabaseService } from '../../admin/services/database.service';
 
 @Component({
   selector: 'app-registro-incidentes',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./registro-incidentes.component.css']
 })
 export class RegistroIncidentesComponent {
+
+  
+
+
+
 
 }

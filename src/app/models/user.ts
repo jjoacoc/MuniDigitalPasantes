@@ -1,6 +1,6 @@
 export interface User {
-    id: number;       // ID del usuario
-    nombre: string;
+    Id_Usuarios: number;       // ID del usuario
+    Nombres: string;
     email: string; // Nombre de usuario
-    pass?: string; // Contraseña (opcional, no se usa en el frontend)
+    Pass?: string; // Contraseña (opcional, no se usa en el frontend)
   }
