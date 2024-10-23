@@ -1,62 +1,62 @@
 <div>
-  <mat-toolbar class="nav">
-      <!--para que se desactive el menu si el usuario no inicia sesion usar [disabled]="!isLoggedIn" -->
-      <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Menu" >
-          <mat-icon>menu</mat-icon>
-      </button>
-      <h1>Municipalidad de Cipolleti</h1>
-
-      <button style="align-items: end;"  routerLink="/login">
-          <mat-icon mat-icon-button>logout</mat-icon>
-      </button>
-  </mat-toolbar>
-
-  <mat-sidenav-container class="app-container">
-      <mat-sidenav #sidenav mode="side" [class.mat-elevation-z4]="true" class="app-sidenav">
-          <mat-nav-list>
-              <mat-expansion-panel [class.mat-elevation-z0]="true" class="item">
+    <mat-toolbar class="nav">
+        <!--para que se desactive el menu si el usuario no inicia sesion usar [disabled]="!isLoggedIn" -->
+        <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Menu" >
+            <mat-icon>menu</mat-icon>
+        </button>
+        <h1>Municipalidad de Cipolleti</h1>
+  
+        <button style="align-items: end;"  routerLink="/login">
+            <mat-icon mat-icon-button>logout</mat-icon>
+        </button>
+    </mat-toolbar>
+  
+    <mat-sidenav-container class="app-container">
+        <mat-sidenav #sidenav mode="side" [class.mat-elevation-z4]="true" class="app-sidenav">
+            <mat-nav-list>
+                <mat-expansion-panel [class.mat-elevation-z0]="true" class="item">
+                    <mat-expansion-panel-header>
+                        Seguridad
+                    </mat-expansion-panel-header>
+                    <mat-nav-list>
+                        <a mat-list-item routerLink="/usuario">
+                           <span>Usuarios</span>
+                        </a>
+                        <a mat-list-item routerLink="/grupos">
+                            <span>Grupo</span>
+                        </a>
+                    </mat-nav-list>
+                </mat-expansion-panel>
+                <mat-expansion-panel [class.mat-elevation-z0]="true" class="item">
+                    <mat-expansion-panel-header>
+                      Incidentes
+                    </mat-expansion-panel-header>
+                    <mat-nav-list>
+                        <a mat-list-item routerLink="/registro">
+                            <span>Registro de Incidentes</span>
+                        </a>
+                    </mat-nav-list>
+                </mat-expansion-panel>
+                <mat-expansion-panel [class.mat-elevation-z0]="true" class="item">
                   <mat-expansion-panel-header>
-                      Seguridad
+                    Configuracion
                   </mat-expansion-panel-header>
                   <mat-nav-list>
-                      <a mat-list-item routerLink="/usuario">
-                         <span>Usuarios</span>
+                      <a mat-list-item routerLink="/recepcion_materiales">
+                          <span>Area de Servico</span>
                       </a>
-                      <a mat-list-item routerLink="/grupos">
-                          <span>Grupo</span>
+  
+                      <a mat-list-item routerLink="/recepcion_materiales">
+                          <span>Tipo De Incidentes</span>
                       </a>
                   </mat-nav-list>
               </mat-expansion-panel>
-              <mat-expansion-panel [class.mat-elevation-z0]="true" class="item">
-                  <mat-expansion-panel-header>
-                    Incidentes
-                  </mat-expansion-panel-header>
-                  <mat-nav-list>
-                      <a mat-list-item routerLink="/registro">
-                          <span>Registro de Incidentes</span>
-                      </a>
-                  </mat-nav-list>
-              </mat-expansion-panel>
-              <mat-expansion-panel [class.mat-elevation-z0]="true" class="item">
-                <mat-expansion-panel-header>
-                  Configuracion
-                </mat-expansion-panel-header>
-                <mat-nav-list>
-                    <a mat-list-item routerLink="/recepcion_materiales">
-                        <span>Area de Servico</span>
-                    </a>
-
-                    <a mat-list-item routerLink="/recepcion_materiales">
-                        <span>Tipo De Incidentes</span>
-                    </a>
-                </mat-nav-list>
-            </mat-expansion-panel>
-          </mat-nav-list>
-      </mat-sidenav>
-      <mat-sidenav-content style="margin-top: 60px;">
-          <div class="app-sidenav-content">
-              <router-outlet></router-outlet>
-          </div>
-      </mat-sidenav-content>
-  </mat-sidenav-container>
-</div>
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content style="margin-top: 60px;">
+            <div class="app-sidenav-content">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>

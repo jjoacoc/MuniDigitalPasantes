@@ -13,6 +13,7 @@ import { RouterModule, Routes }   from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSidenav } from '@angular/material/sidenav';
+import { RouterLink } from '@angular/router';
 
 
 
@@ -24,6 +25,7 @@ import { MatSidenav } from '@angular/material/sidenav';
   imports: [
     CommonModule,
     FormsModule,
+    RouterLink,
     MatButtonModule,
     MatSidenavModule,
     MatMenuModule,
