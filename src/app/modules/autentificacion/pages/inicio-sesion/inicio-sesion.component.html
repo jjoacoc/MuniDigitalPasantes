@@ -1,5 +1,6 @@
-<!-- 
+
     <div class="container">
+      <div class="right"></div>
         <div class="left">
 
 
@@ -8,7 +9,7 @@
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                     <mat-form-field appearance="fill" class="animation a3">
                         <mat-label>Ingrese su email:</mat-label>
-                        <input matInput placeholder="Ej: pepitoperez2022@gmail.com" formControlName="mail" required>
+                        <input matInput formControlName="mail" required>
                     </mat-form-field>
                     <mat-form-field class="animation a4">
                         <mat-label>Ingrese su contraseña:</mat-label>
@@ -20,53 +21,10 @@
                         </button>
                         <mat-hint align="start">Mínimo:6/{{input.value.length}}</mat-hint>
                     </mat-form-field>
-                    <button class="boton" mat-raised-button color="primary" type="submit">Iniciar Sesión</button>
+                    <button mat-raised-button type="submit">Iniciar Sesión</button>
                     <div *ngIf="errorMessage">{{ errorMessage }}</div>
                 </form>
             </div>
         </div>
-        <div class="right"></div>
-    </div> -->
 
-
-<!--<div class="container">
-    <div class="left">
-      <div class="header">
-        <h2 class="animation a1">Welcome Back</h2>
-        <h4 class="animation a2">Log in to your account using email and password</h4>
-      </div>
-      <div class="form">
-        <input type="email" class="form-field animation a3" placeholder="Email Address">
-        <input type="password" class="form-field animation a4" placeholder="Password">
-        <p class="animation a5"><a href="#">Forgot Password</a></p>
-      
-      </div>
-      <div>
-        <button class="animation a6">LOGIN</button>
-      </div>
     </div>
-    <div class="right"></div>
-  </div>
--->
-<!--<div class="container">
-    <div class="left">
-      <div class="header">
-        <h2 class="animation a1">Welcome Back</h2>
-        <h4 class="animation a2">Log in to your account using email and password</h4>
-      </div>
-      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <div class="form">
-          <input type="email" class="form-field animation a3" placeholder="Email Address" formControlName="email">
-          <div *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</div>
-          <input type="password" class="form-field animation a4" placeholder="Password" formControlName="password">
-          <div *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</div>
-          <p class="animation a5"><a href="#">Forgot Password</a></p>
-        </div>
-        <div>
-          <button class="animation a6" [disabled]="loginForm.invalid">LOGIN</button>
-        </div>
-      </form>
-    </div>
-    <div class="right"></div>
-  </div>
--->

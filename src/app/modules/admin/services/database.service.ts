@@ -12,9 +12,9 @@ export class DatabaseService {
   constructor(private http: HttpClient) {} // Inyecta HttpClient para usarlo en las peticiones
 
   // Nuevo método para iniciar sesión
-  //iniciarSesion(credentials: any): Observable<any> {
-  //  return this.http.post(`${this.apiUrl}/users?action=login`, credentials);
-  //}
+  iniciarSesion(credentials: any): Observable<any> {
+   return this.http.post(`${this.apiUrl}/users?action=login`, credentials);
+  }
 
 
   // Método para modificar un usuario existente en la base de datos (PUT)
