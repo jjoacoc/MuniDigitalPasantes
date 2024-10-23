@@ -5,13 +5,16 @@ import { IncidentesRoutingModule } from './incidentes-routing.module';
 import { RegistroIncidentesComponent } from './registro-incidentes/registro-incidentes.component';
 
 
+
+
 @NgModule({
   declarations: [
     RegistroIncidentesComponent
   ],
   imports: [
     CommonModule,
-    IncidentesRoutingModule
+    IncidentesRoutingModule,
+
   ],
   exports:[
     RegistroIncidentesComponent
