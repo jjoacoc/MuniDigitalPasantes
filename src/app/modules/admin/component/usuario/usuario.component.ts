@@ -33,7 +33,7 @@ export class UsuarioComponent implements OnInit {
     // Inicializamos el formulario con tres campos: NombreUsuario, Mail y Clave
     this.usuarioForm = this.fb.group({
       Nombres: ['', Validators.required],  // Campo obligatorio
-      email: ['', [Validators.required, Validators.email]],  // Campo obligatorio y validación de formato de Email
+      email: ['', [Validators.required, Validators.email]],  // Campo obligatorio y validación de formato de email
       Pass: ['', [Validators.required, Validators.minLength(6)]],  // Campo obligatorio con longitud mínima de 6 caracteres
       Id_Grupos: ['', Validators.required],
     });
@@ -102,6 +102,7 @@ export class UsuarioComponent implements OnInit {
       this.database.altaUsuarios(usuarioData).subscribe({
         next: (response) => {
           // Si la respuesta es correcta y el servidor indica que el usuario fue creado
+          console.log('Respuesta del Servidor', response)
           if (response && response['message'] == 'OK') {
             alert('Usuario creado con éxito');  // Se muestra un mensaje de éxito
             this.usuarioForm.reset();  // Se resetea el formulario
@@ -141,8 +142,8 @@ export class UsuarioComponent implements OnInit {
     });
 
   }
-  obtenerDescripcionGrupo(grupoId: any): string {
-    const grupo = this.grupos.find(g => g.Id_Grupos === grupoId);
+  obtenerDescripcionGrupo(Id_Grupos: any): string {
+    const grupo = this.grupos.find(g => g.Id_Grupos === Id_Grupos);
     return grupo ? grupo.Nombres : 'Sin grupo'; // Si no encuentra el grupo, muestra un mensaje
   }
   

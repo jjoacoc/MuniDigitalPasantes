@@ -26,11 +26,11 @@
       </div>
     </div>
     <div>
-      <label for="Email">Email:</label>
-      <input id="Email" formControlName="Email" type="eemail" />
+      <label for="email">email:</label>
+      <input id="email" formControlName="email" type="eemail" />
       <!-- Validación: si el campo es inválido (por ejemplo, un formato de eemail incorrecto) y ha sido tocado, se muestra un mensaje de error -->
-      <div *ngIf="usuarioForm.get('Email')?.invalid && usuarioForm.get('Email')?.touched">
-        Ingresa un Email válido
+      <div *ngIf="usuarioForm.get('email')?.invalid && usuarioForm.get('email')?.touched">
+        Ingresa un email válido
       </div>
     </div>
     <div>
@@ -46,9 +46,9 @@
     <div>
         <div *ngFor="let grupo of grupos">
             <!-- [value]="grupo.Id_Grupos" Asigna el valor de este radio button al Id_Grupos del objeto grupo. Esto es lo que se enviará al formulario cuando este radio button esté seleccionado. -->
-            <input type="radio" [value]="grupo.Id_Grupos" formControlName="grupoId"
+            <input type="radio" [value]="grupo.Id_Grupos" formControlName="Id_Grupos"
                 [id]="'grupo-' + grupo.Id_Grupos" />
-            <label [for]="'grupo-' + grupo.Id_Grupos">{{ grupo.descripcion }}</label>
+            <label [for]="'grupo-' + grupo.Id_Grupos">{{ grupo.Nombres }}</label>
         </div>
     </div>
 
@@ -63,7 +63,7 @@
       <tr>
         <th>Id</th>
         <th>Nombres</th>
-        <th>Email</th>
+        <th>email</th>
         <th>Pass</th>
         <th>Grupos</th>
         <th>Acciones</th>
@@ -73,9 +73,9 @@
       <tr *ngFor="let usuario of usuarios">
         <td>{{ usuario.Id_Usuarios }}</td>
         <td>{{ usuario.Nombres }}</td>
-        <td>{{ usuario.Email }}</td>
+        <td>{{ usuario.email }}</td>
         <td>{{ usuario.Pass }}</td>
-        <td class="borde"> {{ obtenerDescripcionGrupo(usuario.grupoId) }}
+        <td class="borde"> {{ obtenerDescripcionGrupo(usuario.Id_Grupos) }}
         <td>
 
           <!-- Botón para borrar el usuario -->
@@ -92,8 +92,8 @@
       <input id="modificarNombre" formControlName="Nombres" type="text" />
     </div>
     <div>
-      <label for="modificaremail">Email:</label>
-      <input id="modificaremail" formControlName="Email" type="eemail" />
+      <label for="modificaremail">email:</label>
+      <input id="modificaremail" formControlName="email" type="eemail" />
     </div>
     <div>
       <label for="modificarpass">Pass:</label>
@@ -103,9 +103,9 @@
     <div>
         <div *ngFor="let grupo of grupos">
             <!-- [value]="grupo.Id_Grupos" Asigna el valor de este radio button al Id_Grupos del objeto grupo. Esto es lo que se enviará al formulario cuando este radio button esté seleccionado. -->
-            <input type="radio" [value]="grupo.Id_Grupos" formControlName="grupoId"
+            <input type="radio" [value]="grupo.Id_Grupos" formControlName="Id_Grupos"
                 [id]="'grupo-' + grupo.Id_Grupos" />
-            <label [for]="'grupo-' + grupo.Id_Grupos">{{ grupo.descripcion }}</label>
+            <label [for]="'grupo-' + grupo.Id_Grupos">{{ grupo.Nombres }}</label>
         </div>
     </div>
     <button type="submit" [disabled]="modificarUsuarioForm.invalid">Guardar Cambios</button>
