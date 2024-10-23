@@ -1,0 +1,113 @@
+<div class="container">
+    <div class="header">
+      <button (click)="toggleFormulario()">Nuevo</button>
+      <input type="text" class="search-bar" placeholder="Buscar...">
+      <div class="dropdown">
+          <button class="dropbtn">Exportar</button>
+          <div class="dropdown-content">
+              <a href="#">CSV</a>
+              <a href="#">Excel</a>
+              <a href="#">PDF</a>
+          </div>
+      </div>
+  </div>
+
+  <!-- Formulario que utiliza FormGroup (Reactive Forms) de Angular -->
+  <form *ngIf="mostrarFormulario" [formGroup]="usuarioForm" (ngSubmit)="submitForm()">
+    <h2>Crear Usuario</h2>
+    <!-- El formGroup 'usuarioForm' está enlazado con el formulario. Cuando se envía el formulario, se ejecuta la función 'submitForm()' -->
+    <div>
+      <label for="Nombres">Nombre:</label>
+      <!-- Input que utiliza 'formControlName' para enlazar el campo 'Nombres' del formulario reactivo -->
+      <input id="Nombres" formControlName="Nombres" type="text" />
+      <!-- Validación: si el campo es inválido y ha sido tocado, se muestra un mensaje de error -->
+      <div *ngIf="usuarioForm.get('Nombres')?.invalid && usuarioForm.get('Nombres')?.touched">
+        Nombre es requerido
+      </div>
+    </div>
+    <div>
+      <label for="Email">Email:</label>
+      <input id="Email" formControlName="Email" type="eemail" />
+      <!-- Validación: si el campo es inválido (por ejemplo, un formato de eemail incorrecto) y ha sido tocado, se muestra un mensaje de error -->
+      <div *ngIf="usuarioForm.get('Email')?.invalid && usuarioForm.get('Email')?.touched">
+        Ingresa un Email válido
+      </div>
+    </div>
+    <div>
+      <label for="Pass">Pass:</label>
+      <input id="Pass" formControlName="Pass" type="password" />
+      <!-- Validación: si la Pass es inválida (por ejemplo, si tiene menos de 6 caracteres) y el campo ha sido tocado, se muestra un mensaje de error -->
+      <div *ngIf="usuarioForm.get('Pass')?.invalid && usuarioForm.get('Pass')?.touched">
+        La Pass debe tener al menos 6 caracteres
+      </div>
+    </div>
+
+    <label for="grupo">Seleccionar Grupo:</label>
+    <div>
+        <div *ngFor="let grupo of grupos">
+            <!-- [value]="grupo.Id_Grupos" Asigna el valor de este radio button al Id_Grupos del objeto grupo. Esto es lo que se enviará al formulario cuando este radio button esté seleccionado. -->
+            <input type="radio" [value]="grupo.Id_Grupos" formControlName="grupoId"
+                [id]="'grupo-' + grupo.Id_Grupos" />
+            <label [for]="'grupo-' + grupo.Id_Grupos">{{ grupo.descripcion }}</label>
+        </div>
+    </div>
+
+    <!-- Botón para enviar el formulario -->
+    <!-- Se deshabilita el botón si el formulario es inválido (por ejemplo, si no se han completado los campos obligatorios) -->
+    <button type="submit" [disabled]="usuarioForm.invalid">Enviar</button>
+  </form>
+
+  <h2>Usuarios Registrados</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombres</th>
+        <th>Email</th>
+        <th>Pass</th>
+        <th>Grupos</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>{{ usuario.Id_Usuarios }}</td>
+        <td>{{ usuario.Nombres }}</td>
+        <td>{{ usuario.Email }}</td>
+        <td>{{ usuario.Pass }}</td>
+        <td class="borde"> {{ obtenerDescripcionGrupo(usuario.grupoId) }}
+        <td>
+
+          <!-- Botón para borrar el usuario -->
+          <button class="button-reg" (click)="editarUsuario(usuario)">Modificar</button>
+          <button (click)="bajaUsuario(usuario.Id_Usuarios)">Borrar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- Formulario para modificar usuario, solo visible si se seleccionó un usuario para editar -->
+  <form class="formMod" *ngIf="usuarioSeleccionado" [formGroup]="modificarUsuarioForm" (ngSubmit)="submitModificarForm()">
+    <div>
+      <label for="modificarNombre">Nombre:</label>
+      <input id="modificarNombre" formControlName="Nombres" type="text" />
+    </div>
+    <div>
+      <label for="modificaremail">Email:</label>
+      <input id="modificaremail" formControlName="Email" type="eemail" />
+    </div>
+    <div>
+      <label for="modificarpass">Pass:</label>
+      <input id="modificarpass" formControlName="Pass" type="password" />
+    </div>
+    <label for="grupo">Seleccionar Grupo:</label>
+    <div>
+        <div *ngFor="let grupo of grupos">
+            <!-- [value]="grupo.Id_Grupos" Asigna el valor de este radio button al Id_Grupos del objeto grupo. Esto es lo que se enviará al formulario cuando este radio button esté seleccionado. -->
+            <input type="radio" [value]="grupo.Id_Grupos" formControlName="grupoId"
+                [id]="'grupo-' + grupo.Id_Grupos" />
+            <label [for]="'grupo-' + grupo.Id_Grupos">{{ grupo.descripcion }}</label>
+        </div>
+    </div>
+    <button type="submit" [disabled]="modificarUsuarioForm.invalid">Guardar Cambios</button>
+  </form>
+</div>
