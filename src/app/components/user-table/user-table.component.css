@@ -1,0 +1,44 @@
+/* src/app/components/user-table/user-table.component.css */
+table {
+    width: 100%; /* Ancho completo */
+    border-collapse: collapse; /* Colapsar bordes */
+    margin: 20px 0; /* Margen superior e inferior */
+    font-size: 1rem; /* Tamaño de fuente */
+    font-family: 'Arial', sans-serif; /* Fuente de la tabla */
+}
+
+thead {
+    background-color: #4CAF50; /* Color de fondo del encabezado */
+    color: white; /* Color del texto */
+}
+
+th, td {
+    padding: 12px 15px; /* Espaciado interno */
+    text-align: left; /* Alinear texto a la izquierda */
+    border-bottom: 1px solid #ddd; /* Línea de separación */
+}
+
+tbody tr:hover {
+    background-color: #f2f2f2; /* Color de fondo al pasar el mouse */
+}
+
+button {
+    background-color: #4CAF50; /* Color de fondo del botón */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px 15px; /* Espaciado interno */
+    cursor: pointer; /* Cursor de puntero */
+    margin-right: 5px; /* Margen derecho */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+button:hover {
+    background-color: #45a049; /* Color de fondo al pasar el mouse */
+}
+
+@media (max-width: 600px) {
+    th, td {
+        font-size: 0.9rem; /* Tamaño de fuente más pequeño en dispositivos móviles */
+    }
+}

@@ -2,30 +2,30 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { GruposComponent } from './grupos/grupos.component';
 
-import {MatTableModule} from '@angular/material/table';
+import { UsuarioComponent } from './component/usuario/usuario.component';
+import { GrupoComponent } from './component/grupo/grupo.component';
+
 import { FormsModule } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 
 @NgModule({
   declarations: [
-    GruposComponent
-  ],
+    UsuarioComponent,
+    GrupoComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
-    MatTableModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     FormsModule,
-    ReactiveFormsModule
   ],
-  exports:[
-    GruposComponent,
-    MatTableModule,
-    FormsModule
-  ]
+  exports: [UsuarioComponent,
+    GrupoComponent],
 })
 export class AdminModule { }

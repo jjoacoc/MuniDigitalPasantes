@@ -1,0 +1,98 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
+    padding: 30px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra */
+    width: 50%; /* Ancho de la caja */
+    text-align: center; /* Centra el texto */
+}
+
+.header h1 {
+    margin: 0; /* Sin margen */
+    font-size: 24px; /* Tamaño del título */
+}
+
+.header p {
+    margin: 10px 0; /* Margen arriba y abajo */
+    font-size: 14px; /* Tamaño del texto */
+}
+
+.login-form {
+    margin-top: 20px; /* Margen arriba del formulario */
+}
+
+.login-form h2 {
+    margin-bottom: 20px; /* Margen abajo del subtítulo */
+    font-size: 20px; /* Tamaño del subtítulo */
+}
+
+.input-group {
+    margin-bottom: 15px; /* Espacio entre los grupos de entrada */
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+.input-group label {
+    display: block; /* Bloque para el label */
+    margin-bottom: 5px; /* Margen abajo del label */
+}
+
+.input-group input {
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Borde gris */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+.login-form button {
+    background-color: #4CAF50; /* Color del botón */
+    color: white; /* Color del texto del botón */
+    padding: 10px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+    width: 100%; /* Ancho completo del botón */
+}
+
+.footer-links {
+    margin-top: 10px; /* Margen arriba */
+}
+
+.footer-links a {
+    color: #007BFF; /* Color del enlace */
+    text-decoration: none; /* Sin subrayado */
+    display: block; /* Para que ocupe todo el ancho */
+    margin-bottom: 5px; /* Margen abajo del enlace */
+}
+
+.footer-links label {
+    display: block; /* Bloque para el label */
+    margin-top: 10px; /* Margen arriba */
+}
+
+.inicio{
+    display: flexbox;
+    justify-content: space-between;
+    height: 100%;
+    overflow: auto;
+}
+
+.imgInicio{
+    width: 100%;
+}
+
+.containerImg{
+flex: 1;
+}

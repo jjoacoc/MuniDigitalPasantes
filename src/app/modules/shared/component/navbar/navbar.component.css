@@ -1,0 +1,46 @@
+html, body, mat-sidenav-container {
+    height: 100%;
+    margin: 0;
+}
+
+.app-container {
+    background-color: #FFFFFF;
+    height: 100vh;
+
+}
+
+.app-sidenav {
+    background-color: #638805;
+    width: 230px;
+    height: 100vh;
+}
+
+.app-sidenav-content {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F0F0F0;
+}
+
+.nav {
+    background-color: #638805;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-button, .logout-button {
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+}
+
+.item {
+    background-color: #638805;
+}

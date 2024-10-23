@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
-import { ApiService } from '../../servis/api.service';
+import { DatabaseService } from '../../services/database.service';
+//import { ApiService } from '../../servis/api.service';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 
 
 @Component({
-  selector: 'app-grupos',
-  templateUrl: './grupos.component.html',
-  styleUrls: ['./grupos.component.css']
+  selector: 'app-grupo',
+  templateUrl: './grupo.component.html',
+  styleUrls: ['./grupo.component.css']
 })
-export class GruposComponent implements OnInit {
+export class GrupoComponent implements OnInit {
 
   isModalOpen = false;
   newGroupName: string = '';
@@ -38,38 +39,38 @@ export class GruposComponent implements OnInit {
 
   
   
-  // Formulario reactivo para manejar los datos del rol
+  // Formulario reactivo para manejar los datos del grupo
   rolForm: FormGroup;  
-  roles: any[] = [];  // Variable para almacenar los roles recuperados de la base de datos
+  grupos: any[] = [];  // Variable para almacenar los grupos recuperados de la base de datos
 
-  modificarRolForm: FormGroup;  // Formulario para modificar un rol
-  rolSeleccionado: any = null;  // Variable para almacenar el rol seleccionado
+  modificarRolForm: FormGroup;  // Formulario para modificar un grupo
+  rolSeleccionado: any = null;  // Variable para almacenar el grupo seleccionado
   
   mostrarFormulario = false;
 
-  // Función para mostrar u ocultar el formulario de creación de roles
+  // Función para mostrar u ocultar el formulario de creación de grupos
   toggleFormulario() {
     this.mostrarFormulario = !this.mostrarFormulario;
   }
 
-  constructor(private database: ApiService, private fb: FormBuilder) {
+  constructor(private database: DatabaseService, private fb: FormBuilder) {
 
     // Inicializamos el formulario con el campo 'nombre' como obligatorio
     this.rolForm = this.fb.group({
-      nombre: ['', Validators.required],  // Campo obligatorio para el nombre del rol
+      nombre: ['', Validators.required],  // Campo obligatorio para el nombre del grupo
     });
 
-    // Formulario de modificación de roles
+    // Formulario de modificación de grupos
     this.modificarRolForm = this.fb.group({
-      nombre: ['', Validators.required],  // Campo obligatorio para modificar el nombre del rol
+      nombre: ['', Validators.required],  // Campo obligatorio para modificar el nombre del grupo
     });
   }
 
-  // Método para seleccionar un rol y poblar el formulario de modificación
-  editarRol(rol: any) {
-    this.rolSeleccionado = rol;
+  // Método para seleccionar un grupo y poblar el formulario de modificación
+  editarRol(grupo: any) {
+    this.rolSeleccionado = grupo;
     this.modificarRolForm.patchValue({
-      nombre: rol.nombre,  // Cargar el nombre del rol seleccionado en el formulario
+      nombre: grupo.nombre,  // Cargar el nombre del grupo seleccionado en el formulario
     });
   }
 
@@ -80,18 +81,18 @@ export class GruposComponent implements OnInit {
         ...this.rolSeleccionado,
         ...this.modificarRolForm.value
       };
-      this.database.modificarRol(rolModificado).subscribe({
+      this.database.modificarGrupo(rolModificado, rolModificado.id ).subscribe({
         next: (response) => {
           if (response && response['resultado'] === 'OK') {
             alert('Rol modificado con éxito');
             this.rolSeleccionado = null;  // Ocultar el formulario después de modificar
-            this.recuperarRoles();  // Actualizar la lista de roles
+            this.recuperarRoles();  // Actualizar la lista de grupos
           } else {
-            alert('Error al modificar rol: ' + (response['mensaje'] || 'Error desconocido'));
+            alert('Error al modificar grupo: ' + (response['mensaje'] || 'Error desconocido'));
           }
         },
         error: (error) => {
-          alert('Error al modificar rol');
+          alert('Error al modificar grupo');
           console.error('Error:', error);
         },
       });
@@ -100,26 +101,26 @@ export class GruposComponent implements OnInit {
 
   // Este método se ejecuta cuando el componente se inicializa
   ngOnInit(): void {
-    this.recuperarRoles();  // Al iniciar el componente, se recuperan los roles de la base de datos
+    this.recuperarRoles();  // Al iniciar el componente, se recuperan los grupos de la base de datos
   }
 
-  // Método para manejar el envío del formulario de creación de roles
+  // Método para manejar el envío del formulario de creación de grupos
   submitForm() {
     if (this.rolForm.valid) {
       const rolData = this.rolForm.value;  // Se obtienen los valores del formulario
-      this.database.altaRol(rolData).subscribe({
+      this.database.altaGrupo(rolData).subscribe({
         next: (response) => {
           if (response && response['resultado'] === 'OK') {
             alert('Rol creado con éxito');  // Se muestra un mensaje de éxito
             this.rolForm.reset();  // Se resetea el formulario
-            this.recuperarRoles();  // Se actualiza la lista de roles
+            this.recuperarRoles();  // Se actualiza la lista de grupos
           } else {
-            alert('Error al crear rol: ' + (response['mensaje'] || 'Error desconocido'));
+            alert('Error al crear grupo: ' + (response['mensaje'] || 'Error desconocido'));
           }
-          this.mostrarFormulario = !this.mostrarFormulario;  // Ocultar el formulario tras crear el rol
+          this.mostrarFormulario = !this.mostrarFormulario;  // Ocultar el formulario tras crear el grupo
         },
         error: (error) => {
-          alert('Error al crear rol');
+          alert('Error al crear grupo');
           console.error('Error:', error);  // Se registra el error en la consola
         },
       });
@@ -128,38 +129,38 @@ export class GruposComponent implements OnInit {
     }
   }
 
-  // Método para recuperar la lista de roles de la base de datos
+  // Método para recuperar la lista de grupos de la base de datos
   recuperarRoles(): void {
-    this.database.recuperarRoles().subscribe({
+    this.database.recuperarGrupo().subscribe({
       next: (response) => {
         if (Array.isArray(response)) {
-          this.roles = response;  // Asigna los roles recibidos
+          this.grupos = response;  // Asigna los grupos recibidos
         } else {
           console.error('La respuesta del servidor no es un array:', response);
-          this.roles = [];  // Si la respuesta no es válida, se asigna un array vacío
+          this.grupos = [];  // Si la respuesta no es válida, se asigna un array vacío
         }
       },
       error: (error) => {
-        console.error('Error al recuperar roles:', error);
+        console.error('Error al recuperar grupos:', error);
       }
     });
   }
                   
 
-  // Método para eliminar un rol
+  // Método para eliminar un grupo
   bajaRol(id: number) {
-    this.database.bajaRol(id).subscribe({
+    this.database.bajaGrupo(id).subscribe({
       next: (response) => {
         if (response && response['resultado'] === 'OK') {
           alert('Rol borrado con éxito');
-          this.recuperarRoles();  // Actualiza la lista de roles
+          this.recuperarRoles();  // Actualiza la lista de grupos
         } else {
-          alert('Error al borrar rol: ' + response['mensaje'] || 'Desconocido');
+          alert('Error al borrar grupo: ' + response['mensaje'] || 'Desconocido');
         }
       },
       error: (error) => {
-        console.error('Error al borrar rol:', error);
-        alert('Hubo un error al intentar borrar el rol. Revisa la consola para más detalles.');
+        console.error('Error al borrar grupo:', error);
+        alert('Hubo un error al intentar borrar el grupo. Revisa la consola para más detalles.');
       }
     });
   }
