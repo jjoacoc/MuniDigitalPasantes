@@ -1,1 +1,100 @@
-<h1>Hola mundo</h1>
+<div class="registro-incidentes">
+    <h2>Registro de Incidentes</h2>
+  
+    <form>
+      <div class="form-group">
+        <label for="areaServicio">Área de Servicio *</label>
+        <select id="areaServicio" class="form-control">
+          <option value="">Seleccione un área</option>
+          <!-- Agregar más opciones según sea necesario -->
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="tipoIncidente">Tipo de Incidente *</label>
+        <select id="tipoIncidente" class="form-control">
+          <option value="">Seleccione un tipo</option>
+          <!-- Agregar más opciones -->
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="prioridad">Prioridad</label>
+        <select id="prioridad" class="form-control">
+          <option value="baja">Baja</option>
+          <option value="media">Media</option>
+          <option value="alta">Alta</option>
+          <option value="urgente">Urgente</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="origen">Origen</label>
+        <select id="origen" class="form-control">
+          <option value="telefono">Teléfono Atención Vecino</option>
+          <option value="email">Email</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="observaciones">Observaciones</label>
+        <textarea id="observaciones" class="form-control"></textarea>
+      </div>
+    </form>
+  
+    <h2>Datos del Ciudadano</h2>
+  
+    <form>
+      <div class="form-group">
+        <label for="dni">DNI *</label>
+        <input type="text" id="dni" class="form-control" placeholder="Ingrese el DNI y presione BUSCAR">
+        <button class="buscar-btn">Buscar</button>
+      </div>
+  
+      <div class="form-group">
+        <label for="nombre">Nombre *</label>
+        <input type="text" id="nombre" class="form-control">
+      </div>
+  
+      <div class="form-group">
+        <label for="apellido">Apellido *</label>
+        <input type="text" id="apellido" class="form-control">
+      </div>
+  
+      <div class="form-group">
+        <label for="sexo">Sexo</label>
+        <select id="sexo" class="form-control">
+          <option value="femenino">Femenino</option>
+          <option value="masculino">Masculino</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="domicilio">Domicilio</label>
+        <input type="text" id="domicilio" class="form-control">
+      </div>
+  
+      <div class="form-group">
+        <label for="barrio">Barrio</label>
+        <select id="barrio" class="form-control">
+          <option value="">Seleccione un barrio</option>
+          <!-- Agregar más opciones -->
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input type="text" id="telefono" class="form-control" placeholder="SIN 0 Y SIN 15">
+      </div>
+  
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" class="form-control">
+      </div>
+
+      <div class="form-row">
+        <button type="submit" class="siguiente-btn">Siguiente</button>
+      </div>
+    </form>
+  </div>
+  
