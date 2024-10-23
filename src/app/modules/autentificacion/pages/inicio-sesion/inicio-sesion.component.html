@@ -2,18 +2,16 @@
     <div class="container">
       <div class="right"></div>
         <div class="left">
-
-
             <div class="form-container">
                 <h1>Iniciar Sesión</h1>
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                     <mat-form-field appearance="fill" class="animation a3">
                         <mat-label>Ingrese su email:</mat-label>
-                        <input matInput formControlName="mail" required>
+                        <input matInput formControlName="email" required>
                     </mat-form-field>
                     <mat-form-field class="animation a4">
                         <mat-label>Ingrese su contraseña:</mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" #input
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="Pass" #input
                             minlength="6" required >
                         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                             [attr.aria-pressed]="hide">

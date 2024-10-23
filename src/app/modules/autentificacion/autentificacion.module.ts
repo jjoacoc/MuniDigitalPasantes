@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { AutentificacionRoutingModule } from './autentificacion-routing.module';
 import { InicioSesionComponent } from './pages/inicio-sesion/inicio-sesion.component';
-import { RegistroComponent } from './pages/registro/registro.component';
 
 // COMPONENTES DE MATERIAL
 import { MatIconModule } from '@angular/material/icon';
@@ -18,7 +17,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     InicioSesionComponent,
-    RegistroComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +27,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatSelectModule,
     ReactiveFormsModule,
-  ]
+  ],
 })
 export class AutentificacionModule { }
