@@ -11,9 +11,9 @@
 
   <!-- Mostrar el formulario de creación de grupos si mostrarFormulario es verdadero -->
   <div *ngIf="mostrarFormulario">
-    <form [formGroup]="rolForm" (ngSubmit)="submitForm()">
+    <form [formGroup]="grupoForm" (ngSubmit)="submitForm()">
       <label for="roleName">Nombre del grupo:</label>
-      <input type="text" id="roleName" formControlName="nombre" required>
+      <input type="text" id="roleName" formControlName="Nombres" required>
       <button type="submit" class="btn btn-primary">Agregar</button>
     </form>
   </div>
@@ -30,10 +30,10 @@
       <tr *ngFor="let grupo of grupos">
         <td>
           <i class="fa fa-pencil" (click)="editarRol(grupo)"></i>
-          <i class="fa fa-trash" (click)="bajaRol(grupo.id)"></i>
+          <i class="fa fa-trash" (click)="bajaRol(grupo.Id_Grupos)"></i>
         </td>
-        <td>{{ grupo.id }}</td>
-        <td>{{ grupo.nombre }}</td>
+        <td>{{ grupo.Id_Grupos }}</td>
+        <td>{{ grupo.Nombres }}</td>
       </tr>
     </tbody>
   </table>
@@ -41,24 +41,24 @@
 
 <!-- Modal para modificar un grupo -->
 <!-- Modal para modificar un grupo -->
-<div id="myModal" class="modal" [ngClass]="{'show': rolSeleccionado !== null}" tabindex="-1" role="dialog">
+<div id="myModal" class="modal" [ngClass]="{'show': grupoSeleccionado !== null}" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Modificar Rol</h5>
-        <button type="button" class="close" (click)="rolSeleccionado = null" aria-label="Close">
+        <button type="button" class="close" (click)="grupoSeleccionado = null" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form [formGroup]="modificarRolForm" (ngSubmit)="submitModificarForm()">
+      <form [formGroup]="modificarGrupoForm" (ngSubmit)="submitModificarForm()">
         <div class="modal-body">
           <div class="form-group">
             <label for="modificarRoleName">Nombre del grupo:</label>
-            <input type="text" id="modificarRoleName" class="form-control" formControlName="nombre" required>
+            <input type="text" id="modificarRoleName" class="form-control" formControlName="Nombres" required>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" (click)="rolSeleccionado = null">Cancelar</button>
+          <button type="button" class="btn btn-secondary" (click)="grupoSeleccionado = null">Cancelar</button>
           <button type="submit" class="btn btn-primary">Modificar</button>
         </div>
       </form>

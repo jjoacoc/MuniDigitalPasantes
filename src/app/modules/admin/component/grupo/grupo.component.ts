@@ -40,11 +40,11 @@ export class GrupoComponent implements OnInit {
   
   
   // Formulario reactivo para manejar los datos del grupo
-  rolForm: FormGroup;  
+  grupoForm: FormGroup;  
   grupos: any[] = [];  // Variable para almacenar los grupos recuperados de la base de datos
 
-  modificarRolForm: FormGroup;  // Formulario para modificar un grupo
-  rolSeleccionado: any = null;  // Variable para almacenar el grupo seleccionado
+  modificarGrupoForm: FormGroup;  // Formulario para modificar un grupo
+  grupoSeleccionado: any = null;  // Variable para almacenar el grupo seleccionado
   
   mostrarFormulario = false;
 
@@ -55,38 +55,38 @@ export class GrupoComponent implements OnInit {
 
   constructor(private database: DatabaseService, private fb: FormBuilder) {
 
-    // Inicializamos el formulario con el campo 'nombre' como obligatorio
-    this.rolForm = this.fb.group({
-      nombre: ['', Validators.required],  // Campo obligatorio para el nombre del grupo
+    // Inicializamos el formulario con el campo 'Nombres' como obligatorio
+    this.grupoForm = this.fb.group({
+      Nombres: ['', Validators.required],  // Campo obligatorio para el Nombres del grupo
     });
 
     // Formulario de modificación de grupos
-    this.modificarRolForm = this.fb.group({
-      nombre: ['', Validators.required],  // Campo obligatorio para modificar el nombre del grupo
+    this.modificarGrupoForm = this.fb.group({
+      Nombres: ['', Validators.required],  // Campo obligatorio para modificar el Nombres del grupo
     });
   }
 
   // Método para seleccionar un grupo y poblar el formulario de modificación
-  editarRol(grupo: any) {
-    this.rolSeleccionado = grupo;
-    this.modificarRolForm.patchValue({
-      nombre: grupo.nombre,  // Cargar el nombre del grupo seleccionado en el formulario
+  editarRol(grupos: any) {
+    this.grupoSeleccionado = grupos;
+    this.modificarGrupoForm.patchValue({
+      Nombres: grupos.Nombres,  // Cargar el Nombres del grupo seleccionado en el formulario
     });
   }
 
   // Método para enviar el formulario de modificación
   submitModificarForm() {
-    if (this.modificarRolForm.valid) {
-      const rolModificado = {
-        ...this.rolSeleccionado,
-        ...this.modificarRolForm.value
+    if (this.modificarGrupoForm.valid) {
+      const grupoModificado = {
+        ...this.grupoSeleccionado,
+        ...this.modificarGrupoForm.value
       };
-      this.database.modificarGrupo(rolModificado, rolModificado.id ).subscribe({
+      this.database.modificarGrupo(grupoModificado, grupoModificado.Id_Grupos ).subscribe({
         next: (response) => {
           if (response && response['resultado'] === 'OK') {
             alert('Rol modificado con éxito');
-            this.rolSeleccionado = null;  // Ocultar el formulario después de modificar
-            this.recuperarRoles();  // Actualizar la lista de grupos
+            this.grupoSeleccionado = null;  // Ocultar el formulario después de modificar
+            this.recuperarGrupos();  // Actualizar la lista de grupos
           } else {
             alert('Error al modificar grupo: ' + (response['mensaje'] || 'Error desconocido'));
           }
@@ -101,19 +101,19 @@ export class GrupoComponent implements OnInit {
 
   // Este método se ejecuta cuando el componente se inicializa
   ngOnInit(): void {
-    this.recuperarRoles();  // Al iniciar el componente, se recuperan los grupos de la base de datos
+    this.recuperarGrupos();  // Al iniciar el componente, se recuperan los grupos de la base de datos
   }
 
   // Método para manejar el envío del formulario de creación de grupos
   submitForm() {
-    if (this.rolForm.valid) {
-      const rolData = this.rolForm.value;  // Se obtienen los valores del formulario
+    if (this.grupoForm.valid) {
+      const rolData = this.grupoForm.value;  // Se obtienen los valores del formulario
       this.database.altaGrupo(rolData).subscribe({
         next: (response) => {
           if (response && response['resultado'] === 'OK') {
             alert('Rol creado con éxito');  // Se muestra un mensaje de éxito
-            this.rolForm.reset();  // Se resetea el formulario
-            this.recuperarRoles();  // Se actualiza la lista de grupos
+            this.grupoForm.reset();  // Se resetea el formulario
+            this.recuperarGrupos();  // Se actualiza la lista de grupos
           } else {
             alert('Error al crear grupo: ' + (response['mensaje'] || 'Error desconocido'));
           }
@@ -130,7 +130,7 @@ export class GrupoComponent implements OnInit {
   }
 
   // Método para recuperar la lista de grupos de la base de datos
-  recuperarRoles(): void {
+  recuperarGrupos(): void {
     this.database.recuperarGrupo().subscribe({
       next: (response) => {
         if (Array.isArray(response)) {
@@ -148,12 +148,12 @@ export class GrupoComponent implements OnInit {
                   
 
   // Método para eliminar un grupo
-  bajaRol(id: number) {
-    this.database.bajaGrupo(id).subscribe({
+  bajaRol(Id_Grupos: number) {
+    this.database.bajaGrupo(Id_Grupos).subscribe({
       next: (response) => {
         if (response && response['resultado'] === 'OK') {
           alert('Rol borrado con éxito');
-          this.recuperarRoles();  // Actualiza la lista de grupos
+          this.recuperarGrupos();  // Actualiza la lista de grupos
         } else {
           alert('Error al borrar grupo: ' + response['mensaje'] || 'Desconocido');
         }
