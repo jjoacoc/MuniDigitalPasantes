@@ -25,7 +25,7 @@ td {
   color: #333;
   padding: 12px;
   text-align: left;
-  border-bottom: 1px solid #638805;
+  border-bottom: 1px solid #a8cf45;
 }
 
 h2 {
@@ -35,7 +35,7 @@ h2 {
 
 .btn-nuevo, .btn-exportar {
   padding: 8px 16px;
-  background-color: #638805;
+  background-color: #a8cf45;
   color: white;
   border: none;
   border-radius: 4px;
@@ -65,15 +65,15 @@ h2 {
 }
 
 .styled-table tbody tr {
-  border-bottom: 1px solid #638805;
+  border-bottom: 1px solid #a8cf45;
 }
 
 .styled-table tbody tr:last-of-type {
-  border-bottom: 2px solid #638805;
+  border-bottom: 2px solid #a8cf45;
 }
 
 .fa-pencil {
-  color: #638805;
+  color: #a8cf45;
   cursor: pointer;
 }
 
@@ -85,8 +85,8 @@ h2 {
 }
 
 .pagination-btn {
-  background-color: #638805;
-  color: #638805;
+  background-color: #a8cf45;
+  color: #a8cf45;
   border: none;
   padding: 8px;
   border-radius: 4px;
@@ -118,7 +118,7 @@ h2 {
   background-color: #fff;
   margin: 15% auto;
   padding: 20px;
-  border: 1px solid #638805;
+  border: 1px solid #a8cf45;
   width: 30%;
 }
 

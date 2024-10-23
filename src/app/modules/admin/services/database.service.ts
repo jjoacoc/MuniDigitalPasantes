@@ -13,7 +13,7 @@ export class DatabaseService {
 
   // Nuevo método para iniciar sesión
   iniciarSesion(credentials: any): Observable<any> {
-   return this.http.post(`${this.apiUrl}?action=login`, credentials);
+   return this.http.post(`${this.apiUrl}/login?method`, credentials);
   }
 
 

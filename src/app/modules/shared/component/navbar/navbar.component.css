@@ -10,7 +10,7 @@ html, body, mat-sidenav-container {
 }
 
 .app-sidenav {
-    background-color: #638805;
+    background-color: #a8cf45;
     width: 230px;
     height: 100vh;
 }
@@ -18,7 +18,7 @@ html, body, mat-sidenav-container {
 
 
 .nav {
-    background-color: #638805;
+    background-color: #a8cf45;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -36,5 +36,5 @@ html, body, mat-sidenav-container {
 }
 
 .item {
-    background-color: #638805;
+    background-color: #a8cf45;
 }

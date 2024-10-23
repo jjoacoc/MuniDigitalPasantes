@@ -51,11 +51,11 @@ input {
 
 input:focus {
   outline: none;
-  border-color: #638805;
+  border-color: #a8cf45;
 }
 
 button {
-  background-color: #638805;
+  background-color: #a8cf45;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -98,7 +98,7 @@ td {
 }
 
 th {
-  background-color: #638805;
+  background-color: #a8cf45;
   color: white;
 }
 
