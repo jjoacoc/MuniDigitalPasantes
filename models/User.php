@@ -17,16 +17,18 @@ class User
     }
 
     #Hasheo pass
-    // public function setPassword($password) {
-    //     // Aquí podrías agregar hashing de la contraseña
-    //     $this->password = password_hash($password, PASSWORD_BCRYPT);
-    // }
+    public function setPassword($Pass) {
+        // Aquí podrías agregar hashing de la contraseña
+        $this->Pass = password_hash($Pass, PASSWORD_BCRYPT);
+    }
 
     #Verificacion Pass    
-    // public function checkPassword($password) {
-    //     return password_verify($password, $this->password);
-    //   }
+    public function checkPassword($Pass) {
+        return password_verify($Pass, $this->Pass);
+      }
  
+
+
 
     // Obtener todos los productos
     public function getAll()
@@ -89,16 +91,5 @@ class User
         $stmt->bindParam(':Id_Usuarios', $Id_Usuarios);
         return $stmt->execute();
     }
-
-        // auth user
-        public function authenticate($email, $Pass)
-        {
-            $query = "SELECT * FROM " . $this->table . " WHERE email = :mail AND Pass = :Pass";
-            $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':Pass', $Pass);
-            $stmt->execute();
-            return $stmt->fetch(PDO::FETCH_ASSOC);
-        }
 
 }

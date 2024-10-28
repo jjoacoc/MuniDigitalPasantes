@@ -59,19 +59,5 @@ class UserController {
         return json_encode(["message" => "Error al eliminar el Usuario"]);
     }
 
-
-     // Autenticar usuario
-     public function login($data)
-     {
-         $email = $data->email;
-         $Pass = $data->Pass;
-         $user = $this->user->authenticate($email, $Pass);
-         if ($user) {
-             return json_encode(["resultado" => "OK", "usuario" => $user]);
-         } else {
-             return json_encode(["resultado" => "Error", "mensaje" => "Credenciales incorrectas"]);
-         }
-     }
-
 }
 ?>

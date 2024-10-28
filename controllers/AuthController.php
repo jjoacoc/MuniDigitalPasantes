@@ -10,12 +10,12 @@ class AuthController {
         $user = new User($db);
         $usuarioData = $user->getUserByEmail($email);
 
-        // if ($usuarioData && password_verify($Pass, $usuarioData['Pass'])) {
-        //     $token = $this->generateJWT($usuarioData['Id_Usuarios'], $usuarioData['Id_Grupos']);
-        //     return json_encode(["token" => $token]);
-        // } else {
-        //     return json_encode(["message" => "Credenciales inválidas"]);
-        // }
+        if ($usuarioData && password_verify($Pass, $usuarioData['Pass'])) {
+            $token = $this->generateJWT($usuarioData['Id_Usuarios'], $usuarioData['Id_Grupos']);
+            return json_encode(["token" => $token]);
+        } else {
+            return json_encode(["message" => "Credenciales inválidas"]);
+        }
     }
 
     private function base64UrlEncode($data) {
