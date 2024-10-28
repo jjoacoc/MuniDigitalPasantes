@@ -29,6 +29,7 @@ switch ($entity) {
         $controller = new GroupController();
         break;
     default:
+    
     case 'incident':
         $controller = new IncidentController();
         break;
