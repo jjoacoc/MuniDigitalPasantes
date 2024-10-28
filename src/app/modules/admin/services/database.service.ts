@@ -99,4 +99,14 @@ export class DatabaseService {
     const headers = this.createHeaders();
     return this.http.put(`${this.apiUrl}?entity=groups&id=${Id_Grupos}`, grupo, { headers });
   }
+
+  
+  buscarCiudadanoPorDni(dni: string): Observable<any> {
+
+    return this.http.get(`${this.apiUrl}/buscar-ciudadano/${dni}`);
+  }
+
+  registrarIncidente(incidenteData: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/registrar-incidente`, incidenteData);
+  }
 }

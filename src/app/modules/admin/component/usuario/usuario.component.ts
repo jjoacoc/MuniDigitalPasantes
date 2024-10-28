@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class UsuarioComponent implements OnInit {
   usuarioForm: FormGroup;  // Formulario reactivo para manejar los datos del usuario
   usuarios: any[] = [];  // Variable para almacenar los usuarios recuperados de la base de datos
-  grupos: any [] = []
+  grupos: any [] = []; // Variable para almacenar los grupos recuperados de la base de datos
 
   modificarUsuarioForm: FormGroup; // Formulario para modificar usuario
   usuarioSeleccionado: any = null; // Variable para almacenar el usuario seleccionado
@@ -30,7 +30,7 @@ export class UsuarioComponent implements OnInit {
   constructor(private database: DatabaseService, private fb: FormBuilder) {
 
 
-    // Inicializamos el formulario con tres campos: NombreUsuario, Mail y Clave
+    // Inicializamos el formulario con cuatro campos: NombreUsuario, email, clave y id de grupos
     this.usuarioForm = this.fb.group({
       Nombres: ['', Validators.required],  // Campo obligatorio
       email: ['', [Validators.required, Validators.email]],  // Campo obligatorio y validación de formato de email
