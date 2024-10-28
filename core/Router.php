@@ -3,6 +3,7 @@
 include_once '../controllers/UserController.php';  // Controlador de usuarios
 include_once '../controllers/GroupController.php'; // Controlador de grupos
 include_once '../controllers/AuthController.php';  // Controlador de autenticación
+include_once '../controllers/IncidentesController.php'; //Controlador de incidentes
 include_once '../views/View.php'; // Vista para renderizado de datos
 
 
@@ -28,6 +29,9 @@ switch ($entity) {
         $controller = new GroupController();
         break;
     default:
+    case 'incident':
+        $controller = new IncidentController();
+        break;
 
         View::render(json_encode(["message" => "Entidad no reconocida"]));
         exit();

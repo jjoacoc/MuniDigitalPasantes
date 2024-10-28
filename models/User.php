@@ -62,7 +62,6 @@ class User
     public function create()
     {
         $this->setPassword($this->Pass);
-
         $query = "INSERT INTO " . $this->table . " (Nombres, email, Pass, Id_Grupos) VALUES (:Nombres, :email, :Pass, :Id_Grupos)";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':Nombres', $this->Nombres);
