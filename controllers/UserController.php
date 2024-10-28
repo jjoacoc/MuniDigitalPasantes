@@ -59,7 +59,5 @@ class UserController {
         return json_encode(["message" => "Error al eliminar el Usuario"]);
     }
 
-
-
 }
 ?>
