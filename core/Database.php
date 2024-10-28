@@ -2,7 +2,7 @@
 // app/core/Database.php
 
 class Database {
-    private $host = "10.10.0.62";
+    private $host = "172.16.20.30";
     private $db_name = "Investigacion_miercoles";
     private $username = "desarrollo";
     private $password = "fisca1234";

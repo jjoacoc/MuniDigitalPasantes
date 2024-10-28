@@ -61,6 +61,8 @@ class User
     // Crear un usuario nuevo
     public function create()
     {
+        $this->setPassword($this->Pass);
+
         $query = "INSERT INTO " . $this->table . " (Nombres, email, Pass, Id_Grupos) VALUES (:Nombres, :email, :Pass, :Id_Grupos)";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':Nombres', $this->Nombres);
@@ -72,7 +74,8 @@ class User
 
     // Actualizar un usuario
     public function update($Id_Usuarios)
-    {
+    {   
+        $this->setPassword($this->Pass);
         $query = "UPDATE " . $this->table . " SET Nombres = :Nombres, email = :email, Pass = :Pass, Id_Grupos = :Id_Grupos WHERE Id_Grupos = :Id_Grupos";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':Id_Usuarios', $Id_Usuarios);
