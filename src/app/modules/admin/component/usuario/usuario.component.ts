@@ -46,15 +46,21 @@ export class UsuarioComponent implements OnInit {
       Id_Grupos: ['', Validators.required],
     });
   }
-  
+
+  // Este método se ejecuta cuando el componente se inicializa
+  ngOnInit(): void {
+    this.recuperarUsuarios();  // Al iniciar el componente, se recuperan los usuarios de la base de datos
+    this.recuperarGrupo(); //Al inciciar el componente, se recuperan los grupos de la base de datos
+  }
+
    // Método para seleccionar un usuario y poblar el formulario de modificación
    editarUsuario(usuario: any) {
     
     this.toggleFormularioModificar()
     this.usuarioSeleccionado = usuario;
     this.modificarUsuarioForm.patchValue({
-      NombreUsuario: usuario.NombreUsuario,
-      Mail: usuario.Mail,
+      Nombre: usuario.Nombre,
+      email: usuario.email,
       Pass: usuario.Pass,
       Id_Grupos: usuario.Id_Grupos,
     });
@@ -85,12 +91,6 @@ export class UsuarioComponent implements OnInit {
         },
       });
     }
-  }
-
-  // Este método se ejecuta cuando el componente se inicializa
-  ngOnInit(): void {
-    this.recuperarUsuarios();  // Al iniciar el componente, se recuperan los usuarios de la base de datos
-    this.recuperarGrupo(); //Al inciciar el componente, se recuperan los grupos de la base de datos
   }
 
   // Método para manejar el envío del formulario

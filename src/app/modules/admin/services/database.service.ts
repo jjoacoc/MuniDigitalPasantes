@@ -33,7 +33,9 @@ export class DatabaseService {
   // Nuevo método para iniciar sesión
   iniciarSesion(credentials: any): Observable<any> {
     const headers = this.createHeaders();
-    return this.http.post(`${this.apiUrl}?entity=login`, credentials, { headers });
+    return this.http.post(`${this.apiUrl}?entity=login`, credentials, {
+      headers,
+    });
   }
 
   // Método para modificar un usuario existente en la base de datos (PUT)
@@ -41,7 +43,11 @@ export class DatabaseService {
     // Envía una solicitud PUT a la URL 'http://localhost/apiMiercoles/public/index.php?entity=users'
     // pasando el Id_Usuarios como parámetro en la URL, y los datos del usuario en el cuerpo de la solicitud
     const headers = this.createHeaders();
-    return this.http.put(`${this.apiUrl}?entity=users&id=${Id_Usuarios}`,usuarioModificado, { headers });
+    return this.http.put(
+      `${this.apiUrl}?entity=users&id=${Id_Usuarios}`,
+      usuarioModificado,
+      { headers }
+    );
   }
 
   // Método para crear un nuevo usuario en la base de datos (POST)
@@ -49,7 +55,9 @@ export class DatabaseService {
     // Envía una solicitud POST a la URL 'http://localhost/apiMiercoles/public/index.php?entity=users'
     // con los datos del usuario en el cuerpo de la solicitud
     const headers = this.createHeaders();
-    return this.http.post(`${this.apiUrl}?entity=users`, usuarioData, { headers });
+    return this.http.post(`${this.apiUrl}?entity=users`, usuarioData, {
+      headers,
+    });
   }
 
   // Método para recuperar todos los usuarios desde la base de datos (GET)
@@ -65,7 +73,9 @@ export class DatabaseService {
     // Envía una solicitud DELETE a la URL 'http://localhost/apiMiercoles/public/index.php?entity=users'
     // pasando el Id_Usuarios como un parámetro en la URL
     const headers = this.createHeaders();
-    return this.http.delete(`${this.apiUrl}?entity=users&id=${Id_Usuarios}`, { headers });
+    return this.http.delete(`${this.apiUrl}?entity=users&id=${Id_Usuarios}`, {
+      headers,
+    });
   }
 
   // Método para crear un nuevo grupo (POST)
@@ -73,7 +83,9 @@ export class DatabaseService {
     // Envía una solicitud POST a la URL 'http://localhost/apiMiercoles/public/index.php?entity=groups'
     // con los datos del grupo en el cuerpo de la solicitud
     const headers = this.createHeaders();
-    return this.http.post(`${this.apiUrl}?entity=groups`, grupoData, { headers });
+    return this.http.post(`${this.apiUrl}?entity=groups`, grupoData, {
+      headers,
+    });
   }
 
   // Método para recuperar todos los grupos desde la base de datos (GET)
@@ -89,7 +101,9 @@ export class DatabaseService {
     // Envía una solicitud DELETE a la URL 'http://localhost/apiMiercoles/public/index.php?entity=groups'
     // pasando el Id_Grupos_Grupos como parámetro en la URL
     const headers = this.createHeaders();
-    return this.http.delete(`${this.apiUrl}?entity=groups&id=${Id_Grupos}`, { headers });
+    return this.http.delete(`${this.apiUrl}?entity=groups&id=${Id_Grupos}`, {
+      headers,
+    });
   }
 
   // Método para modificar un grupo existente en la base de datos (PUT)
@@ -97,16 +111,49 @@ export class DatabaseService {
     // Envía una solicitud PUT a la URL 'http://localhost/apiMiercoles/public/index.php?entity=groups'
     // pasando el groupId_Grupos como parámetro en la URL, y los datos del grupo en el cuerpo de la solicitud
     const headers = this.createHeaders();
-    return this.http.put(`${this.apiUrl}?entity=groups&id=${Id_Grupos}`, grupo, { headers });
+    return this.http.put(
+      `${this.apiUrl}?entity=groups&id=${Id_Grupos}`,
+      grupo,
+      { headers }
+    );
   }
 
-  
   buscarCiudadanoPorDni(dni: string): Observable<any> {
-
     return this.http.get(`${this.apiUrl}/buscar-ciudadano/${dni}`);
   }
 
+  // Método para crear un nuevo incidente (POST)
   registrarIncidente(incidenteData: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/registrar-incidente`, incidenteData);
+    // Envía una solicitud POST a la URL 'http://localhost/apiMiercoles/public/index.php?entity=incident'
+    // con los datos del incidente en el cuerpo de la solicitud
+    const headers = this.createHeaders();
+    return this.http.post(`${this.apiUrl}?entity=incident&id`, incidenteData, {
+      headers,
+    });
+  }
+  // Método para crear un nuevo incidente (POST)
+  recuperarIncidentes(): Observable<any> {
+    // Envía una solicitud POST a la URL 'http://localhost/apiMiercoles/public/index.php?entity=incident'
+    // con los datos del incidente en el cuerpo de la solicitud
+    const headers = this.createHeaders();
+    return this.http.get(`${this.apiUrl}?entity=incident`, { headers });
+  }
+  // Método para crear un nuevo incidente (POST)
+  bajaIncidente(incidenteData: any): Observable<any> {
+    // Envía una solicitud POST a la URL 'http://localhost/apiMiercoles/public/index.php?entity=incident'
+    // con los datos del incidente en el cuerpo de la solicitud
+    const headers = this.createHeaders();
+    return this.http.post(`${this.apiUrl}?entity=incident&id`, incidenteData, {
+      headers,
+    });
+  }
+  // Método para crear un nuevo incidente (POST)
+  modificarIncidente(incidenteData: any): Observable<any> {
+    // Envía una solicitud POST a la URL 'http://localhost/apiMiercoles/public/index.php?entity=incident'
+    // con los datos del incidente en el cuerpo de la solicitud
+    const headers = this.createHeaders();
+    return this.http.post(`${this.apiUrl}?entity=incident&id`, incidenteData, {
+      headers,
+    });
   }
 }
