@@ -4,7 +4,7 @@
         <div class="left">
             <div >
                 <h1>Iniciar Sesión</h1>
-                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <form [formGroup]="loginForm" (ngSubmit)="iniciarSesionlogin()">
                     <mat-form-field appearance="fill" class="animation a3">
                         <mat-label>Ingrese su email:</mat-label>
                         <input matInput formControlName="email" required>
@@ -24,5 +24,4 @@
                 </form>
             </div>
         </div>
-
     </div>
