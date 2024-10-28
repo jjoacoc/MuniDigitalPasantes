@@ -2,14 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 
+import { InicioSesionComponent } from './modules/autentificacion/pages/inicio-sesion/inicio-sesion.component';
+
 const routes: Routes = [
    
-    //{path:"",component:LoginComponent},
-    //{ path: 'admin', component: AdminComponent },
-    //{path:"",loadChildren:()=>import('./modules/seguridad/seguridad.module').then(m=>m.SeguridadModule)},
-    //{path:"",loadChildren:()=>import('./modules/configuracion/configuracion.module').then(m=>m.ConfiguracionModule)},
-    //{path:"",loadChildren:()=>import('./modules/movimientos/movimientos.module').then(m=>m.MovimientosModule)}
-    //{path: '', redirectTo: '/inicio', pathMatch: 'full'},
+
+
+  //ruta comun -> para que lleve al login
+
+  { path: '', component:InicioSesionComponent },
+  { path: '', redirectTo: '/inicio', pathMatch: 'full' },
+
 
     {
       path:"",loadChildren:()=>import('./modules/autentificacion/autentificacion.module').then(m=>m.AutentificacionModule)

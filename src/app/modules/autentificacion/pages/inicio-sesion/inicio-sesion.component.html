@@ -4,7 +4,7 @@
         <div class="left">
             <div class="form-container">
                 <h1>Iniciar Sesión</h1>
-                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <form [formGroup]="loginForm" (ngSubmit)="iniciarSesionlogin()">
                     <mat-form-field appearance="fill" class="animation a3">
                         <mat-label>Ingrese su email:</mat-label>
                         <input matInput formControlName="email" required>
@@ -26,3 +26,31 @@
         </div>
 
     </div>
+
+
+<!-- 
+    <div class="container">
+        <div class="image-container">
+            <img src="../../../../../assets/logo1muni.jpg" alt="Municipalidad de Cipolletti Logo">
+        </div>
+        <div class="form-container">
+            <h1>Iniciar Sesión</h1>
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <mat-form-field appearance="fill">
+                <mat-label>Ingrese su email:</mat-label>
+                <input matInput placeholder="Ej: pepitoperez2022@gmail.com" formControlName="mail" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Ingrese su contraseña:</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" #input minlength="6" required>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-hint align="start">Mínimo:6/{{input.value.length}}</mat-hint>
+            </mat-form-field>
+            <button class="boton" mat-raised-button color="primary" type="submit">Iniciar Sesión</button>
+            <div *ngIf="errorMessage">{{ errorMessage }}</div>
+        </form>
+        </div>
+    </div>
+ -->

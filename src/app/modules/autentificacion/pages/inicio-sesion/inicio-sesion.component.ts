@@ -1,55 +1,51 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatabaseService } from 'src/app/modules/admin/services/database.service';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-inicio-sesion',
   templateUrl: './inicio-sesion.component.html',
-  styleUrls: ['./inicio-sesion.component.css']
+  styleUrls: ['./inicio-sesion.component.css'],
 })
 export class InicioSesionComponent {
-
   hide = true;
 
   loginForm: FormGroup;
   errorMessage: string = '';
 
-  constructor(private fb: FormBuilder, private databaseService: DatabaseService, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private databaseService: DatabaseService,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
-      email: ['', Validators.required],
-      Pass: ['', Validators.required],
+      mail: ['', Validators.required],
+      password: ['', Validators.required],
     });
   }
-
-  onSubmit() {
-    console.log('Formulario enviado'); 
+  iniciarSesionlogin(): void {
     if (this.loginForm.valid) {
-      console.log('Formulario válido', this.loginForm.value); 
-      this.databaseService.iniciarSesion(this.loginForm.value).subscribe({
-        next: (response) => {
-          console.log('Respuesta del servidor', response); // Agregado
-          if (response && response.resultado === 'OK') {
-            this.router.navigate(['/admin']);
-            // Manejar el inicio de sesión exitoso
+      const credentials = this.loginForm.value;
+      console.log(credentials);
+      this.databaseService.iniciarSesion(credentials).subscribe({
+        next: (data: any) => {
+          if (data.token) {
+            localStorage.setItem('token', data.token);
+
+            this.router.navigate(['/inicio']); // Redirigir después de iniciar sesión
           } else {
-            this.errorMessage = 'Credenciales incorrectas';
+            this.errorMessage = data.message || 'Credenciales inválidas';
+            console.error('Login failed', this.errorMessage);
           }
         },
         error: (error) => {
-          this.errorMessage = 'Error al intentar iniciar sesión';
-          console.error('Error:', error);
-        }
-      });
-    } else {
-      console.log('Formulario no válido'); // Agregado
-      Object.keys(this.loginForm.controls).forEach(key => {
-        const controlErrors = this.loginForm.get(key)?.errors;
-        if (controlErrors != null) {
-          Object.keys(controlErrors).forEach(errorKey => {
-            console.log('Key control: ' + key + ', error: ' + errorKey + ', value: ', controlErrors[errorKey]);
-          });
-        }
+          this.errorMessage =
+            error.error?.message ||
+            'Error al iniciar sesión. Verifique sus credenciales';
+          console.error('Login failed', error);
+        },
       });
     }
   }

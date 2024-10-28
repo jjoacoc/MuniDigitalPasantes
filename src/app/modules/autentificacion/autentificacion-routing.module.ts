@@ -4,9 +4,6 @@ import { InicioSesionComponent } from './pages/inicio-sesion/inicio-sesion.compo
 
 const routes: Routes = [
   {
-    path:"",component:InicioSesionComponent
-  },
-  {
     path:"login",component:InicioSesionComponent
   },
 ];
