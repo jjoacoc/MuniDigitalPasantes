@@ -10,17 +10,19 @@
 
 
   <!-- Modal -->
-<div id="myModal" class="modal" [ngClass]="{'show': mostrarFormulario}">
+  <div id="myModal" class="modal" [ngClass]="{'show': mostrarFormulario}">
   <div class="modal-content">
-    <span class="close" (click)="toggleFormulario()">&times;</span>
+      <span class="close" (click)="toggleFormulario()">&times;</span>
     <form [formGroup]="grupoForm" (ngSubmit)="submitForm()">
-      <label for="roleName" class="h2Color">Nombre del grupo:</label>
-      <input type="text" id="roleName" formControlName="Nombres" required>
-      <button type="submit" class="btn btn-primary">Agregar</button>
-    </form>
+      <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Nuevo grupo</mat-label>
+      <input matInput type="text" id="roleName" class="full-width-input" formControlName="Nombres" required>
+      </mat-form-field>
+        <button mat-stroked-button class="botton" type="submit">Agregar</button>
+      </form>
+    </div>
   </div>
-</div>
-
+  <!--fin del modal-->
   <table class="styled-table">
     <thead>
       <tr>

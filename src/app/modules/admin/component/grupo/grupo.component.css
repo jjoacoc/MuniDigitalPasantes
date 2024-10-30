@@ -134,3 +134,21 @@ h2 {
   text-decoration: none;
   cursor: pointer;
 }
+.form-container {
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Para posicionar el botón */
+}
+
+.example-full-width {
+  width: 100%; /* Asegura que el mat-form-field ocupe todo el ancho */
+  margin-bottom: 10px; /* Espacio debajo del input */
+}
+
+.button {
+  position: absolute;
+  bottom: 10px; /* Distancia desde la parte inferior */
+  right: 10px; /* Distancia desde la derecha */
+  padding: 10px 15px; /* Espaciado interno del botón */
+  background: #a8cf45;
+}

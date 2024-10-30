@@ -13,6 +13,13 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
+      import('./modules/configuracion/configuracion.module').then(
+        (m) => m.ConfiguracionModule
+      ),
+  },
+  {
+    path: '',
+    loadChildren: () =>
       import('./modules/autentificacion/autentificacion.module').then(
         (m) => m.AutentificacionModule
       ),

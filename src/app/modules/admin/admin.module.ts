@@ -10,6 +10,9 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
@@ -24,8 +27,11 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatFormFieldModule
   ],
   exports: [UsuarioComponent,
-    GrupoComponent],
+    GrupoComponent,MatInputModule,MatButtonModule,MatFormFieldModule],
 })
 export class AdminModule { }
