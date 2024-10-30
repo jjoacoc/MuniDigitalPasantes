@@ -1,28 +1,25 @@
 <div class="table-container">
-    <div class="hader-container">
-    <h2 class="h2Color">Tipo de Incidentes</h2>
-
-    </div>
-
-    <!--Modal-->
-    
-    <!--Fin del Modal-->
-
-    <table class="styled-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>ID de Rol</th>
-            <th>Nombre del Rol</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr >
-            <td>
-            </td>
-            <td></td>
-            <td></td>
-          </tr>
-        </table>
-
+    <button>hola</button>
 </div>
+
+<table mat-table class="mat-elevation-z8 demo-table">
+<!--Id de las areas-->
+<ng-container atColumnDef="position">
+ <th>ID</th>
+ <td></td>
+</ng-container>
+<!--nombre de las areas-->
+<ng-container matColumDef="name">
+    <th>NOMBRE</th>
+    <td></td>
+</ng-container>
+ <!-- Symbol Column -->
+ <ng-container matColumnDef="symbol">
+    <th>descripcion</th>
+    <td></td>
+  </ng-container>
+  <ng-container matColumnDef="symbol">
+    <th>descripcion</th>
+    <td></td>
+  </ng-container>
+</table>
