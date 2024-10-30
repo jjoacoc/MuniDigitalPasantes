@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { IncidentesRoutingModule } from './incidentes-routing.module';
 import { RegistroIncidentesComponent } from './registro-incidentes/registro-incidentes.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -14,7 +17,8 @@ import { RegistroIncidentesComponent } from './registro-incidentes/registro-inci
   imports: [
     CommonModule,
     IncidentesRoutingModule,
-
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports:[
     RegistroIncidentesComponent

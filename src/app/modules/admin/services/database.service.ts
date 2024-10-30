@@ -123,7 +123,7 @@ export class DatabaseService {
   }
 
   // Método para crear un nuevo incidente (POST)
-  registrarIncidente(incidenteData: any): Observable<any> {
+  registrarIncidentes(incidenteData: any): Observable<any> {
     // Envía una solicitud POST a la URL 'http://localhost/apiMiercoles/public/index.php?entity=incident'
     // con los datos del incidente en el cuerpo de la solicitud
     const headers = this.createHeaders();
@@ -139,7 +139,7 @@ export class DatabaseService {
     return this.http.get(`${this.apiUrl}?entity=incident`, { headers });
   }
   // Método para crear un nuevo incidente (POST)
-  bajaIncidente(incidenteData: any): Observable<any> {
+  bajaIncidentes(incidenteData: any): Observable<any> {
     // Envía una solicitud POST a la URL 'http://localhost/apiMiercoles/public/index.php?entity=incident'
     // con los datos del incidente en el cuerpo de la solicitud
     const headers = this.createHeaders();
@@ -148,7 +148,7 @@ export class DatabaseService {
     });
   }
   // Método para crear un nuevo incidente (POST)
-  modificarIncidente(incidenteData: any): Observable<any> {
+  modificarIncidentes(incidenteData: any): Observable<any> {
     // Envía una solicitud POST a la URL 'http://localhost/apiMiercoles/public/index.php?entity=incident'
     // con los datos del incidente en el cuerpo de la solicitud
     const headers = this.createHeaders();
