@@ -9,9 +9,9 @@
 
   <!-- Modal -->
 <div id="myModal" class="modal" [ngClass]="{'show': mostrarFormulario}">
-  <div class="modal-content">
-    <span class="close" (click)="toggleFormulario()">&times;</span>
     <form [formGroup]="usuarioForm" (ngSubmit)="submitForm()">
+      <button type="button" class="close" (click)="toggleFormulario()"> &times;</button>
+    <!-- <span class="close" (click)="toggleFormulario()">&times;</span>--> 
         <h2 class="h2Color">Crear Usuario</h2>
         <!-- El formGroup 'usuarioForm' está enlazado con el formulario. Cuando se envía el formulario, se ejecuta la función 'submitForm()' -->
         <div>
@@ -40,21 +40,21 @@
           </div>
         </div>
     
-        <label for="grupo">Seleccionar Grupo:</label>
-        <div>
-            <div *ngFor="let grupo of grupos">
-                <!-- [value]="grupo.Id_Grupos" Asigna el valor de este radio button al Id_Grupos del objeto grupo. Esto es lo que se enviará al formulario cuando este radio button esté seleccionado. -->
-                <input type="radio" [value]="grupo.Id_Grupos" formControlName="Id_Grupos"
-                    [id]="'grupo-' + grupo.Id_Grupos" />
-                <label [for]="'grupo-' + grupo.Id_Grupos">{{ grupo.Nombres }}</label>
-            </div>
-        </div>
+        <mat-form-field appearance="fill">
+          <mat-label>Seleccionar Grupo:</mat-label>
+          <mat-select formControlName="Id_Grupos">
+            <mat-option *ngFor="let grupo of grupos" [value]="grupo.Id_Grupos">
+              {{ grupo.Nombres }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
     
         <!-- Botón para enviar el formulario -->
         <!-- Se deshabilita el botón si el formulario es inválido (por ejemplo, si no se han completado los campos obligatorios) -->
         <button type="submit" [disabled]="usuarioForm.invalid">Enviar</button>
     </form>
-  </div>
+  
 </div>
 
   <h2>Usuarios Registrados</h2>

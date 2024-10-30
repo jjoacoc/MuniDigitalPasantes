@@ -3,12 +3,15 @@ body {
   margin: 0;
   padding: 20px;
 }
-
 .container {
-  max-width: 800px;
-  margin: auto;
-  color: #333 !important;
+  height: 50%;
+  width: 95%;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 
 .header {
   display: flex;
@@ -29,6 +32,7 @@ form {
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
+  
 }
 
 label {
@@ -58,6 +62,7 @@ input:focus {
 }
 
 button {
+  display: flex;
   background-color: #a8cf45;
   color: white;
   padding: 10px 20px;
@@ -74,7 +79,7 @@ button:disabled {
 
 
 button:hover:not(:disabled) {
-  background-color: #0056b3;
+  background-color: #a8cf4554;
 }
 
 /* Mensajes de error */
