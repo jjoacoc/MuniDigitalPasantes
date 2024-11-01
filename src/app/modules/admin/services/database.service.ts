@@ -118,6 +118,15 @@ export class DatabaseService {
     );
   }
 
+
+    // // Método para recuperar todos los grupos desde la base de datos (GET)
+    // recuperarAreasServicios(): Observable<any> {
+    //   // Envía una solicitud GET a la URL 'http://localhost/apiMiercoles/public/index.php?entity=areaServicio'
+    //   // para obtener la lista de grupos
+    //   const headers = this.createHeaders();
+    //   return this.http.get(`${this.apiUrl}?entity=areasServicios`, { headers });
+    // }
+
   // Método para recuperar todos los grupos desde la base de datos (GET)
   recuperarAreaServicio(): Observable<any> {
     // Envía una solicitud GET a la URL 'http://localhost/apiMiercoles/public/index.php?entity=areaServicio'
