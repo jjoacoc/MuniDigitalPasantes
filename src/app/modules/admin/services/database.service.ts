@@ -118,16 +118,58 @@ export class DatabaseService {
     );
   }
 
-  buscarCiudadanoPorDni(dni: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/buscar-ciudadano/${dni}`);
+  // Método para recuperar todos los grupos desde la base de datos (GET)
+  recuperarAreaServicio(): Observable<any> {
+    // Envía una solicitud GET a la URL 'http://localhost/apiMiercoles/public/index.php?entity=areaServicio'
+    // para obtener la lista de grupos
+    const headers = this.createHeaders();
+    return this.http.get(`${this.apiUrl}?entity=areasServicios`, { headers });
   }
+
+  // Método para recuperar todos los grupos desde la base de datos (GET)
+  recuperarTiposIncidentes(): Observable<any> {
+    // Envía una solicitud GET a la URL 'http://localhost/apiMiercoles/public/index.php?entity=tipoIncidente'
+    // para obtener la lista de grupos
+    const headers = this.createHeaders();
+    return this.http.get(`${this.apiUrl}?entity=tiposIncidentes`, { headers });
+  }
+
+  // Método para recuperar todos los grupos desde la base de datos (GET)
+  recuperarPrioridad(): Observable<any> {
+    // Envía una solicitud GET a la URL 'http://localhost/apiMiercoles/public/index.php?entity=prioridad'
+    // para obtener la lista de grupos
+    const headers = this.createHeaders();
+    return this.http.get(`${this.apiUrl}?entity=prioridad`, { headers });
+  }
+
+  // Método para recuperar todos los grupos desde la base de datos (GET)
+  recuperarOrigen(): Observable<any> {
+    // Envía una solicitud GET a la URL 'http://localhost/apiMiercoles/public/index.php?entity=origen'
+    // para obtener la lista de grupos
+    const headers = this.createHeaders();
+    return this.http.get(`${this.apiUrl}?entity=origen`, { headers });
+  }
+
+  // Método para recuperar todos los grupos desde la base de datos (GET)
+  recuperarCiudadanos(): Observable<any> {
+    // Envía una solicitud GET a la URL 'http://localhost/apiMiercoles/public/index.php?entity=ciudadano'
+    // para obtener la lista de grupos
+    const headers = this.createHeaders();
+    return this.http.get(`${this.apiUrl}?entity=ciudadano`, { headers });
+  }
+
+  // // Método para modificar un ciudadano existente en la base de datos (PUT)
+  // buscarCiudadanoPorDni(dni: string): Observable<any> {
+  //   const headers = this.createHeaders();
+  //   return this.http.get(`${this.apiUrl}?entity=ciudadano=${dni}`, { headers});
+  // }
 
   // Método para crear un nuevo incidente (POST)
   registrarIncidentes(incidenteData: any): Observable<any> {
     // Envía una solicitud POST a la URL 'http://localhost/apiMiercoles/public/index.php?entity=incident'
     // con los datos del incidente en el cuerpo de la solicitud
     const headers = this.createHeaders();
-    return this.http.post(`${this.apiUrl}?entity=incident&id`, incidenteData, {
+    return this.http.post(`${this.apiUrl}?entity=incident`, incidenteData, {
       headers,
     });
   }

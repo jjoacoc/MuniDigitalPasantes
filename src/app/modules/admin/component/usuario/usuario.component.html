@@ -1,6 +1,6 @@
 <div class="container">
-    <div class="header">
-      <button (click)="toggleFormulario()">Nuevo</button>
+  <div class="header">
+    <button (click)="toggleFormulario()">Nuevo</button>
   </div>
 
   <!-- Formulario que utiliza FormGroup (Reactive Forms) de Angular -->
@@ -8,10 +8,10 @@
 
 
   <!-- Modal -->
-<div id="myModal" class="modal" [ngClass]="{'show': mostrarFormulario}">
-  <div class="modal-content">
-    <span class="close" (click)="toggleFormulario()">&times;</span>
-    <form [formGroup]="usuarioForm" (ngSubmit)="submitForm()">
+  <div id="myModal" class="modal" [ngClass]="{'show': mostrarFormulario}">
+    <div class="modal-content">
+      <span class="close" (click)="toggleFormulario()">&times;</span>
+      <form [formGroup]="usuarioForm" (ngSubmit)="submitForm()">
         <h2 class="h2Color">Crear Usuario</h2>
         <!-- El formGroup 'usuarioForm' está enlazado con el formulario. Cuando se envía el formulario, se ejecuta la función 'submitForm()' -->
         <div>
@@ -39,23 +39,23 @@
             La Pass debe tener al menos 6 caracteres
           </div>
         </div>
-    
+
         <label for="grupo">Seleccionar Grupo:</label>
         <div>
-            <div *ngFor="let grupo of grupos">
-                <!-- [value]="grupo.Id_Grupos" Asigna el valor de este radio button al Id_Grupos del objeto grupo. Esto es lo que se enviará al formulario cuando este radio button esté seleccionado. -->
-                <input type="radio" [value]="grupo.Id_Grupos" formControlName="Id_Grupos"
-                    [id]="'grupo-' + grupo.Id_Grupos" />
-                <label [for]="'grupo-' + grupo.Id_Grupos">{{ grupo.Nombres }}</label>
-            </div>
+          <div *ngFor="let grupo of grupos">
+            <!-- [value]="grupo.Id_Grupos" Asigna el valor de este radio button al Id_Grupos del objeto grupo. Esto es lo que se enviará al formulario cuando este radio button esté seleccionado. -->
+            <input type="radio" [value]="grupo.Id_Grupos" formControlName="Id_Grupos"
+              [id]="'grupo-' + grupo.Id_Grupos" />
+            <label [for]="'grupo-' + grupo.Id_Grupos">{{ grupo.Nombres }}</label>
+          </div>
         </div>
-    
+
         <!-- Botón para enviar el formulario -->
         <!-- Se deshabilita el botón si el formulario es inválido (por ejemplo, si no se han completado los campos obligatorios) -->
         <button type="submit" [disabled]="usuarioForm.invalid">Enviar</button>
-    </form>
+      </form>
+    </div>
   </div>
-</div>
 
   <h2>Usuarios Registrados</h2>
   <table>
@@ -75,7 +75,7 @@
         <td>{{ usuario.Nombres }}</td>
         <td>{{ usuario.email }}</td>
         <td>{{ usuario.Pass }}</td>
-        <td class="borde"> {{ obtenerDescripcionGrupo(usuario.Id_Grupos) }}
+        <td class="borde"> {{ obtenerDescripcionGrupo(usuario.Id_Grupos) }} </td>
         <td>
 
           <!-- Botón para borrar el usuario -->
@@ -86,7 +86,8 @@
     </tbody>
   </table>
   <!-- Formulario para modificar usuario, solo visible si se seleccionó un usuario para editar -->
-  <form class="formMod" *ngIf="usuarioSeleccionado" [formGroup]="modificarUsuarioForm" (ngSubmit)="submitModificarForm()">
+  <form class="formMod" *ngIf="usuarioSeleccionado" [formGroup]="modificarUsuarioForm"
+    (ngSubmit)="submitModificarForm()">
     <div>
       <label for="modificarNombre">Nombre:</label>
       <input id="modificarNombre" formControlName="Nombres" type="text" />
@@ -101,12 +102,11 @@
     </div>
     <label for="grupo">Seleccionar Grupo:</label>
     <div>
-        <div *ngFor="let grupo of grupos">
-            <!-- [value]="grupo.Id_Grupos" Asigna el valor de este radio button al Id_Grupos del objeto grupo. Esto es lo que se enviará al formulario cuando este radio button esté seleccionado. -->
-            <input type="radio" [value]="grupo.Id_Grupos" formControlName="Id_Grupos"
-                [id]="'grupo-' + grupo.Id_Grupos" />
-            <label [for]="'grupo-' + grupo.Id_Grupos">{{ grupo.Nombres }}</label>
-        </div>
+      <div *ngFor="let grupo of grupos">
+        <!-- [value]="grupo.Id_Grupos" Asigna el valor de este radio button al Id_Grupos del objeto grupo. Esto es lo que se enviará al formulario cuando este radio button esté seleccionado. -->
+        <input type="radio" [value]="grupo.Id_Grupos" formControlName="Id_Grupos" [id]="'grupo-' + grupo.Id_Grupos" />
+        <label [for]="'grupo-' + grupo.Id_Grupos">{{ grupo.Nombres }}</label>
+      </div>
     </div>
     <button type="submit" [disabled]="modificarUsuarioForm.invalid">Guardar Cambios</button>
   </form>

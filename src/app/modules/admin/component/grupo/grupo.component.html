@@ -10,33 +10,37 @@
 
 
   <!-- Modal -->
-<div id="myModal" class="modal" [ngClass]="{'show': mostrarFormulario}">
-  <div class="modal-content">
-    <span class="close" (click)="toggleFormulario()">&times;</span>
-    <form [formGroup]="grupoForm" (ngSubmit)="submitForm()">
-      <label for="roleName" class="h2Color">Nombre del grupo:</label>
-      <input type="text" id="roleName" formControlName="Nombres" required>
-      <button type="submit" class="btn btn-primary">Agregar</button>
-    </form>
+  <div id="myModal" class="modal" [ngClass]="{'show': mostrarFormulario}">
+    <div class="modal-content">
+      <span class="close" (click)="toggleFormulario()">&times;</span>
+      <form [formGroup]="grupoForm" (ngSubmit)="submitForm()">
+        <label for="roleName" class="h2Color">Nombre del grupo:</label>
+        <input type="text" id="roleName" formControlName="Nombres" required>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+      </form>
+    </div>
   </div>
-</div>
 
   <table class="styled-table">
     <thead>
       <tr>
-        <th></th>
         <th>ID de Rol</th>
         <th>Nombre del Rol</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let grupo of grupos">
         <td>
-          <i class="fa fa-pencil" (click)="editarRol(grupo)"></i>
-          <i class="fa fa-trash" (click)="bajaRol(grupo.Id_Grupos)"></i>
+          <i class="fa fa-pencil"></i>
+          <i class="fa fa-trash"></i>
         </td>
         <td>{{ grupo.Id_Grupos }}</td>
         <td>{{ grupo.Nombres }}</td>
+        <td>
+          <button class="button-reg" (click)="editarRol(grupo)">Modificar</button>
+          <button (click)="bajaRol(grupo.Id_Grupos)">Borrar</button>
+        </td>
       </tr>
     </tbody>
   </table>
