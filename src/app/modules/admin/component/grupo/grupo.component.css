@@ -51,7 +51,7 @@ h2 {
   border-collapse: collapse;
   background-color: white;
   border-radius: 8px;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .styled-table thead tr {
