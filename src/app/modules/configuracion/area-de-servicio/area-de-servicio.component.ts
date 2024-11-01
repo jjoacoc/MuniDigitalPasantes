@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./area-de-servicio.component.css']
 })
 export class AreaDeServicioComponent {
+  displayedColumns: string[] = ['id', 'area', 'total', 'incidentTypes', 'actions'];
+  
 
 }

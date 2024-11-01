@@ -1,0 +1,33 @@
+.container {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.filter-section, .user-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dropdowns {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.service-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.mat-header-cell, .mat-cell {
+  text-align: center;
+}

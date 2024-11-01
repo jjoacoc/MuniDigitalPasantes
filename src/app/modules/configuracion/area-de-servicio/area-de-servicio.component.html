@@ -1,25 +1,84 @@
-<div class="table-container">
-    <button>hola</button>
-</div>
+<div class="container">
+  <div class="header">
+    <h1>CONFIGURACIÓN ÁREA DE SERVICIO</h1>
+  </div>
 
-<table mat-table class="mat-elevation-z8 demo-table">
-<!--Id de las areas-->
-<ng-container atColumnDef="position">
- <th>ID</th>
- <td></td>
-</ng-container>
-<!--nombre de las areas-->
-<ng-container matColumDef="name">
-    <th>NOMBRE</th>
-    <td></td>
-</ng-container>
- <!-- Symbol Column -->
- <ng-container matColumnDef="symbol">
-    <th>descripcion</th>
-    <td></td>
-  </ng-container>
-  <ng-container matColumnDef="symbol">
-    <th>descripcion</th>
-    <td></td>
-  </ng-container>
-</table>
+  <div class="container-general">
+  <!--inicio del select-->
+  <div class="select">
+    <span>Área de  Servicio</span>
+
+    <mat-form-field class="mat">
+      <mat-label>Todos</mat-label>
+      <mat-select>
+
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <!--fin del  select-->
+
+  <div class="flitro">
+    <button mat-stroked-button class="search-button">
+      <mat-icon>search</mat-icon> Filtrar
+    </button>
+
+  </div>
+  <!--fin del flitro-->
+
+  <div class="botton">
+    <button mat-raised-button  class="add-area-button">
+      <mat-icon>add</mat-icon> Agregar Área de Servicio
+    </button>
+
+  </div>
+  <!--fin del botton-->
+  </div>
+  
+
+  <div class="table-container">
+    <table mat-table  class="mat-elevation-z8">
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> # </th>
+        <td mat-cell *matCellDef="let area"> {{ area.id }} </td>
+      </ng-container>
+
+      <!-- Área de Servicio Column -->
+      <ng-container matColumnDef="area">
+        <th mat-header-cell *matHeaderCellDef> Área de servicio </th>
+        <td mat-cell *matCellDef="let area"> {{ area.area }} </td>
+      </ng-container>
+
+      <!-- Total Column -->
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef> Total </th>
+        <td mat-cell *matCellDef="let area"> {{ area.total }} </td>
+      </ng-container>
+
+      <!-- Tipos de Incidente Column -->
+      <ng-container matColumnDef="incidentTypes">
+        <th mat-header-cell *matHeaderCellDef> Tipos de incidente </th>
+        <td mat-cell *matCellDef="let area">
+          {{ area.incidentTypes | slice: 0:50 }}... 
+          <a href="#">ver más</a>
+        </td>
+      </ng-container>
+
+      <!-- Buttons Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let area">
+          <button mat-icon-button color="primary">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="primary">
+            <mat-icon>person</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>
