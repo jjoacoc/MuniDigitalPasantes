@@ -31,7 +31,7 @@ export class RegistroIncidentesComponent implements OnInit {
       Id_Prioridad: ['', Validators.required], // Campo obligatorio
       Id_Origen: ['', Validators.required], // Campo obligatorio
 
-      ciudadano: this.fb.group({
+      // ciudadano: this.fb.group({
         Dni: ['', Validators.required], //Campo obligatorio
         Apellido: ['', Validators.required], //Campo obligatorio
         Nombre: ['', Validators.required], //Campo obligatorio
@@ -40,7 +40,7 @@ export class RegistroIncidentesComponent implements OnInit {
         Domicilio: ['', Validators.required], //Campo obligatorio
         Barrio: ['', Validators.required], //Campo obligatorio
         Telefono: ['', Validators.required], //Campo obligatorio
-      }),
+      // }),
     });
 
     this.modificarIncidenteForm = this.fb.group({
