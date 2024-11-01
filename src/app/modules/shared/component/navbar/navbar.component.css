@@ -24,9 +24,23 @@ html, body, mat-sidenav-container {
     align-items: center;
 }
 
-.menu-button, .logout-button {
+
+.custom-button {
+    background-color:#a8cf45; /* Color de fondo */
+    color: white; /* Color del ícono */
+    border-radius: 50%; /* Bordes redondeados */
+    transition: background-color 0.3s; /* Transición suave */
+
+    /* Alineación y tamaño */
     display: flex;
+    justify-content: center;
     align-items: center;
+    width: 48px;
+    height: 48px;
+}
+
+.custom-button:hover {
+    background-color: #a8cf453f; /* Color al pasar el ratón */
 }
 
 .title {

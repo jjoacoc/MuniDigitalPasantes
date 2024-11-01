@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatabaseService } from 'src/app/modules/admin/services/database.service';
 import { Router } from '@angular/router';
-
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -33,11 +33,25 @@ export class InicioSesionComponent {
         next: (data: any) => {
           if (data.token) {
             localStorage.setItem('token', data.token);
-
+            
             this.router.navigate(['/inicio']); // Redirigir después de iniciar sesión
+             // Mostrar SweetAlert de éxito
+             Swal.fire({
+              title: '¡Éxito!',
+              text: 'Has iniciado sesión correctamente.',
+              icon: 'success',
+              confirmButtonText: 'Aceptar'
+               });
           } else {
             this.errorMessage = data.message || 'Credenciales inválidas';
             console.error('Login failed', this.errorMessage);
+            // Mostrar SweetAlert en caso de credenciales inválidas
+            Swal.fire({
+              title: 'Error',
+              text: this.errorMessage,
+              icon: 'error',
+              confirmButtonText: 'Intentar de nuevo'
+          });
           }
         },
         error: (error) => {
@@ -45,6 +59,7 @@ export class InicioSesionComponent {
             error.error?.message ||
             'Error al iniciar sesión. Verifique sus credenciales';
           console.error('Login failed', error);
+          
         },
       });
     }
