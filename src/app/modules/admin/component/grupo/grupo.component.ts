@@ -116,6 +116,7 @@ export class GrupoComponent implements OnInit {
             this.recuperarGrupos();  // Se actualiza la lista de grupos
           } else {
             alert('Error al crear grupo: ' + (response['mensaje'] || 'Error desconocido'));
+            
           }
           this.mostrarFormulario = !this.mostrarFormulario;  // Ocultar el formulario tras crear el grupo
         },
