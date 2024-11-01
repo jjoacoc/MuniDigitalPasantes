@@ -3,7 +3,12 @@
 include_once '../controllers/UserController.php';  // Controlador de usuarios
 include_once '../controllers/GroupController.php'; // Controlador de grupos
 include_once '../controllers/AuthController.php';  // Controlador de autenticación
-include_once '../controllers/IncidentesController.php'; //Controlador de incidentes
+include_once '../controllers/IncidentesController.php'; // Controlador de incidentes
+include_once '../controllers/CiudadanoController.php'; // Controlador de ciudadanos
+include_once '../controllers/OrigenController.php'; // Controlador de s
+include_once '../controllers/PrioridadController.php'; // Controlador de s
+include_once '../controllers/TiposIncidentesController.php'; // Controlador de s
+include_once '../controllers/AreasServiciosController.php'; // Controlador de s
 include_once '../views/View.php'; // Vista para renderizado de datos
 
 
@@ -18,7 +23,6 @@ $entity = $_GET['entity'];  // Por defecto, se asume que es producto
 switch ($entity) {
     case 'login':
         $controller = new AuthController();
-
         break;
 
     case 'users':
@@ -28,12 +32,33 @@ switch ($entity) {
     case 'groups':
         $controller = new GroupController();
         break;
-    default:
-    
+
     case 'incident':
         $controller = new IncidentController();
         break;
 
+    case 'ciudadano':
+        $controller = new CiudadanoController();
+        break;
+        
+    case 'origen':
+        $controller = new OrigenController();
+        break;
+        
+    case 'prioridad':
+        $controller = new PrioridadController();
+        break;
+        
+    case 'tiposIncidentes':
+        $controller = new TiposIncidentesController();
+        break;
+        
+    case 'areasServicios':
+        $controller = new AreasServiciosController();
+        break;
+        
+
+    default:
         View::render(json_encode(["message" => "Entidad no reconocida"]));
         exit();
 }
@@ -122,4 +147,3 @@ switch ($method) {
         View::render(json_encode(["message" => "Método no permitido"]));
         break;
 }
-?>

@@ -28,14 +28,14 @@ class IncidentController {
 
     // Crear un nuevo incidente
     public function create($data) {
-        $this->incident->Fecha_Hora = $data->Fecha_Hora;
-        $this->incident->Otros_Datos = $data->Otros_Datos;
-        $this->incident->Observaciones = $data->Observaciones;
-        $this->incident->Id_Area_Servicio = $data->Id_Area_Servicio;
+        $this->incident->Id_Areas_Servicios = $data->Id_Areas_Servicios;
         $this->incident->Id_Tipos_Incidentes = $data->Id_Tipos_Incidentes;
-        $this->incident->Id_Prioridades = $data->Id_Prioridades;
-        $this->incident->Id_Origenes = $data->Id_Origenes;
-        $this->incident->Id_Ciudadanos = $data->Id_Ciudadanos;
+        $this->incident->Id_Prioridad = $data->Id_Prioridad;
+        $this->incident->Id_Origen = $data->Id_Origen;
+        $this->incident->Fecha_Hora = $data->Fecha_Hora;
+        // $this->incident->Otros_Datos = $data->Otros_Datos;
+        $this->incident->Observaciones = $data->Observaciones;
+        // $this->incident->Id_Ciudadanos = $data->Id_Ciudadanos;
         if ($this->incident->create()) {
             return json_encode(["message" => "OK"]);
         }
@@ -45,12 +45,12 @@ class IncidentController {
     // Actualizar un incidente
     public function update($Id_Incidentes, $data) {
         $this->incident->Fecha_Hora = $data->Fecha_Hora;        
-        $this->incident->Otros_Datos = $data->Otros_Datos;
+        // $this->incident->Otros_Datos = $data->Otros_Datos;
         $this->incident->Observaciones = $data->Observaciones;
-        $this->incident->Id_Area_Servicio = $data->Id_Area_Servicio;
+        $this->incident->Id_Areas_Servicios = $data->Id_Areas_Servicios;
         $this->incident->Id_Tipos_Incidentes = $data->Id_Tipos_Incidentes;
-        $this->incident->Id_Prioridades = $data->Id_Prioridades;
-        $this->incident->Id_Origenes = $data->Id_Origenes;
+        $this->incident->Id_Prioridad = $data->Id_Prioridad;
+        $this->incident->Id_Origen = $data->Id_Origen;
         $this->incident->Id_Ciudadanos = $data->Id_Ciudadanos;
         if ($this->incident->update($Id_Incidentes)) {
             return json_encode(["message" => "OK"]);

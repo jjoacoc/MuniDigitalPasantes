@@ -51,9 +51,9 @@ class User
 
       
     public function getUserByEmail($email) {
-        $query = "SELECT * FROM Usuarios WHERE email = :email";
+        $query = "SELECT * FROM " . $this->table . " WHERE email = :email";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':email', $email);  // Corregido: pasar el correo como valor
+        $stmt->bindParam(':email', $email);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
@@ -75,7 +75,7 @@ class User
     public function update($Id_Usuarios)
     {   
         $this->setPassword($this->Pass);
-        $query = "UPDATE " . $this->table . " SET Nombres = :Nombres, email = :email, Pass = :Pass, Id_Grupos = :Id_Grupos WHERE Id_Grupos = :Id_Grupos";
+        $query = "UPDATE " . $this->table . " SET Nombres = :Nombres, email = :email, Pass = :Pass, Id_Grupos = :Id_Grupos WHERE Id_Usuarios = :Id_Usuarios";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':Id_Usuarios', $Id_Usuarios);
         $stmt->bindParam(':Nombres', $this->Nombres);
