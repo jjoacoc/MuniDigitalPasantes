@@ -8,6 +8,7 @@ body {
   max-width: 800px;
   margin: auto;
   color: #333 !important;
+  overflow:auto;
 }
 
 .header {

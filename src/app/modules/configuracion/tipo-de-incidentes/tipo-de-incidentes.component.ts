@@ -6,31 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./tipo-de-incidentes.component.css']
 })
 export class TipoDeIncidentesComponent {
-  displayedColumns: string[] = ['select', 'areaDeServicio', 'tiposDeIncidentes', 'usuarios'];
-  
-
-  filtroGeneral: string = '';
-  filtroUsuarios: string = '';
-  cargoSeleccionado: string = 'Todos';
-  habilitacionSeleccionada: string = 'Habilitados';
-
-  // Datos de ejemplo para áreas de servicio
-
-
- 
-
-  cargos: string[] = ['Todos', 'Admin', 'Usuario', 'Operador'];  // Ejemplo de cargos
-
-
- 
-
-
-
-  // Filtro de usuarios (por ahora vacío)
-  filtrarUsuarios() {
-    // Lógica para filtrar usuarios
-  }
-
-
+  displayedColumns: string[] = ['select', 'area', 'incidents', 'users'];
+  serviceAreas = [
+    { name: 'Alumbrado Público' },
+    { name: 'ARSA' },
+    { name: 'ASUNTOS VECINALES' },
+    { name: 'BOMBEROS' },
+    { name: 'Capacitación y Empleo' },
+    { name: 'Comercio' },
+    { name: 'Complejo cultural' },
+    { name: 'Cooperativa' }
+  ];
 }
 

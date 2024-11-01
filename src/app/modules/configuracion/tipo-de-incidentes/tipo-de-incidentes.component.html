@@ -1,80 +1,76 @@
 <div class="container">
-    <div class="header">
-      <h1 class="title">Asignar Áreas de Servicio y Tipos de Incidentes</h1>
-    </div>
-  
-    <div class="filtros">
-      <mat-form-field class="filter-field" appearance="outline">
-        <mat-label>Filtro de búsqueda...</mat-label>
-        <input matInput  placeholder="Buscar áreas de servicio...">
+  <h2>Áreas de Servicio y Tipos de Incidentes</h2>
+
+  <!-- Search Filter Section -->
+  <div class="filter-section">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Filtro de búsqueda</mat-label>
+      <input matInput placeholder="Filtro de búsqueda...">
+    </mat-form-field>
+
+    <div class="user-filters">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Usuarios</mat-label>
+        <input matInput placeholder="Filtro de búsqueda...">
       </mat-form-field>
-  
-      <div class="filtro-usuarios">
-        <mat-form-field class="filter-field" appearance="outline">
+
+      <div class="dropdowns">
+        <mat-form-field appearance="outline">
           <mat-label>Cargo</mat-label>
-          <mat-select >
-            <mat-option *ngFor="let cargo of cargos" [value]="cargo">{{ cargo }}</mat-option>
+          <mat-select>
+            <mat-option value="todos">Todos</mat-option>
           </mat-select>
         </mat-form-field>
-  
-        <mat-form-field class="filter-field" appearance="outline">
+
+        <mat-form-field appearance="outline">
           <mat-label>Habilitación</mat-label>
-          <mat-select >
-            <mat-option value="Habilitados">Habilitados</mat-option>
-            <mat-option value="No habilitados">No habilitados</mat-option>
+          <mat-select>
+            <mat-option value="habilitados">Habilitados</mat-option>
+            <mat-option value="deshabilitados">Deshabilitados</mat-option>
           </mat-select>
         </mat-form-field>
-  
-        <button mat-raised-button color="primary" class="buscar-btn" >
-          <mat-icon>search</mat-icon>
-          Buscar
-        </button>
+
+        <button mat-raised-button color="primary">Buscar</button>
       </div>
     </div>
-  
-    <div class="tabla-container">
-      <table mat-table  class="mat-elevation-z8">
-  
-        <!-- Checkbox Column -->
-        <ng-container matColumnDef="select">
-          <th mat-header-cell *matHeaderCellDef>
-            <mat-checkbox ></mat-checkbox>
-          </th>
-          <td mat-cell *matCellDef="let row">
-            <mat-checkbox >
-            </mat-checkbox>
-          </td>
-        </ng-container>
-  
-        <!-- Área de Servicio Column -->
-        <ng-container matColumnDef="areaDeServicio">
-          <th mat-header-cell *matHeaderCellDef>Área de Servicio</th>
-          <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
-        </ng-container>
-  
-        <!-- Tipos de Incidentes Column -->
-        <ng-container matColumnDef="tiposDeIncidentes">
-          <th mat-header-cell *matHeaderCellDef>T. Incidentes</th>
-          <td mat-cell *matCellDef="let element">
-            <mat-icon>article</mat-icon>
-          </td>
-        </ng-container>
-  
-        <!-- Usuarios Column -->
-        <ng-container matColumnDef="usuarios">
-          <th mat-header-cell *matHeaderCellDef>Usuarios</th>
-          <td mat-cell *matCellDef="let element">
-            <mat-icon>person</mat-icon>
-          </td>
-        </ng-container>
-  
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </div>
-  
-    <button mat-fab color="accent" class="crear-nueva-btn" aria-label="Crear nueva área de servicio">
-      <mat-icon>add</mat-icon>
-    </button>
   </div>
-  
+
+  <!-- Service Areas Table -->
+  <table mat-table [dataSource]="serviceAreas" class="mat-elevation-z8 service-table">
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox></mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-checkbox></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <!-- Area de Servicio Column -->
+    <ng-container matColumnDef="area">
+      <th mat-header-cell *matHeaderCellDef> Área de Servicio </th>
+      <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+    </ng-container>
+
+    <!-- T. Incidentes Column -->
+    <ng-container matColumnDef="incidents">
+      <th mat-header-cell *matHeaderCellDef> T. Incidentes </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon>assignment</mat-icon>
+      </td>
+    </ng-container>
+
+    <!-- Usuarios Column -->
+    <ng-container matColumnDef="users">
+      <th mat-header-cell *matHeaderCellDef> Usuarios </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-icon>group</mat-icon>
+      </td>
+    </ng-container>
+
+    <!-- Header and Row Definitions -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

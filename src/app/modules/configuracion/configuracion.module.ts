@@ -10,6 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
+
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatButtonModule,
     MatIconModule,
     MatTableModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatInputModule
   ]
 })
 export class ConfiguracionModule { }
