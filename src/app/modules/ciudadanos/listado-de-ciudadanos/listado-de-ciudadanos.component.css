@@ -1,0 +1,46 @@
+
+
+/* Estilos para el formulario */
+form {
+    width: 90%;
+    margin: 0 auto;
+    background-color: #f0f8ff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50%;
+}
+
+/* Estilos para las etiquetas */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Estilos para los campos de entrada */
+input[type="text"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Estilos para los botones */
+button {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+/* Estilos para el checkbox */
+input[type="checkbox"] {
+    margin-right: 5px;
+}
