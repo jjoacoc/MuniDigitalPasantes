@@ -24,7 +24,7 @@ export class TipoDeIncidentesComponent implements OnInit {
   constructor(private database: DatabaseService) {}
     // Método para recuperar la lista de incidentes de la base de datos
     recuperarAreasServicios() {
-      this.database.recuperarAreaServicio().subscribe({
+      this.database.recuperarAreasServicios().subscribe({
         next: (response) => {
           // Verificamos que la respuesta sea un array antes de asignarlo a la variable 'incidentes'
           if (Array.isArray(response)) {

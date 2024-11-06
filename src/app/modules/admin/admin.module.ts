@@ -31,7 +31,6 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatSelectModule
   ],
-  exports: [UsuarioComponent,
-    GrupoComponent,MatInputModule,MatButtonModule,MatFormFieldModule],
+  exports: [UsuarioComponent],
 })
 export class AdminModule { }

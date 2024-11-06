@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 
 import { InicioSesionComponent } from './modules/autentificacion/pages/inicio-sesion/inicio-sesion.component';
 
+
 const routes: Routes = [
   //ruta comun -> para que lleve al login
 
@@ -28,13 +29,15 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+      import('./modules/admin/admin.module').then(
+        (m) => m.AdminModule),
   },
 
   {
     path: '',
     loadChildren: () =>
-      import('./modules/inicio/inicio.module').then((m) => m.InicioModule),
+      import('./modules/inicio/inicio.module').then(
+        (m) => m.InicioModule),
   },
   {
     path: '',
@@ -43,10 +46,17 @@ const routes: Routes = [
         (m) => m.IncidentesModule
       ),
   },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./modules/ciudadanos/ciudadanos.module').then(
+        (m) =>m.CiudadanosModule
+      ),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
