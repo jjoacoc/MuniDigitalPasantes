@@ -1,7 +1,6 @@
 <div class="container">
   <h2>Áreas de Servicio y Tipos de Incidentes</h2>
 
-  <!-- Search Filter Section -->
   <div class="filter-section">
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Filtro de búsqueda</mat-label>
@@ -38,7 +37,6 @@
 
 
   <section>
-    <!-- Botón Refrescar, visible solo cuando el filtro está activo -->
     <div *ngIf="filtradoActivo" class="refresh-button">
       <button mat-raised-button color="primary" (click)="refrescarTabla()">Refrescar</button>
     </div>

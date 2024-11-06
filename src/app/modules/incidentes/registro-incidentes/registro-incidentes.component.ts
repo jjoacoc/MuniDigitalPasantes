@@ -154,7 +154,7 @@ export class RegistroIncidentesComponent implements OnInit {
   }
 
   recuperarAreaServicio() {
-    this.database.recuperarAreasServicios().subscribe({
+    this.database.recuperarAreaServicio().subscribe({
       next: (response) => {
         if (Array.isArray(response)) {
           this.AreaServicio = response; // Aquí debes tener un array de objetos que contengan Id_Areas_Servicios y descripcion

@@ -120,7 +120,7 @@ export class DatabaseService {
 
 
     // // Método para recuperar todos los grupos desde la base de datos (GET)
-    recuperarAreasServicios(): Observable<any> {
+    recuperarAreaServicio(): Observable<any> {
       const headers = this.createHeaders();
       return this.http.get(`${this.apiUrl}?entity=areasServicios`, { headers });
     }

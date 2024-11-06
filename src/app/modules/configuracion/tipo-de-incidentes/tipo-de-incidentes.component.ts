@@ -15,7 +15,6 @@ export class TipoDeIncidentesComponent implements OnInit {
 
   displayedColumns: string[] = ['select', 'area', 'incidents', 'users'];
   AreasServicios: any[] = []; // Variable para almacenar las areas de servicio recuperados de la base de datos
-  areaServicio:any [] = [1, "tusam", "100", "Bomberos", "bor"]
   
 
 
@@ -24,7 +23,7 @@ export class TipoDeIncidentesComponent implements OnInit {
   constructor(private database: DatabaseService) {}
     // Método para recuperar la lista de incidentes de la base de datos
     recuperarAreasServicios() {
-      this.database.recuperarAreasServicios().subscribe({
+      this.database.recuperarAreaServicio().subscribe({
         next: (response) => {
           // Verificamos que la respuesta sea un array antes de asignarlo a la variable 'incidentes'
           if (Array.isArray(response)) {
