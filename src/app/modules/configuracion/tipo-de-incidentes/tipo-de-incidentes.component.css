@@ -7,6 +7,11 @@ h2 {
   margin-bottom: 20px;
 }
 
+.no-link{
+  text-decoration: none;
+  color: #333;
+}
+
 .full-width {
   width: 100%;
 }
@@ -26,6 +31,7 @@ h2 {
 .service-table {
   width: 100%;
   margin-top: 20px;
+  overflow: scroll;
 }
 
 .mat-header-cell, .mat-cell {

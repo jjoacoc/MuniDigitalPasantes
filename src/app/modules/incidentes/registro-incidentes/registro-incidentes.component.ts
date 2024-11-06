@@ -15,7 +15,7 @@ export class RegistroIncidentesComponent implements OnInit {
 
   incidentes: any[] = []; // Variable para almacenar los incidentes recuperados de la base de datos
   AreaServicio: any[] = []; // Variable para almacenar las areas de servicio recuperados de la base de datos
-  Origen: any[] = []; // Variable para almacenar las areas de servicio recuperados de la base de datos
+  Origen: any[] = []; // Variable para almacenar el origen recuperado de la base de datos
   Prioridad: any[] = []; // Variable para almacenar las areas de servicio recuperados de la base de datos
   TiposIncidentes: any[] = []; // Variable para almacenar las areas de servicio recuperados de la base de datos
   Ciudadanos: any[] = []; // Variable para almacenar las areas de servicio recuperados de la base de datos

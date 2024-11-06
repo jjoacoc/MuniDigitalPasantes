@@ -15,62 +15,93 @@
       </mat-form-field>
 
       <div class="dropdowns">
+        <h3>cargo</h3>
         <mat-form-field appearance="outline">
-          <mat-label>Cargo</mat-label>
+          <mat-label>Todos</mat-label>
           <mat-select>
-            <mat-option value="todos">Todos</mat-option>
+            <mat-option *ngFor="let cargo of cargo" value="todos">{{cargo.name}}</mat-option>
           </mat-select>
         </mat-form-field>
 
+        <h3>Habilitación</h3>
         <mat-form-field appearance="outline">
-          <mat-label>Habilitación</mat-label>
           <mat-select>
             <mat-option value="habilitados">Habilitados</mat-option>
             <mat-option value="deshabilitados">Deshabilitados</mat-option>
           </mat-select>
         </mat-form-field>
-
         <button mat-raised-button color="primary">Buscar</button>
       </div>
     </div>
   </div>
 
-  <!-- Service Areas Table -->
-  <table mat-table [dataSource]="serviceAreas" class="mat-elevation-z8 service-table">
-    <!-- Checkbox Column -->
+
+
+  <section>
+    <!-- Botón Refrescar, visible solo cuando el filtro está activo -->
+    <div *ngIf="filtradoActivo" class="refresh-button">
+      <button mat-raised-button color="primary" (click)="refrescarTabla()">Refrescar</button>
+    </div>
+    <table mat-table>
+      <thead>
+        <tr>
+          <th>
+            <mat-checkbox></mat-checkbox>
+          </th>
+          <th>Area de Servicio</th>
+          <th *ngIf="!filtradoActivo">T.Incidente</th>
+          <th>Usuarios</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let areas of AreasServicios">
+          <td><mat-checkbox></mat-checkbox></td>
+          <td>{{areas.Descripcion}}</td>
+          <td *ngIf="!filtradoActivo">
+            <a href="#" (click)="filtrarTIncidentes(areas.Descripcion)" class="no-link"><mat-icon>assignment</mat-icon></a>
+          </td>
+          <td >
+            <a href="#" (click)="filtrarUsuarios()" class="no-link"><mat-icon>group</mat-icon></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+
+
+
+
+
+  <!-- <table mat-table [dataSource]="AreasServicios" class="mat-elevation-z8 service-table">
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
         <mat-checkbox></mat-checkbox>
       </th>
       <td mat-cell *matCellDef="let element">
-        <mat-checkbox></mat-checkbox>
       </td>
     </ng-container>
 
-    <!-- Area de Servicio Column -->
     <ng-container matColumnDef="area">
       <th mat-header-cell *matHeaderCellDef> Área de Servicio </th>
-      <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+      <td mat-cell *matCellDef="let areas"> {{ areas.Descripcion }} </td>
     </ng-container>
 
-    <!-- T. Incidentes Column -->
     <ng-container matColumnDef="incidents">
       <th mat-header-cell *matHeaderCellDef> T. Incidentes </th>
       <td mat-cell *matCellDef="let element">
-        <mat-icon>assignment</mat-icon>
+        <a class="no-link" href=""><mat-icon>assignment</mat-icon></a>
       </td>
     </ng-container>
 
-    <!-- Usuarios Column -->
     <ng-container matColumnDef="users">
       <th mat-header-cell *matHeaderCellDef> Usuarios </th>
       <td mat-cell *matCellDef="let element">
-        <mat-icon>group</mat-icon>
+        <a class="no-link" href=""><mat-icon>group</mat-icon></a>
       </td>
     </ng-container>
 
-    <!-- Header and Row Definitions -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+  </table> -->
 </div>
