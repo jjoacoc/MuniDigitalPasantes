@@ -7,11 +7,6 @@ h2 {
   margin-bottom: 20px;
 }
 
-.no-link{
-  text-decoration: none;
-  color: #333;
-}
-
 .full-width {
   width: 100%;
 }
@@ -31,13 +26,106 @@ h2 {
 .service-table {
   width: 100%;
   margin-top: 20px;
-  overflow: scroll;
+  /* Eliminamos el overflow-scroll */
 }
 
-.mat-header-cell, .mat-cell {
-  text-align: center;
+/* Cambios en el estilo de la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
 }
-.mat-mdc-raised-button.mat-primary{
-  --mdc-protected-button-container-color: #a8cf45;
 
+/* Estilo para las celdas con bordes */
+.table-with-borders td, .table-with-borders th {
+  border: 1px solid #ddd;
+}
+
+/* Estilo para las celdas con línea divisoria */
+.table-with-divider td, .table-with-divider th {
+  border-bottom: 1px solid #ddd;
+}
+
+/* Cabecera de la tabla */
+thead {
+  background-color: #a8cf45;
+  color: #fff;
+}
+
+th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Celdas de la tabla */
+td {
+  padding: 12px 16px;
+  font-size: 14px;
+  text-align: left;
+}
+
+/* Efecto hover para las filas */
+tbody tr:hover {
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+mat-checkbox {
+  margin: 0;
+}
+
+/* Estilo de los iconos dentro de los enlaces */
+.no-link mat-icon {
+  font-size: 20px;
+  color: #a8cf45;
+  transition: color 0.3s ease;
+}
+
+.no-link mat-icon:hover {
+  color: #7a9e31;
+}
+
+.no-link {
+  text-decoration: none;
+}
+
+/* Estilo responsivo (opcional) */
+@media (max-width: 768px) {
+  /* Ajuste de la tabla */
+  table {
+    width: 100%;                /* La tabla sigue ocupando el 100% del ancho */
+    table-layout: auto;          /* Ajusta automáticamente el tamaño de las columnas */
+  }
+
+  th, td {
+    padding: 8px 12px;          /* Menos espacio en dispositivos pequeños */
+    font-size: 12px;             /* Fuente más pequeña */
+  }
+
+  .service-table {
+    margin-top: 10px;            /* Reduce el margen superior */
+  }
+
+  .filter-section, .user-filters {
+    flex-direction: row;         /* En pantallas pequeñas, coloca los filtros en fila */
+    flex-wrap: wrap;             /* Permite que se envuelvan si no caben */
+    gap: 5px;                    /* Reduce el espacio entre los filtros */
+  }
+
+  .dropdowns {
+    flex-direction: column;      /* Asegura que los dropdowns se alineen en columna en móviles */
+  }
+
+  .no-link mat-icon {
+    font-size: 18px;             /* Ajuste del tamaño de los iconos */
+  }
+
+  /* Cambios en la cabecera de la tabla */
+  thead {
+    font-size: 12px;             /* Reduce el tamaño de la fuente de la cabecera */
+  }
 }

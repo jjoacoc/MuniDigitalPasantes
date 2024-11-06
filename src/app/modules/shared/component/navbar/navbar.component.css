@@ -2,6 +2,21 @@ html, body, mat-sidenav-container {
     height: 100%;
     margin: 0;
 }
+/* Asegúrate de que el sidenav esté en una capa superior */
+.mat-sidenav {
+    z-index: 1000 !important;   /* Asegura que tenga un z-index alto para estar sobre otros elementos */
+  }
+  
+  /* Si el sidenav se superpone con el contenido */
+  .mat-sidenav-content {
+    margin-left: 0 !important; /* Asegúrate de que no esté desplazado */
+  }
+  
+  /* Si el sidenav se encuentra oculto, asegura que el contenido no lo cubra */
+  .mat-sidenav-container {
+    position: relative;
+    z-index: 1;
+  }
 
 .app-container {
     background-color: #FFFFFF;
