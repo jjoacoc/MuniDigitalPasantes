@@ -9,7 +9,7 @@ export class DatabaseService {
   // URL base de la API en el backend
   private apiUrl = 'http://localhost/apiMiercoles/public/index.php';
 
-  constructor(private http: HttpClient) {} // Inyecta HttpClient para usarlo en las peticiones
+  constructor(private http: HttpClient) { } // Inyecta HttpClient para usarlo en las peticiones
 
   //TOKEN
   private getToken(): string | null {
@@ -119,15 +119,25 @@ export class DatabaseService {
   }
 
 
-    // // Método para recuperar todos los grupos desde la base de datos (GET)
-    recuperarAreaServicio(id: number): Observable<any> {
-      const headers = this.createHeaders();
-      return this.http.get(`${this.apiUrl}?entity=areasServicios&id=${id}`, { headers });
-    }
-    recuperarAreasServicios(): Observable<any> {
-      const headers = this.createHeaders();
-      return this.http.get(`${this.apiUrl}?entity=areasServicios`, { headers });
-    }
+
+  crearAreaServicio(areaServiciodata: any) : Observable<any>{
+    const headers = this.createHeaders();
+    return this.http.post(`${this.apiUrl}?entity=areasServicios`, areaServiciodata, {
+      headers,
+    });
+
+  }
+
+
+  // // Método para recuperar todos los grupos desde la base de datos (GET)
+  recuperarAreaServicio(id: number): Observable<any> {
+    const headers = this.createHeaders();
+    return this.http.get(`${this.apiUrl}?entity=areasServicios&id=${id}`, { headers });
+  }
+  recuperarAreasServicios(): Observable<any> {
+    const headers = this.createHeaders();
+    return this.http.get(`${this.apiUrl}?entity=areasServicios`, { headers });
+  }
 
   // Método para recuperar todos los grupos desde la base de datos (GET)
   recuperarTiposIncidentes(): Observable<any> {
