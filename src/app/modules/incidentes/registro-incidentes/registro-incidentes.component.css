@@ -1,6 +1,5 @@
   .registro-incidentes {
     width: 90%;
-    height: 115vh;
     margin: 0 auto;
     background-color: #f0f8ff;
     padding: 20px;
@@ -8,6 +7,19 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 50%;
   }
+
+  .table-container {
+    height: 50%;
+    width: 95%;
+    padding: 1 auto;
+    border-radius: 8px;
+    
+  }
+
+  .error{
+    color: red;
+  }
+  
   
   h2 {
     font-size: 18px;
@@ -16,6 +28,11 @@
   }
 
   
+.styled-table {
+  width: 100%;
+  color: #333;
+  border-radius: 8px;
+}
   
   .form-group {
     margin-bottom: 15px;

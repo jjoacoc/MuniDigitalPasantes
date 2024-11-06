@@ -13,8 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
-
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -29,7 +28,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     FormsModule,
     MatInputModule,
     MatButtonModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule
   ],
   exports: [UsuarioComponent,
     GrupoComponent,MatInputModule,MatButtonModule,MatFormFieldModule],

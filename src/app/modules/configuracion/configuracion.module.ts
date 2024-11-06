@@ -29,6 +29,7 @@ import { MatInputModule } from '@angular/material/input';
     MatTableModule,
     MatCheckboxModule,
     MatInputModule
-  ]
+  ],
+  exports:[AreaDeServicioComponent,TipoDeIncidentesComponent]
 })
 export class ConfiguracionModule { }

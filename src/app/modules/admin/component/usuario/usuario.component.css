@@ -3,13 +3,13 @@ body {
   margin: 0;
   padding: 20px;
 }
-
 .container {
-  max-width: 800px;
+  max-width: 100%;
   margin: auto;
   color: #333 !important;
   overflow:auto;
 }
+
 
 .header {
   display: flex;
@@ -25,8 +25,12 @@ form {
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: 0 auto;
+  width: 600px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  
 }
 
 label {
@@ -56,6 +60,7 @@ input:focus {
 }
 
 button {
+  display: flex;
   background-color: #a8cf45;
   color: white;
   padding: 10px 20px;
@@ -72,7 +77,7 @@ button:disabled {
 
 
 button:hover:not(:disabled) {
-  background-color: #0056b3;
+  background-color: #a8cf4554;
 }
 
 /* Mensajes de error */
@@ -155,15 +160,7 @@ form[ngIf] {
   background-color: rgba(0, 0, 0, 0.4); /* Fondo oscuro */
 }
 
-.modal-content {
-  background-color: white;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Ancho del modal */
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+
 
 /* Mostrar modal */
 .modal.show {

@@ -26,19 +26,19 @@
   <table class="styled-table">
     <thead>
       <tr>
-        <th></th>
         <th>ID de Rol</th>
         <th>Nombre del Rol</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let grupo of grupos">
-        <td>
-          <i class="fa fa-pencil" (click)="editarRol(grupo)"></i>
-          <i class="fa fa-trash" (click)="bajaRol(grupo.Id_Grupos)"></i>
-        </td>
         <td>{{ grupo.Id_Grupos }}</td>
         <td>{{ grupo.Nombres }}</td>
+        <td>
+          <button class="button-reg" (click)="editarRol(grupo)">Modificar</button>
+          <button (click)="bajaRol(grupo.Id_Grupos)">Borrar</button>
+        </td>
       </tr>
     </tbody>
   </table>
