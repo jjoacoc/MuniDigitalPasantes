@@ -25,7 +25,7 @@ export class ListadoDeCiudadanosComponent {
       // Inicializamos el formulario con 8 campos: dni, nombre, apelldio, sexo, domicilio, barrio, telefono, email
       Observaciones: ['', Validators.required], // Campo opcional
       Id_Areas_Servicios: ['', Validators.required], // Campo obligatorio
-      Id_Tipos_Incidentes: ['', Validators.required], // Campo obligatorio
+      Id_Tipos_Incidentes: ['', Validators.required], // Campo obligatorio1
      
       // ciudadano: this.fb.group({
         Dni: ['', Validators.required], //Campo obligatorio
@@ -37,7 +37,7 @@ export class ListadoDeCiudadanosComponent {
     this.modificarIncidenteForm = this.fb.group({
 
       Areas_Servicios: ['', Validators.required], // Campo obligatorio
-      Tipos_Incidentes: ['', Validators.required], // Campo obligatorio
+      Tipos_Incidentes: ['', Validators.required], // Campo obligatorio11
      
     });
   }
