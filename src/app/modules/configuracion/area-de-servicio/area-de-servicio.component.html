@@ -26,12 +26,40 @@
     <!--fin del flitro-->
 
     <div class="botton">
-      <button mat-raised-button class="add-area-button">
-        <mat-icon>add</mat-icon> Agregar Área de Servicio
+      <button class="btn-nuevo" (click)="toggleFormulario()">
+        {{ mostrarFormulario ? 'Cancelar' : 'Nuevo' }}
       </button>
 
     </div>
-    <!--fin del botton-->
+<!--
+
+  <div id="myModal" class="modal" [ngClass]="{'show': mostrarFormulario}">
+    <div class="modal-content">
+        <span class="close" (click)="toggleFormulario()">&times;</span>
+      <form [formGroup]="areaform" [(ngSubmit)="submitForm()">
+        <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Nuevo grupo</mat-label>
+        <input matInput type="text" id="roleName" class="full-width-input" formControlName="Nombres" required>
+        </mat-form-field>
+          <button mat-stroked-button class="botton" type="submit">Agregar</button>
+        </form>
+      </div>
+    </div>
+       -->
+    <div id="myModal" class="modal" [ngClass]="{'show': mostrarFormulario}">
+      <div class="modal-content">
+          <span class="close" (click)="toggleFormulario()">&times;</span>
+        <form [formGroup]="areaform" (ngSubmit)="submitForm()">
+          <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Nuevo grupo</mat-label>
+          <input matInput type="text" id="roleName" class="full-width-input" formControlName="Nombres" required>
+          </mat-form-field>
+            <button mat-stroked-button class="botton" type="submit">Agregar</button>
+          </form>
+        </div>
+      </div>
+
+  
   </div>
 
 

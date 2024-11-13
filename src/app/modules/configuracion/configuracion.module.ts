@@ -11,6 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -28,7 +30,9 @@ import { MatInputModule } from '@angular/material/input';
     MatIconModule,
     MatTableModule,
     MatCheckboxModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   exports:[AreaDeServicioComponent,TipoDeIncidentesComponent]
 })
