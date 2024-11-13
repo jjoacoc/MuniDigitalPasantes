@@ -10,9 +10,7 @@
 
       <mat-form-field class="mat">
         <mat-label>Todos</mat-label>
-        <mat-select>
-
-        </mat-select>
+        <mat-select> </mat-select>
       </mat-form-field>
     </div>
     <!--fin del  select-->
@@ -21,95 +19,60 @@
       <button mat-stroked-button class="search-button">
         <mat-icon>search</mat-icon> Filtrar
       </button>
-
     </div>
     <!--fin del flitro-->
 
     <div class="botton">
       <button class="btn-nuevo" (click)="toggleFormulario()">
-        {{ mostrarFormulario ? 'Cancelar' : 'Nuevo' }}
+        {{ mostrarFormulario ? "Cancelar" : "Nuevo" }}
       </button>
-
     </div>
-<!--
 
-  <div id="myModal" class="modal" [ngClass]="{'show': mostrarFormulario}">
-    <div class="modal-content">
+    <!-- Modal para crear una Nueva Area de Servicio -->
+    <div id="myModal" class="modal" [ngClass]="{ show: mostrarFormulario }">
+      <div class="modal-content">
         <span class="close" (click)="toggleFormulario()">&times;</span>
-      <form [formGroup]="areaform" [(ngSubmit)="submitForm()">
-        <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Nuevo grupo</mat-label>
-        <input matInput type="text" id="roleName" class="full-width-input" formControlName="Nombres" required>
-        </mat-form-field>
-          <button mat-stroked-button class="botton" type="submit">Agregar</button>
+        <form [formGroup]="areaform" (ngSubmit)="submitForm()">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Nueva Area de Servicio</mat-label>
+            <input matInput type="text" id="Descripcion" class="full-width-input" formControlName="Descripcion"/>
+          </mat-form-field>
+          <button mat-stroked-button class="botton" type="submit">
+            Agregar
+          </button>
         </form>
       </div>
     </div>
-       -->
-    <div id="myModal" class="modal" [ngClass]="{'show': mostrarFormulario}">
-      <div class="modal-content">
-          <span class="close" (click)="toggleFormulario()">&times;</span>
-        <form [formGroup]="areaform" (ngSubmit)="submitForm()">
-          <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Nuevo grupo</mat-label>
-          <input matInput type="text" id="roleName" class="full-width-input" formControlName="Nombres" required>
-          </mat-form-field>
-            <button mat-stroked-button class="botton" type="submit">Agregar</button>
-          </form>
-        </div>
-      </div>
-
-  
   </div>
 
-
   <div class="table-container">
-    <table mat-table class="mat-elevation-z8">
-      <!-- ID Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> # </th>
-        <td mat-cell *matCellDef="let area"> {{ area.id }} </td>
-      </ng-container>
-
-      <!-- Área de Servicio Column -->
-
-      <tr *ngFor="let areas of areaServicio">
-        <td> {{ obtenerDescripcionAreaServicio(areas.Id_Areas_Servicios) }} </td>
-      </tr>
-      <ng-container matColumnDef="area" >
-        <th mat-header-cell *matHeaderCellDef> Área de servicio </th>
-      </ng-container>
-
-      <!-- Total Column -->
-      <ng-container matColumnDef="total">
-        <th mat-header-cell *matHeaderCellDef> Total </th>
-        <td mat-cell *matCellDef="let area"> {{ area.total }} </td>
-      </ng-container>
-
-      <!-- Tipos de Incidente Column -->
-      <ng-container matColumnDef="incidentTypes">
-        <th mat-header-cell *matHeaderCellDef> Tipos de incidente </th>
-        <td mat-cell *matCellDef="let area">
-          {{ area.incidentTypes | slice: 0:50 }}...
-          <a href="#">ver más</a>
-        </td>
-      </ng-container>
-
-      <!-- Buttons Column -->
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let area">
-          <button mat-icon-button color="primary">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button color="primary">
-            <mat-icon>person</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <table class="styled-table">
+      <thead>
+        <!-- ID Column -->
+        <th>Id Areas de Servicios</th>
+        <!-- Área de Servicio Column -->
+        <th>Areas de Servicios</th>
+        <!-- Total Column -->
+        <th>Total</th>
+        <!-- Tipos de Incidente Column -->
+        <th>Tipos de Incidentes</th>
+        <!-- Buttons Column -->
+        <th></th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let area of AreasServicios">
+          <!-- ID Column -->
+          <td>{{ area.Id_Areas_Servicios }}</td>
+          <!-- Área de Servicio Column -->
+          <td>{{ area.Descripcion }}</td>
+          <!-- Total Column -->
+          <td></td>
+          <!-- Tipos de Incidente Column -->
+          <td></td>
+          <!-- Buttons Column -->
+          <td></td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </div>

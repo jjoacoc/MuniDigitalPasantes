@@ -119,11 +119,21 @@ export class DatabaseService {
   }
 
 
-    // // Método para recuperar todos los grupos desde la base de datos (GET)
-    recuperarAreaServicio(): Observable<any> {
-      const headers = this.createHeaders();
-      return this.http.get(`${this.apiUrl}?entity=areasServicios`, { headers });
-    }
+  // Método para crear un nuevo grupo (POST)
+  altaAreaServicio(areaData: any): Observable<any> {
+    // Envía una solicitud POST a la URL 'http://localhost/apiMiercoles/public/index.php?entity=groups'
+    // con los datos del grupo en el cuerpo de la solicitud
+    const headers = this.createHeaders();
+    return this.http.post(`${this.apiUrl}?entity=areasServicios`, areaData, {
+      headers,
+    });
+  }
+
+  // // Método para recuperar todos los grupos desde la base de datos (GET)
+  recuperarAreaServicio(): Observable<any> {
+    const headers = this.createHeaders();
+    return this.http.get(`${this.apiUrl}?entity=areasServicios`, { headers });
+  }
 
   // Método para recuperar todos los grupos desde la base de datos (GET)
   recuperarTiposIncidentes(): Observable<any> {

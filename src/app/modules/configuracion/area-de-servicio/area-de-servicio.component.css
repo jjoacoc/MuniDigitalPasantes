@@ -1,161 +1,152 @@
 .container {
-    padding: 20px;
-    position: relative;
-    min-height: 100vh; /* Hace que el contenedor ocupe toda la altura de la página */
-  }
   
-  .header {
-    margin-bottom: 20px;
-  }
-  
-  .header h1 {
-    color: #4CAF50;
-    margin-bottom: 20px;
-  }
-  
-  .actions {
-    display: flex;
-    justify-content: center; /* Centramos el form field y el botón */
-    align-items: center;
-    margin-bottom: 20px; /* Espacio debajo del form y botón */
-  }
-  
-  .filter-input {
-    width: 300px; /* Ajusta el tamaño del campo de filtro */
-  }
-  
-  .add-area-button {
-    margin-left: 20px; /* Espacio entre el form field y el botón */
-  }
-  
-  .filtrar-button {
-    margin-right: 50px; /* Ya no es necesario este margen en la nueva disposición */
-  }
-  
-  .table-container {
-    overflow-x: auto;
-  }
-  
-  table {
-    width: 100%;
-  }
-  
-  .mat-elevation-z8 {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  }
-  
-  mat-header-cell, mat-cell {
-    padding: 10px;
-  }
-  
-  mat-header-cell {
-    background-color: #f1f8e9;
-  }
-  
-  mat-cell {
-    background-color: #ffffff;
-  }
-  
-  a {
-    color: #4CAF50;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Botón Crear Nueva al fondo a la derecha */
-  .create-new-container {
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-  }
-  
-  .create-new-button {
-    background-color: #4CAF50;
-    color: #fff;
-  }
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  min-height: 100vh; /* Hace que el contenedor ocupe toda la altura de la página */
+}
 
-.select{
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
+.header {
+  margin-bottom: 20px;
 }
-.mat{
-    width: 100%;
+
+.header h1 {
+  color: #4caf50;
+  margin-bottom: 20px;
 }
-  
-.container-general{
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
+
+.actions {
+  display: flex;
+  justify-content: center; /* Centramos el form field y el botón */
+  align-items: center;
+  margin-bottom: 20px; /* Espacio debajo del form y botón */
+}
+
+.filter-input {
+  width: 300px; /* Ajusta el tamaño del campo de filtro */
+}
+
+.add-area-button {
+  margin-left: 20px; /* Espacio entre el form field y el botón */
+}
+
+.filtrar-button {
+  margin-right: 50px; /* Ya no es necesario este margen en la nueva disposición */
+}
+
+.table-container {
+  overflow-x: auto;
+  height: 50%;
+  width: 95%;
+  padding: 1 auto;
+  border-radius: 8px;
+}
+
+.styled-table {
+  width: 100%;
+  color: #333;
+  border-radius: 8px;
+}
+
+
+a {
+  color: #4caf50;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Botón Crear Nueva al fondo a la derecha */
+.create-new-container {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+.create-new-button {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.select {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+.mat {
+  width: 100%;
+}
+
+.container-general {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
 }
 
 .search-button {
-    background-color: #f1f1f1;
-    color: #000;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-left: 20px; /* Espacio entre el input y el botón */
-    padding: 10px 20px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-width: 100px;
-    box-shadow: none;
-  }
-  
-  .search-button mat-icon {
-    margin-left: 5px;
-  }
+  background-color: #f1f1f1;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 20px; /* Espacio entre el input y el botón */
+  padding: 10px 20px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 100px;
+  box-shadow: none;
+}
 
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-  
-  .modal.show {
-    display: block;
-  }
-  
-  .modal-content {
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #a8cf45;
-    width: 30%;
-  }
-  
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover, .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
- 
-  .button {
-    position: absolute;
-    bottom: 10px; /* Distancia desde la parte inferior */
-    right: 10px; /* Distancia desde la derecha */
-    padding: 10px 15px; /* Espaciado interno del botón */
-    background: #a8cf45;
-  }
+.search-button mat-icon {
+  margin-left: 5px;
+}
 
- 
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 
+.modal.show {
+  display: block;
+}
 
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #a8cf45;
+  width: 30%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button {
+  position: absolute;
+  bottom: 10px; /* Distancia desde la parte inferior */
+  right: 10px; /* Distancia desde la derecha */
+  padding: 10px 15px; /* Espaciado interno del botón */
+  background: #a8cf45;
+}

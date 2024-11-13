@@ -9,10 +9,10 @@ import { DatabaseService } from '../../admin/services/database.service';
   styleUrls: ['./area-de-servicio.component.css']
 })
 export class AreaDeServicioComponent implements OnInit  {
+
   mostrarFormulario = false;
   AreasServicios: any[] = [];
-  displayedColumns: string[] = ['id', 'area','total', 'incidentTypes', 'actions']
-  areaServicio:any [] = [1, "tusam", "100", "Bomberos", "bor"]
+  Columns: string[] = ['id', 'area','total', 'incidentTypes', 'actions'];
 
   //ACA TENGO UN ERROR 
  areaform:FormGroup 
@@ -31,46 +31,33 @@ export class AreaDeServicioComponent implements OnInit  {
     this.isModalOpen = false;
   }
 
+    
+  ngOnInit(): void {
+    this.recuperarAreasServicios();
+  }
+
   
   toggleFormulario() {
     this.mostrarFormulario = !this.mostrarFormulario;
   }
   //fin de la funcinalidad del modal
 
-
-// Función para manejar el submit del formulario
-onSubmit() {
-  if (this.newAreaServicio) {
-    console.log('Nuevo grupo:', this.newAreaServicio);
-    // Aquí puedes agregar la lógica para enviar el nuevo grupo a tu servicio
-    this.closeModal(); // Cierra el modal después de guardar
-  } else {
-    alert('Por favor, ingresa un nombre de grupo.');
-  }
-}
-//fin de la funcinalidad del modal
-
-
- 
-
-  
-  
   constructor(private fb: FormBuilder, private database: DatabaseService) {
 
-  this. areaform = this.fb.group({
-    Descripcion: ['', Validators.required],
-    Id_Tipos_Incidentes: ['', Validators.required],
-  })
-};
+    this. areaform = this.fb.group({
+      Descripcion: ['', Validators.required],
+    })
+  };
+
     // Método para recuperar la lista de incidentes de la base de datos
     recuperarAreasServicios() {
       this.database.recuperarAreaServicio().subscribe({
         next: (response) => {
           if (Array.isArray(response)) {
-            this.areaServicio = response;  // Aquí debes tener un array de objetos que contengan Id_Grupos y descripcion
+            this.AreasServicios = response;  // Aquí debes tener un array de objetos que contengan Id_Areas_Servicios y descripcion
           } else {
             console.error('La respuesta del servidor no es un array:', response);
-            this.areaServicio = [];
+            this.AreasServicios = [];
           }
         },
         error: (error) => {
@@ -88,13 +75,14 @@ onSubmit() {
     
     submitForm() {
       if (this.areaform.valid) {
-        const rolData = this.areaform.value;  // Se obtienen los valores del formulario
-        this.database.altaGrupo(rolData).subscribe({
+        const areaData = this.areaform.value;  // Se obtienen los valores del formulario
+        this.database.altaAreaServicio(areaData).subscribe({
           next: (response) => {
-            if (response && response['resultado'] === 'OK') {
-              alert('Rol creado con éxito');  // Se muestra un mensaje de éxito
+            console.log('Respuesta del Servidor', response);
+            if (response && response['message'] === 'OK') {
+              alert('Area de Servicio creada con éxito');  // Se muestra un mensaje de éxito
               this.areaform.reset();  // Se resetea el formulario
-              this.recuperarAreasServicios();  // Se actualiza la lista de grupos
+              this.recuperarAreasServicios();  // Se actualiza la lista de Areas de Servicios
             } else {
               alert('Error al crear grupo: ' + (response['mensaje'] || 'Error desconocido'));
               
@@ -110,14 +98,5 @@ onSubmit() {
         alert('Por favor, completa todos los campos correctamente');
       }
     }
-
-
-
-
-
-    
-  ngOnInit(): void {
-    this.recuperarAreasServicios();
-  }
 
 }

@@ -12,6 +12,7 @@ export class RegistroIncidentesComponent implements OnInit {
 
   modificarIncidenteForm: FormGroup; // Formulario para modificar incidentes
   incidenteSeleccionado: any = null; // Variable para almacenar el incidente seleccionado
+  mostrarForm = false;
 
   incidentes: any[] = []; // Variable para almacenar los incidentes recuperados de la base de datos
   AreaServicio: any[] = []; // Variable para almacenar las areas de servicio recuperados de la base de datos
@@ -74,26 +75,23 @@ export class RegistroIncidentesComponent implements OnInit {
     });
   }
 
+
+  // busquedaCiudadano(DNI: any){
+
+  // }
+
+
   // desbloquearCampos() {
-  //   const ciudadanoGroup = this.incidenteForm.get('ciudadano');
-  //   ciudadanoGroup?.enable();
+  //   this.mostrarForm = !this.mostrarForm
   // }
 
   // // Método para buscar ciudadano por DNI
   // buscarCiudadano() {
   //   const dni = this.incidenteForm.get('dni')?.value;
-  //   this.database.de(dni).subscribe(
+  //   this.buscarCiudadano.(DNI).subscribe(
   //     (response: any) => {
   //       if (response) {
-  //         this.incidenteForm.patchValue({
-  //           nombre: response.nombre,
-  //           apellido: response.apellido,
-  //           sexo: response.sexo,
-  //           domicilio: response.domicilio,
-  //           barrio: response.barrio,
-  //           telefono: response.telefono,
-  //           email: response.email,
-  //         });
+  //         this.mostrarForm = !this.mostrarForm
   //       } else {
   //         alert('Ciudadano no encontrado');
   //       }

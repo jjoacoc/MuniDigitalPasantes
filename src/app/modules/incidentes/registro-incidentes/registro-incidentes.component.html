@@ -90,8 +90,7 @@
       <div class="form-group">
         <label for="Dni">DNI *</label>
         <input type="text" id="Dni" class="form-control" formControlName="Dni" placeholder="Ingrese el DNI" />
-        <!-- (click)="buscarCiudadano()"  -->
-        <button type="button" class="buscar-btn">
+        <button (click)="buscarCiudadano()" type="button" class="buscar-btn">
           Buscar
         </button>
         <div *ngIf="
