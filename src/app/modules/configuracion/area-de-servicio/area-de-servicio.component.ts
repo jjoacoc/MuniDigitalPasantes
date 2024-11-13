@@ -66,18 +66,16 @@ onSubmit() {
     recuperarAreasServicios() {
       this.database.recuperarAreasServicios().subscribe({
         next: (response) => {
-          // Verificamos que la respuesta sea un array antes de asignarlo a la variable 'incidentes'
           if (Array.isArray(response)) {
-            this.AreasServicios = response; // Asigna los incidentes recibidos
+            this.areaServicio = response;  // Aquí debes tener un array de objetos que contengan Id_Grupos y descripcion
           } else {
-            console.error('La respuesta del servidor no es un array:', response); // Muestra error si no es un array
-            this.AreasServicios = []; // Si la respuesta no es válida, se asigna un array vacío
+            console.error('La respuesta del servidor no es un array:', response);
+            this.areaServicio = [];
           }
         },
         error: (error) => {
-          // En caso de error al recuperar los incidentes, se registra en la consola
-          console.error('Error al recuperar incidentes:', error);
-        },
+          console.error('Error al recuperar areas:', error);
+        }
       });
     }
     obtenerDescripcionAreaServicio(Id_Areas_Servicios: any): string {
