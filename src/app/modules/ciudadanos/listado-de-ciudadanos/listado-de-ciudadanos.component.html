@@ -1,24 +1,69 @@
 <h1>Búsqueda de Ciudadanos</h1>
-<form>
-    <label for="nroDocumento">Número de Documento:</label>
-    <input type="text" id="nroDocumento" name="nroDocumento">
+<form [formGroup]="incidenteForm" (ngSubmit)="submitForm()">
+    <div class="form-group">
+        <label for="Dni">DNI *</label>
+        <input type="text" id="Dni" class="form-control" formControlName="Dni" placeholder="Ingrese el DNI" />
 
-    <label for="apellido">Apellido:</label>
-    <input type="text" id="apellido" name="apellido">
+        <div *ngIf="
+            incidenteForm.get('Dni')?.invalid &&
+            incidenteForm.get('Dni')?.touched
+          " class="error">
+            El DNI es obligatorio y debe tener 8 dígitos.
+        </div>
+    </div>
 
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre">  
+    <div class="form-group">
+        <label for="Apellido">Apellido*</label>
+        <input type="text" id="Apellido" class="form-control" formControlName="Apellido"
+            placeholder="Ingrese Apellido" />
+        <div *ngIf="
+            incidenteForm.get('Apellido')?.invalid &&
+            incidenteForm.get('Apellido')?.touched
+          " class="error">
+            El Apellido es obligatorio.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Nombre">Nombre *</label>
+        <input type="text" id="Nombre" class="form-control" formControlName="Nombre" placeholder="Ingrese Nombre" />
+        <div *ngIf="
+            incidenteForm.get('Nombre')?.invalid &&
+            incidenteForm.get('Nombre')?.touched
+          " class="error">
+            El Nombre son obligatorios.
+        </div>
+    </div>
 
 
-    <label for="areaServicio">Área de Servicio:</label>
-    <select id="areaServicio" name="areaServicio">
-        <option value="todas">Todas</option>
-    </select>
+    <div class="form-group">
+        <label for="Id_Areas_Servicios">Área de Servicio *</label>
+        <select id="Id_Areas_Servicios" class="form-control" formControlName="Id_Areas_Servicios">
+            <option *ngFor="let areaServ of AreaServicio" [value]="areaServ.Id_Areas_Servicios">{{areaServ.Descripcion}}
+            </option>
+        </select>
+        <div *ngIf="
+            incidenteForm.get('Areas_Servicios')?.invalid &&
+            incidenteForm.get('Areas_Servicios')?.touched
+          " class="error">
+            El área de servicio es obligatoria.
+        </div>
+    </div>
 
-    <label for="tipoIncidente">Tipo de Incidente:</label>
-    <select id="tipoIncidente" name="tipoIncidente">
-        <option value="todas">Todas</option>
-    </select>
+    <div class="form-group">
+        <label for="Id_Tipos_Incidentes">Tipo de Incidente *</label>
+        <select id="Id_Tipos_Incidentes" class="form-control" formControlName="Id_Tipos_Incidentes">
+            <option *ngFor="let tincidente of TiposIncidentes" [value]="tincidente.Id_Tipos_Incidentes">
+                {{tincidente.Descripcion}}
+            </option>
+        </select>
+        <div *ngIf="
+            incidenteForm.get('Tipos_Incidentes')?.invalid &&
+            incidenteForm.get('Tipos_Incidentes')?.touched
+          " class="error">
+            El tipo de incidente es obligatorio.
+        </div>
+    </div>
 
     <label for="estadoIncidente">Estado de Incidente:</label>
     <select id="estadoIncidente" name="estadoIncidente">
@@ -27,12 +72,22 @@
 
     <label for="barrio">Barrio:</label>
     <select id="barrio" name="barrio">
-        <option value="todas">Todas</option>
+        <option value="todas">Anai Mapu</option>
+        <option value="todas">Anai Mapu</option>
+        <option value="todas">Anai Mapu</option>
+        <option value="todas">Anai Mapu</option>
+        <option value="todas">Anai Mapu</option>
     </select>
 
     <label for="zonaIncidente">Zona de Incidente:</label>
     <select id="zonaIncidente" name="zonaIncidente">
-        <option value="todas">Todas</option>
+        <option value="todas">Anai Mapu</option>
+        <option value="todas">Anai Mapu</option>
+        <option value="todas">Anai Mapu</option>
+        <option value="todas">Anai Mapu</option>
+        <option value="todas">Anai Mapu</option>
+        <option value="todas">Anai Mapu</option>
+        <option value="todas">Anai Mapu</option>
     </select>
 
     <label><input type="checkbox" name="conRegistros"> Con Registros</label>
