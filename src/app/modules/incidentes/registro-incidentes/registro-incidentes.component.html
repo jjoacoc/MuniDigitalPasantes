@@ -60,17 +60,7 @@
         El tipo de incidente es obligatorio.
       </div>
     </div>
-
-    <div class="form-group">
-      <label for="Fecha_Hora">Fecha y hora *</label>
-      <input type="datetime-local" id="Fecha_Hora" class="form-control" formControlName="Fecha_Hora" />
-      <div *ngIf="
-          incidenteForm.get('Fecha_Hora')?.invalid &&
-          incidenteForm.get('Fecha_Hora')?.touched
-        " class="error">
-        La fecha y hora es obligatoria.
-      </div>
-    </div>
+    
 
     <div class="form-group">
       <label for="Observaciones">Observaciones</label>

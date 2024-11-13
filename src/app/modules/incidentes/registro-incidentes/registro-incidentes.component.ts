@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatabaseService } from '../../admin/services/database.service';
+import { Timestamp } from 'rxjs';
 
 @Component({
   selector: 'app-registro-incidentes',
@@ -8,6 +9,8 @@ import { DatabaseService } from '../../admin/services/database.service';
   styleUrls: ['./registro-incidentes.component.css'],
 })
 export class RegistroIncidentesComponent implements OnInit {
+
+  
   incidenteForm: FormGroup; // Formulario reactivo para manejar los datos de incidentes
 
   modificarIncidenteForm: FormGroup; // Formulario para modificar incidentes
@@ -24,7 +27,7 @@ export class RegistroIncidentesComponent implements OnInit {
     // Inicializamos el formulario con 6 campos: areaServicio, tipoIncidente, prioridad, origen, datetime y observaciones
     this.incidenteForm = this.fb.group({
       // Inicializamos el formulario con 8 campos: dni, nombre, apelldio, sexo, domicilio, barrio, telefono, email
-      Fecha_Hora: ['', Validators.required], // Campo obligatorio
+      Fecha_Hora: [''], // Campo obligatorio
       Observaciones: ['', Validators.required], // Campo opcional
       Id_Areas_Servicios: ['', Validators.required], // Campo obligatorio
       Id_Tipos_Incidentes: ['', Validators.required], // Campo obligatorio
@@ -152,6 +155,12 @@ export class RegistroIncidentesComponent implements OnInit {
       },
     });
   }
+
+  obtenerFechaHora(Fecha_Hora: any): any {
+    const Incidentes = this.incidentes.find(f => f.Fecha_Hora === Fecha_Hora);
+    return Incidentes ? Incidentes.Fecha_Hora : 'No Existe'; // Si no encuentra el grupo, muestra un mensaje
+  }
+
 
   recuperarAreasServicios() {
     this.database.recuperarAreasServicios().subscribe({
