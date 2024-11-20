@@ -1,43 +1,25 @@
 <div class="registro-incidentes">
   <h2>Registro de Incidentes</h2>
-  <!-- Registar incidentes -->
-  <!-- Formulario de Incidentes -->
-  <!--  -->
   <form [formGroup]="incidenteForm" (ngSubmit)="submitForm()">
-    <div class="form-group">
-      <label for="Id_Areas_Servicios">Área de Servicio *</label>
-      <select id="Id_Areas_Servicios" class="form-control" formControlName="Id_Areas_Servicios">
+    <div class="form-group"> <label for="Id_Areas_Servicios">Área de Servicio *</label> <select id="Id_Areas_Servicios"
+        class="form-control" formControlName="Id_Areas_Servicios">
         <option *ngFor="let areaServ of AreaServicio" [value]="areaServ.Id_Areas_Servicios">{{areaServ.Descripcion}}
         </option>
       </select>
-      <div *ngIf="
-          incidenteForm.get('Areas_Servicios')?.invalid &&
-          incidenteForm.get('Areas_Servicios')?.touched
-        " class="error">
-        El área de servicio es obligatoria.
-      </div>
+      <div *ngIf="incidenteForm.get('Id_Areas_Servicios')?.invalid && incidenteForm.get('Id_Areas_Servicios')?.touched"
+        class="error"> El área de servicio es obligatoria. </div>
+    </div>
+    <div class="form-group"> <label for="Id_Tipos_Incidentes">Tipo de Incidente *</label> <select
+        id="Id_Tipos_Incidentes" class="form-control" formControlName="Id_Tipos_Incidentes">
+        <option *ngFor="let tincidente of TiposFiltrados" [value]="tincidente.Id_Tipos_Incidentes">
+          {{tincidente.Descripcion}}</option>
+      </select>
+      <div
+        *ngIf="incidenteForm.get('Id_Tipos_Incidentes')?.invalid && incidenteForm.get('Id_Tipos_Incidentes')?.touched"
+        class="error"> El tipo de incidente es obligatorio. </div>
     </div>
 
-    <div class="form-group">
-      <label for="Id_Tipos_Incidentes">Tipo de Incidente *</label>
-      <select id="Id_Tipos_Incidentes" class="form-control" formControlName="Id_Tipos_Incidentes">
-        <option *ngFor="let tincidente of TiposIncidentes" [value]="tincidente.Id_Tipos_Incidentes">
-          {{tincidente.Descripcion}}
-        </option>
-      </select>
-      <div *ngIf="
-          incidenteForm.get('Tipos_Incidentes')?.invalid &&
-          incidenteForm.get('Tipos_Incidentes')?.touched
-        " class="error">
-        El tipo de incidente es obligatorio.
-      </div>
-    </div>
 
-    <div class="form-group">
-      <label for="Id_Prioridad">Prioridad *</label>
-      <select id="Id_Prioridad" class="form-control" formControlName="Id_Prioridad">
-        <option *ngFor="let prioridad of Prioridad" [value]="prioridad.Id_Prioridad">{{prioridad.Gravedad}}</option>
-      </select>
 
       <!-- <td> {{ obtenerDescripcionAreaServicio(incidente.Id_Areas_Servicios) }} </td> -->
       <div *ngIf="
@@ -46,7 +28,7 @@
         " class="error">
         El tipo de incidente es obligatorio.
       </div>
-    </div>
+    
 
     <div class="form-group">
       <label for="Id_Origen">Origen *</label>
@@ -84,109 +66,108 @@
     </div>
 
 
-      <h2>Datos del Ciudadano</h2>
+    <h2>Datos del Ciudadano</h2>
 
-      <!-- Formulario de Ciudadano  -->
-      <div class="form-group">
-        <label for="Dni">DNI *</label>
-        <input type="text" id="Dni" class="form-control" formControlName="Dni" placeholder="Ingrese el DNI" />
-        <button (click)="buscarCiudadano()" type="button" class="buscar-btn">
-          Buscar
-        </button>
-        <div *ngIf="
+    <!-- Formulario de Ciudadano  -->
+    <div class="form-group">
+      <label for="Dni">DNI *</label>
+      <input type="text" id="Dni" class="form-control" formControlName="Dni" placeholder="Ingrese el DNI" />
+      <button type="button" class="buscar-btn">
+        Buscar
+      </button>
+      <div *ngIf="
             incidenteForm.get('Dni')?.invalid &&
             incidenteForm.get('Dni')?.touched
           " class="error">
-          El DNI es obligatorio y debe tener 8 dígitos.
-        </div>
+        El DNI es obligatorio y debe tener 8 dígitos.
       </div>
+    </div>
 
-      <div class="form-group">
-        <label for="Apellido">Apellido*</label>
-        <input type="text" id="Apellido" class="form-control" formControlName="Apellido"
-          placeholder="Ingrese Apellido" />
-        <div *ngIf="
+    <div class="form-group">
+      <label for="Apellido">Apellido*</label>
+      <input type="text" id="Apellido" class="form-control" formControlName="Apellido" placeholder="Ingrese Apellido" />
+      <div *ngIf="
             incidenteForm.get('Apellido')?.invalid &&
             incidenteForm.get('Apellido')?.touched
           " class="error">
-          El Apellido es obligatorio.
-        </div>
+        El Apellido es obligatorio.
       </div>
+    </div>
 
-      <div class="form-group">
-        <label for="Nombre">Nombre *</label>
-        <input type="text" id="Nombre" class="form-control" formControlName="Nombre" placeholder="Ingrese Nombre" />
-        <div *ngIf="
+    <div class="form-group">
+      <label for="Nombre">Nombre *</label>
+      <input type="text" id="Nombre" class="form-control" formControlName="Nombre" placeholder="Ingrese Nombre" />
+      <div *ngIf="
             incidenteForm.get('Nombre')?.invalid &&
             incidenteForm.get('Nombre')?.touched
           " class="error">
-          El Nombre son obligatorios.
-        </div>
+        El Nombre son obligatorios.
       </div>
+    </div>
 
 
-      <div class="form-group">
-        <label for="sexo">Sexo *</label>
-        <select id="sexo" class="form-control" formControlName="sexo">
-          <option value="femenino">Femenino</option>
-          <option value="Masculino">Masculino</option>
-          <option value="Otro">Otro</option>
-        </select>
-        <div *ngIf="
+    <div class="form-group">
+      <label for="sexo">Sexo *</label>
+      <select id="sexo" class="form-control" formControlName="sexo">
+        <option value="femenino">Femenino</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Otro">Otro</option>
+      </select>
+      <div *ngIf="
             incidenteForm.get('sexo')?.invalid &&
             incidenteForm.get('sexo')?.touched
           " class="error">
-          El Sexo son obligatorios.
-        </div>
+        El Sexo son obligatorios.
       </div>
+    </div>
 
-      <div class="form-group">
-        <label for="Domicilio">Domicilio</label>
-        <input type="text" id="Domicilio" class="form-control" formControlName="Domicilio" />
-        <div *ngIf="
+    <div class="form-group">
+      <label for="Domicilio">Domicilio</label>
+      <input type="text" id="Domicilio" class="form-control" formControlName="Domicilio" />
+      <div *ngIf="
         incidenteForm.get('Domicilio')?.invalid &&
         incidenteForm.get('Domicilio')?.touched
       " class="error">
-          El Domicilio son obligatorios.
-        </div>
+        El Domicilio son obligatorios.
       </div>
+    </div>
 
-      <div class="form-group">
-        <label for="Barrio">Barrio</label>
-        <select id="Barrio" class="form-control" formControlName="Barrio">
-          <option value="Seleccione un barrio">Seleccione un barrio</option>
-          <option value="Don Bosco">Don Bosco</option>
-          <option value="Luis Piedra Buena">Luis Piedra Buena</option>
-          <option value="Alta Barda">Alta Barda</option>
-        </select>
-        <div *ngIf="
+    <div class="form-group">
+      <label for="Barrio">Barrio</label>
+      <select id="Barrio" class="form-control" formControlName="Barrio">
+        <option value="Seleccione un barrio">Seleccione un barrio</option>
+        <option value="Don Bosco">Don Bosco</option>
+        <option value="Luis Piedra Buena">Luis Piedra Buena</option>
+        <option value="Alta Barda">Alta Barda</option>
+      </select>
+      <div *ngIf="
         incidenteForm.get('Barrio')?.invalid &&
         incidenteForm.get('Barrio')?.touched" class="error">
-          El Barrio son obligatorios.
-        </div>
+        El Barrio son obligatorios.
       </div>
+    </div>
 
-      <div class="form-group">
-        <label for="Telefono">Teléfono</label>
-        <input type="text" id="Telefono" class="form-control" formControlName="Telefono"
-          placeholder="Ingrese teléfono sin 0 ni 15" />
-        <div *ngIf="
+    <div class="form-group">
+      <label for="Telefono">Teléfono</label>
+      <input type="text" id="Telefono" class="form-control" formControlName="Telefono"
+        placeholder="Ingrese teléfono sin 0 ni 15" />
+      <div *ngIf="
           incidenteForm.get('Telefono')?.invalid &&
           incidenteForm.get('Telefono')?.touched
         " class="error">
-          El teléfono debe tener 10 dígitos.
-        </div>
+        El teléfono debe tener 10 dígitos.
       </div>
+    </div>
 
-      <div class="form-group">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" class="form-control" formControlName="email" placeholder="Ingrese E-mail" />
-        <div *ngIf="
+    <div class="form-group">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" class="form-control" formControlName="email" placeholder="Ingrese E-mail" />
+      <div *ngIf="
           incidenteForm.get('email')?.invalid &&
           incidenteForm.get('email')?.touched" class="error">
-          El formato del email no es válido.
-        </div>
+        El formato del email no es válido.
       </div>
+    </div>
     <!-- </div> -->
 
 

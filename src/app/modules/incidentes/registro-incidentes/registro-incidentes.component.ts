@@ -19,6 +19,7 @@ export class RegistroIncidentesComponent implements OnInit {
   Origen: any[] = []; // Variable para almacenar el origen recuperado de la base de datos
   Prioridad: any[] = []; // Variable para almacenar las areas de servicio recuperados de la base de datos
   TiposIncidentes: any[] = []; // Variable para almacenar las areas de servicio recuperados de la base de datos
+  TiposFiltrados: any[] = [];
   Ciudadanos: any[] = []; // Variable para almacenar las areas de servicio recuperados de la base de datos
 
   constructor(private fb: FormBuilder, private database: DatabaseService) {
@@ -33,14 +34,14 @@ export class RegistroIncidentesComponent implements OnInit {
       Id_Origen: ['', Validators.required], // Campo obligatorio
 
       // ciudadano: this.fb.group({
-        Dni: ['', Validators.required], //Campo obligatorio
-        Apellido: ['', Validators.required], //Campo obligatorio
-        Nombre: ['', Validators.required], //Campo obligatorio
-        email: ['', [Validators.required, Validators.email]], // Campo obligatorio y validación de formato de email
-        sexo: ['', Validators.required], //Campo obligatorio
-        Domicilio: ['', Validators.required], //Campo obligatorio
-        Barrio: ['', Validators.required], //Campo obligatorio
-        Telefono: ['', Validators.required], //Campo obligatorio
+      Dni: ['', Validators.required], //Campo obligatorio
+      Apellido: ['', Validators.required], //Campo obligatorio
+      Nombre: ['', Validators.required], //Campo obligatorio
+      email: ['', [Validators.required, Validators.email]], // Campo obligatorio y validación de formato de email
+      sexo: ['', Validators.required], //Campo obligatorio
+      Domicilio: ['', Validators.required], //Campo obligatorio
+      Barrio: ['', Validators.required], //Campo obligatorio
+      Telefono: ['', Validators.required], //Campo obligatorio
       // }),
     });
 
@@ -52,17 +53,27 @@ export class RegistroIncidentesComponent implements OnInit {
       Prioridad: ['', Validators.required], // Campo obligatorio
       Origen: ['', Validators.required], // Campo obligatorio
     });
+
+    this.onChanges();
   }
+
 
   ngOnInit(): void {
-    this.recuperarIncidentes();
-    this.recuperarAreaServicio();
-    this.recuperarTiposIncidentes();
-    this.recuperarOrigen();
-    this.recuperarPrioridad();
-    this.recuperarCiudadanos();
+    this.database.recuperarAreaServicio().subscribe(data => {
+      this.AreaServicio = data;
+    });
+
+    this.database.recuperarTiposIncidentes().subscribe(data => { 
+      this.TiposIncidentes = data; 
+    });
   }
 
+  onChanges(): void {
+    this.incidenteForm.get('Id_Areas_Servicios')?.valueChanges.subscribe(areaId => 
+      { this.TiposFiltrados = this.TiposIncidentes.filter(tipo => tipo.Id_Areas_Servicios === areaId); 
+        this.incidenteForm.get('Id_Tipos_Incidentes')?.setValue('');
+       });
+  }
   editarIncidente(incidente: any) {
     this.incidenteSeleccionado = incidente;
     this.modificarIncidenteForm.patchValue({
@@ -75,33 +86,6 @@ export class RegistroIncidentesComponent implements OnInit {
     });
   }
 
-
-  // busquedaCiudadano(DNI: any){
-
-  // }
-
-
-  // desbloquearCampos() {
-  //   this.mostrarForm = !this.mostrarForm
-  // }
-
-  // // Método para buscar ciudadano por DNI
-  // buscarCiudadano() {
-  //   const dni = this.incidenteForm.get('dni')?.value;
-  //   this.buscarCiudadano.(DNI).subscribe(
-  //     (response: any) => {
-  //       if (response) {
-  //         this.mostrarForm = !this.mostrarForm
-  //       } else {
-  //         alert('Ciudadano no encontrado');
-  //       }
-  //     },
-  //     (error) => {
-  //       console.error(error);
-  //       alert('Error al buscar ciudadano');
-  //     }
-  //   );
-  // }
 
   // Método para registrar el incidente
   submitForm() {
@@ -118,7 +102,7 @@ export class RegistroIncidentesComponent implements OnInit {
           } else {
             alert(
               'Error al registrar incidente: ' +
-                (response['message'] || 'Error desconocido')
+              (response['message'] || 'Error desconocido')
             );
           }
         },
