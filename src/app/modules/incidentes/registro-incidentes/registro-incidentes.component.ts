@@ -33,14 +33,14 @@ export class RegistroIncidentesComponent implements OnInit {
       Id_Origen: ['', Validators.required], // Campo obligatorio
 
       // ciudadano: this.fb.group({
-        Dni: ['', Validators.required], //Campo obligatorio
-        Apellido: ['', Validators.required], //Campo obligatorio
-        Nombre: ['', Validators.required], //Campo obligatorio
-        email: ['', [Validators.required, Validators.email]], // Campo obligatorio y validación de formato de email
-        sexo: ['', Validators.required], //Campo obligatorio
-        Domicilio: ['', Validators.required], //Campo obligatorio
-        Barrio: ['', Validators.required], //Campo obligatorio
-        Telefono: ['', Validators.required], //Campo obligatorio
+      Dni: ['', Validators.required], //Campo obligatorio
+      Apellido: [{value: '', disabled: true,}, [Validators.required]], //Campo obligatorio
+      Nombre: [{value: '', disabled: true,}, [Validators.required]], //Campo obligatorio
+      email: [{value: '', disabled: true,}, [Validators.required, Validators.email]], // Campo obligatorio y validación de formato de email
+      sexo: [{value: '', disabled: true,}, [Validators.required]], //Campo obligatorio
+      Domicilio: [{value: '', disabled: true,}, [Validators.required]], //Campo obligatorio
+      Barrio: [{value: '', disabled: true,}, [Validators.required]], //Campo obligatorio
+      Telefono: [{value: '', disabled: true,}, [Validators.required]], //Campo obligatorio
       // }),
     });
 
@@ -61,6 +61,10 @@ export class RegistroIncidentesComponent implements OnInit {
     this.recuperarOrigen();
     this.recuperarPrioridad();
     this.recuperarCiudadanos();
+
+    this.incidenteForm.get('dni')?.valueChanges.subscribe((dni) => {
+      this.verificarDni(dni);
+    });
   }
 
   editarIncidente(incidente: any) {
@@ -75,33 +79,92 @@ export class RegistroIncidentesComponent implements OnInit {
     });
   }
 
-
-  // busquedaCiudadano(DNI: any){
-
-  // }
-
-
   // desbloquearCampos() {
   //   this.mostrarForm = !this.mostrarForm
   // }
 
-  // // Método para buscar ciudadano por DNI
-  // buscarCiudadano() {
-  //   const dni = this.incidenteForm.get('dni')?.value;
-  //   this.buscarCiudadano.(DNI).subscribe(
-  //     (response: any) => {
-  //       if (response) {
-  //         this.mostrarForm = !this.mostrarForm
-  //       } else {
-  //         alert('Ciudadano no encontrado');
-  //       }
-  //     },
-  //     (error) => {
-  //       console.error(error);
-  //       alert('Error al buscar ciudadano');
-  //     }
+  // Método para buscar ciudadano por DNI
+
+  buscarCiudadano(Dni: string): void {
+    const buscarDni = this.Ciudadanos.find(
+      (ciudadano) => ciudadano.Dni === Dni
+    );
+
+    if (buscarDni) {
+      // this.Ciudadanos;
+      this.incidenteForm.patchValue(buscarDni);
+      this.habilitarCampos(false);
+    } else {
+      alert('Ciudadano no encontrado');
+      this.habilitarCampos(true);
+    }
+
+    // this.obtenerDniCiudadanos().subscribe(
+    // (data: any) => {
+    // if (data) {
+    // this.Ciudadanos
+    // this.incidenteForm.patchValue(data);
+    // this.habilitarCampos(false);
+    // } else {
+    // alert('Ciudadano no encontrado');
+    // this.habilitarCampos(true)
+    // }
+    // },
+    // (error) => {
+    // this.habilitarCampos(true);
+    // console.error(error);
+    // alert('Error al buscar ciudadano');
+    // },
+    //  );
+  }
+
+  verificarDni(dni: string): void {
+    const existe = this.Ciudadanos.some((ciudadano) => ciudadano.dni === dni);
+  }
+
+  habilitarCampos(habilitar: boolean) {
+    // Si se permite modificar los campos, habilitamos todos los controles
+    if (habilitar) {
+      this.incidenteForm.controls['Apellido'].enable();
+      this.incidenteForm.controls['Nombre'].enable();
+      this.incidenteForm.controls['email'].enable();
+      this.incidenteForm.controls['Barrio'].enable();
+      this.incidenteForm.controls['Domicilio'].enable();
+      this.incidenteForm.controls['Telefono'].enable();
+      this.incidenteForm.controls['sexo'].enable();
+    } else {
+      this.incidenteForm.controls['Apellido'].disable();
+      this.incidenteForm.controls['Nombre'].disable();
+      this.incidenteForm.controls['email'].disable();
+      this.incidenteForm.controls['Barrio'].disable();
+      this.incidenteForm.controls['Domicilio'].disable();
+      this.incidenteForm.controls['Telefono'].disable();
+      this.incidenteForm.controls['sexo'].disable();
+    }
+  }
+
+  // obtenerDniCiudadanos(Id_Ciudadanos: any): string {
+  //   const Ciudadanos = this.Ciudadanos.find(
+  //     (a) => a.Id_Ciudadanos === Id_Ciudadanos
   //   );
+  //   return Ciudadanos ? Ciudadanos.Dni : 'No Existe'; // Si no encuentra el grupo, muestra un mensaje
   // }
+
+  recuperarCiudadanos() {
+    this.database.recuperarCiudadanos().subscribe({
+      next: (response) => {
+        if (Array.isArray(response)) {
+          this.Ciudadanos = response; // Aquí vas a tener un array de objetos que contengan la información de los ciudadanos
+        } else {
+          console.error('La respuesta del servidor no es un array:', response);
+          this.Ciudadanos = [];
+        }
+      },
+      error: (error) => {
+        console.error('Error al recuperar Ciudadanos:', error);
+      },
+    });
+  }
 
   // Método para registrar el incidente
   submitForm() {
@@ -237,21 +300,6 @@ export class RegistroIncidentesComponent implements OnInit {
     return TiposIncidente ? TiposIncidente.Descripcion : 'No Existe'; // Si no encuentra el grupo, muestra un mensaje
   }
 
-  recuperarCiudadanos() {
-    this.database.recuperarCiudadanos().subscribe({
-      next: (response) => {
-        if (Array.isArray(response)) {
-          this.Ciudadanos = response; // Aquí debes tener un array de objetos que contengan Id_Areas_Servicios y descripcion
-        } else {
-          console.error('La respuesta del servidor no es un array:', response);
-          this.Ciudadanos = [];
-        }
-      },
-      error: (error) => {
-        console.error('Error al recuperar Ciudadanos:', error);
-      },
-    });
-  }
   obtenerDescripcionCiudadanos(Id_Ciudadanos: any): string {
     const Ciudadanos = this.Ciudadanos.find(
       (c) => c.Id_Ciudadanos === Id_Ciudadanos
