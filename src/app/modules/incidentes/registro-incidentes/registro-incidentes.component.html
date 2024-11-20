@@ -86,8 +86,8 @@
 
       <h2>Datos del Ciudadano</h2>
 
-      <!-- Formulario de Ciudadano  -->
-      <div class="form-group">
+      <!-- Formulario de Ciudadano buscarCiudadano(DniInput.value) -->
+      <div class="form-group" >
         <label for="Dni">DNI *</label>
         <input type="text" id="Dni" #DniInput (keyup.enter)="buscarCiudadano(DniInput.value)" class="form-control" formControlName="Dni" placeholder="Ingrese el DNI" />
         <button (click)="buscarCiudadano(DniInput.value)" type="button" class="buscar-btn">

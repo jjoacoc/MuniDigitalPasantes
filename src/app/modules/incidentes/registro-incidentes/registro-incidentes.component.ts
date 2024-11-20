@@ -61,10 +61,6 @@ export class RegistroIncidentesComponent implements OnInit {
     this.recuperarOrigen();
     this.recuperarPrioridad();
     this.recuperarCiudadanos();
-
-    this.incidenteForm.get('dni')?.valueChanges.subscribe((dni) => {
-      this.verificarDni(dni);
-    });
   }
 
   editarIncidente(incidente: any) {
@@ -79,21 +75,19 @@ export class RegistroIncidentesComponent implements OnInit {
     });
   }
 
-  // desbloquearCampos() {
-  //   this.mostrarForm = !this.mostrarForm
-  // }
-
   // Método para buscar ciudadano por DNI
 
-  buscarCiudadano(Dni: string): void {
+  buscarCiudadano(Dni: String): void {
     const buscarDni = this.Ciudadanos.find(
-      (ciudadano) => ciudadano.Dni === Dni
+      (ciudadano) => String(ciudadano.Dni) === Dni
+      
     );
 
+    console.log(buscarDni)
     if (buscarDni) {
       // this.Ciudadanos;
       this.incidenteForm.patchValue(buscarDni);
-      this.habilitarCampos(false);
+      this.habilitarCampos(true);
     } else {
       alert('Ciudadano no encontrado');
       this.habilitarCampos(true);
@@ -118,9 +112,6 @@ export class RegistroIncidentesComponent implements OnInit {
     //  );
   }
 
-  verificarDni(dni: string): void {
-    const existe = this.Ciudadanos.some((ciudadano) => ciudadano.dni === dni);
-  }
 
   habilitarCampos(habilitar: boolean) {
     // Si se permite modificar los campos, habilitamos todos los controles
@@ -143,19 +134,15 @@ export class RegistroIncidentesComponent implements OnInit {
     }
   }
 
-  // obtenerDniCiudadanos(Id_Ciudadanos: any): string {
-  //   const Ciudadanos = this.Ciudadanos.find(
-  //     (a) => a.Id_Ciudadanos === Id_Ciudadanos
-  //   );
-  //   return Ciudadanos ? Ciudadanos.Dni : 'No Existe'; // Si no encuentra el grupo, muestra un mensaje
-  // }
-
   recuperarCiudadanos() {
+
     this.database.recuperarCiudadanos().subscribe({
       next: (response) => {
+        console.log(response)
         if (Array.isArray(response)) {
           this.Ciudadanos = response; // Aquí vas a tener un array de objetos que contengan la información de los ciudadanos
         } else {
+
           console.error('La respuesta del servidor no es un array:', response);
           this.Ciudadanos = [];
         }
