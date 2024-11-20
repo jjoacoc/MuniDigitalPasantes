@@ -167,14 +167,19 @@ export class DatabaseService {
     return this.http.get(`${this.apiUrl}?entity=ciudadano`, { headers });
   }
 
-  // // Método para modificar un ciudadano existente en la base de datos (PUT)
-  // buscarCiudadanoPorDni(dni: string): Observable<any> {
-  //   const headers = this.createHeaders();
-  //   return this.http.get(`${this.apiUrl}?entity=ciudadano=${dni}`, { headers});
-  // }
+  registrarCiudadano(incidenteData : any): Observable<any> {
+    console.log(incidenteData);
+    // Envía una solicitud POST a la URL 'http://localhost/apiMiercoles/public/index.php?entity=ciudadano'
+    // con los datos del incidente en el cuerpo de la solicitud
+    const headers = this.createHeaders();
+    return this.http.post(`${this.apiUrl}?entity=ciudadano`, incidenteData, {
+      headers,
+    });
+  }
 
   // Método para crear un nuevo incidente (POST)
   registrarIncidentes(incidenteData: any): Observable<any> {
+    this.registrarCiudadano(incidenteData)
     // Envía una solicitud POST a la URL 'http://localhost/apiMiercoles/public/index.php?entity=incident'
     // con los datos del incidente en el cuerpo de la solicitud
     const headers = this.createHeaders();

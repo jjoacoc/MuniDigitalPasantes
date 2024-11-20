@@ -82,14 +82,11 @@ export class RegistroIncidentesComponent implements OnInit {
       (ciudadano) => String(ciudadano.Dni) === Dni
       
     );
-
-    console.log(buscarDni)
     if (buscarDni) {
       // this.Ciudadanos;
       this.incidenteForm.patchValue(buscarDni);
       this.habilitarCampos(true);
     } else {
-      alert('Ciudadano no encontrado');
       this.habilitarCampos(true);
     }
 
