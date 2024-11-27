@@ -14,7 +14,7 @@ class Incident
     public $Id_Prioridad;
     public $Id_Origen;
     public $Id_Ciudadanos;
-
+    //comentario
     public function __construct($db)
     {
         $this->conn = $db;
