@@ -22,12 +22,21 @@ export class RegistroIncidentesComponent implements OnInit {
   Prioridad: any[] = []; // Variable para almacenar las areas de servicio recuperados de la base de datos
   TiposIncidentes: any[] = []; // Variable para almacenar las areas de servicio recuperados de la base de datos
   Ciudadanos: any[] = []; // Variable para almacenar las areas de servicio recuperados de la base de datos
-
+  
   constructor(private fb: FormBuilder, private database: DatabaseService) {
+    const ahora = new Date(); // Fecha y hora actual
+
+    const timezoneOffset = ahora.getTimezoneOffset() * 60000; // Offset en milisegundos
+    const fechaLocal = new Date(ahora.getTime() - timezoneOffset); // Ajusta la hora local
+  
+    // Formato ISO local: yyyy-MM-ddTHH:mm
+    const formatoISO = fechaLocal.toISOString().slice(0, 16);
+  
+
     // Inicializamos el formulario con 6 campos: areaServicio, tipoIncidente, prioridad, origen, datetime y observaciones
     this.incidenteForm = this.fb.group({
       // Inicializamos el formulario con 8 campos: dni, nombre, apelldio, sexo, domicilio, barrio, telefono, email
-      Fecha_Hora: [''], // Campo obligatorio
+      Fecha_Hora: [formatoISO,Validators.required], // Campo obligatorio
       Observaciones: ['', Validators.required], // Campo opcional
       Id_Areas_Servicios: ['', Validators.required], // Campo obligatorio
       Id_Tipos_Incidentes: ['', Validators.required], // Campo obligatorio

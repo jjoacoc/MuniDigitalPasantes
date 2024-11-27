@@ -3,11 +3,17 @@ body {
   margin: 0;
   padding: 20px;
 }
+.div-contenedor-de-todo{
+  display: flex;
+  justify-content: center;
+}
 .container {
-  max-width: 100%;
-  margin: auto;
-  color: #333 !important;
-  overflow:auto;
+  height: 50%;
+  width: 95%;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 

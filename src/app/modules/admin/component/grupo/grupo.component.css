@@ -1,4 +1,9 @@
 /* table.component.css */
+
+.div-contenedor-de-todo{
+  display: flex;
+  justify-content: center;
+}
 .table-container {
   height: 50%;
   width: 95%;
