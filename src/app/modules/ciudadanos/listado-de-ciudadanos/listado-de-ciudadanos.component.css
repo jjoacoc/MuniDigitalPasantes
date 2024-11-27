@@ -1,4 +1,7 @@
-
+.h1111{
+    display: flex;
+    justify-content: center;
+}
 
 /* Estilos para el formulario */
 form {

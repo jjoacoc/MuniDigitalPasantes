@@ -31,16 +31,14 @@
     <table class="styled-table">
       <thead>
         <tr>
-          <th>Tipo de Incidente</th>
+          <th>Id</th>
           <th>Área de Servicio</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let area of AreasServicios">
           <td>
-            <button mat-icon-button color="primary" (click)="openTipoIncidenteModal(area)">
-              <mat-icon>add</mat-icon>
-            </button>
+           {{area.Id_Areas_Servicios}}
           </td>
           <td>{{area.Descripcion}}</td>
         </tr>
@@ -49,19 +47,4 @@
   </div>
 </div>
 
-<!-- Modal para crear un nuevo tipo de incidente -->
-<div id="modalTipoIncidente" class="modal" [ngClass]="{ show: mostrarTipoIncidenteForm }">
-  <div class="modal-content">
-    <span class="close" (click)="closeTipoIncidenteModal()">&times;</span>
-    <form [formGroup]="tipoIncidenteForm" (ngSubmit)="submitTipoIncidenteForm()">
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Observación (Nombre del tipo de incidente)</mat-label>
-        <input matInput type="text" id="observacion" class="full-width-input" formControlName="observacion"/>
-      </mat-form-field>
-      <button mat-stroked-button class="botton" type="submit">
-        Guardar
-      </button>
-    </form>
-  </div>
-</div>
 
