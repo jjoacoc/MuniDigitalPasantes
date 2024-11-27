@@ -5,13 +5,11 @@ import { DatabaseService } from '../../admin/services/database.service';
 @Component({
   selector: 'app-listado-de-ciudadanos',
   templateUrl: './listado-de-ciudadanos.component.html',
-  styleUrls: ['./listado-de-ciudadanos.component.css']
+  styleUrls: ['./listado-de-ciudadanos.component.css'],
 })
 export class ListadoDeCiudadanosComponent {
-
   incidenteForm: FormGroup; // Formulario reactivo para manejar los datos de incidentes
 
-  modificarIncidenteForm: FormGroup; // Formulario para modificar incidentes
   incidenteSeleccionado: any = null; // Variable para almacenar el incidente seleccionado
 
   incidentes: any[] = []; // Variable para almacenar los incidentes recuperados de la base de datos
@@ -20,25 +18,13 @@ export class ListadoDeCiudadanosComponent {
   Ciudadanos: any[] = []; // Variable para almacenar las areas de servicio recuperados de la base de datos
 
   constructor(private fb: FormBuilder, private database: DatabaseService) {
-    // Inicializamos el formulario con 6 campos: areaServicio, tipoIncidente, prioridad, origen, datetime y observaciones
     this.incidenteForm = this.fb.group({
-      // Inicializamos el formulario con 8 campos: dni, nombre, apelldio, sexo, domicilio, barrio, telefono, email
-      Observaciones: ['', Validators.required], // Campo opcional
-      Id_Areas_Servicios: ['', Validators.required], // Campo obligatorio
-      Id_Tipos_Incidentes: ['', Validators.required], // Campo obligatorio1
-     
-      // ciudadano: this.fb.group({
-        Dni: ['', Validators.required], //Campo obligatorio
-        Apellido: ['', Validators.required], //Campo obligatorio
-        Nombre: ['', Validators.required], //Campo obligatorio
-        Barrio: ['', Validators.required], //Campo obligatorio
-    });
-
-    this.modificarIncidenteForm = this.fb.group({
-
-      Areas_Servicios: ['', Validators.required], // Campo obligatorio
-      Tipos_Incidentes: ['', Validators.required], // Campo obligatorio11
-     
+      Dni: ['', Validators.required], //Campo obligatorio
+      Apellido: [{value: '', disabled: true,}, [Validators.required]], //Campo obligatorio
+      Nombre: [{value: '', disabled: true,}, [Validators.required]], //Campo obligatorio
+      Barrio: [{value: '', disabled: true,}, [Validators.required]], //Campo obligatorio
+      Id_Areas_Servicios: [{value: '', disabled: true,}, [Validators.required]], // Campo obligatorio
+      Id_Tipos_Incidentes: [{value: '', disabled: true,}, [Validators.required]], // Campo obligatorio1
     });
   }
 
@@ -51,43 +37,40 @@ export class ListadoDeCiudadanosComponent {
 
   editarIncidente(incidente: any) {
     this.incidenteSeleccionado = incidente;
-    this.modificarIncidenteForm.patchValue({
-      areaServicio: incidente.areaServicio,
-      tipoIncidente: incidente.tipoIncidente,
-      
-    });
   }
 
-  // desbloquearCampos() {
-  //   const ciudadanoGroup = this.incidenteForm.get('ciudadano');
-  //   ciudadanoGroup?.enable();
-  // }
+  buscarCiudadano(Dni: String): void {
+    const buscarDni = this.Ciudadanos.find(
+      (ciudadano) => String(ciudadano.Dni) === Dni
+    );
 
-  // // Método para buscar ciudadano por DNI
-  // buscarCiudadano() {
-  //   const dni = this.incidenteForm.get('dni')?.value;
-  //   this.database.de(dni).subscribe(
-  //     (response: any) => {
-  //       if (response) {
-  //         this.incidenteForm.patchValue({
-  //           nombre: response.nombre,
-  //           apellido: response.apellido,
-  //           sexo: response.sexo,
-  //           domicilio: response.domicilio,
-  //           barrio: response.barrio,
-  //           telefono: response.telefono,
-  //           email: response.email,
-  //         });
-  //       } else {
-  //         alert('Ciudadano no encontrado');
-  //       }
-  //     },
-  //     (error) => {
-  //       console.error(error);
-  //       alert('Error al buscar ciudadano');
-  //     }
-  //   );
-  // }
+    if (buscarDni) {
+      // this.Ciudadanos;
+      this.incidenteForm.patchValue(buscarDni);
+      this.habilitarCampos(true);
+    } else {
+      this.habilitarCampos(true);
+    }
+  }
+
+  habilitarCampos(habilitar: boolean) {
+    // Si se permite modificar los campos, habilitamos todos los controles
+    if (habilitar) {
+      this.incidenteForm.controls['Apellido'].enable();
+      this.incidenteForm.controls['Nombre'].enable();
+      this.incidenteForm.controls['email'].enable();
+      this.incidenteForm.controls['Barrio'].enable();
+      this.incidenteForm.controls['Id_Areas_Servicios'].enable();
+      this.incidenteForm.controls['Id_Tipos_Incidentes'].enable();
+    } else {
+      this.incidenteForm.controls['Apellido'].disable();
+      this.incidenteForm.controls['Nombre'].disable();
+      this.incidenteForm.controls['email'].disable();
+      this.incidenteForm.controls['Barrio'].disable();
+      this.incidenteForm.controls['Id_Areas_Servicios'].disable();
+      this.incidenteForm.controls['Id_Tipos_Incidentes'].disable();
+    }
+  }
 
   // Método para registrar el incidente
   submitForm() {
@@ -159,7 +142,6 @@ export class ListadoDeCiudadanosComponent {
     return AreaServicio ? AreaServicio.Descripcion : 'No Existe'; // Si no encuentra el grupo, muestra un mensaje
   }
 
-
   recuperarTiposIncidentes() {
     this.database.recuperarTiposIncidentes().subscribe({
       next: (response) => {
@@ -224,6 +206,5 @@ export class ListadoDeCiudadanosComponent {
         );
       },
     });
-  }}
-
-
+  }
+}

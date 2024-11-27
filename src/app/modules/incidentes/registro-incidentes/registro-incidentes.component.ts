@@ -52,6 +52,8 @@ export class RegistroIncidentesComponent implements OnInit {
       Prioridad: ['', Validators.required], // Campo obligatorio
       Origen: ['', Validators.required], // Campo obligatorio
     });
+
+    
   }
 
   ngOnInit(): void {
@@ -90,23 +92,6 @@ export class RegistroIncidentesComponent implements OnInit {
       this.habilitarCampos(true);
     }
 
-    // this.obtenerDniCiudadanos().subscribe(
-    // (data: any) => {
-    // if (data) {
-    // this.Ciudadanos
-    // this.incidenteForm.patchValue(data);
-    // this.habilitarCampos(false);
-    // } else {
-    // alert('Ciudadano no encontrado');
-    // this.habilitarCampos(true)
-    // }
-    // },
-    // (error) => {
-    // this.habilitarCampos(true);
-    // console.error(error);
-    // alert('Error al buscar ciudadano');
-    // },
-    //  );
   }
 
 
@@ -135,7 +120,6 @@ export class RegistroIncidentesComponent implements OnInit {
 
     this.database.recuperarCiudadanos().subscribe({
       next: (response) => {
-        console.log(response)
         if (Array.isArray(response)) {
           this.Ciudadanos = response; // Aquí vas a tener un array de objetos que contengan la información de los ciudadanos
         } else {
@@ -294,7 +278,6 @@ export class RegistroIncidentesComponent implements OnInit {
   bajaIncidentes(Id_Incidentes: number) {
     this.database.bajaIncidentes(Id_Incidentes).subscribe({
       next: (response) => {
-        console.log(response); // Revisa qué está devolviendo la API
         if (response && response['message'] == 'OK') {
           alert('Incidente borrado con éxito');
           this.recuperarIncidentes();

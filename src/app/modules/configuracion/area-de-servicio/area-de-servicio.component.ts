@@ -76,6 +76,7 @@ export class AreaDeServicioComponent implements OnInit  {
     submitForm() {
       if (this.areaform.valid) {
         const areaData = this.areaform.value;  // Se obtienen los valores del formulario
+        console.log(areaData);
         this.database.altaAreaServicio(areaData).subscribe({
           next: (response) => {
             console.log('Respuesta del Servidor', response);
@@ -84,13 +85,13 @@ export class AreaDeServicioComponent implements OnInit  {
               this.areaform.reset();  // Se resetea el formulario
               this.recuperarAreasServicios();  // Se actualiza la lista de Areas de Servicios
             } else {
-              alert('Error al crear grupo: ' + (response['mensaje'] || 'Error desconocido'));
+              alert('Error al crear Area de Servicio: ' + (response['mensaje'] || 'Error desconocido'));
               
             }
-            this.mostrarFormulario = !this.mostrarFormulario;  // Ocultar el formulario tras crear el grupo
+            this.mostrarFormulario = !this.mostrarFormulario;  // Ocultar el formulario tras crear el Area de Servicio
           },
           error: (error) => {
-            alert('Error al crear grupo');
+            alert('Error al crear Area de Servicio');
             console.error('Error:', error);  // Se registra el error en la consola
           },
         });

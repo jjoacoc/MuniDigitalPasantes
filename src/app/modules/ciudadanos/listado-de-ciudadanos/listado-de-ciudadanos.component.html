@@ -2,7 +2,7 @@
 <form [formGroup]="incidenteForm" (ngSubmit)="submitForm()">
     <div class="form-group">
         <label for="Dni">DNI *</label>
-        <input type="text" id="Dni" class="form-control" formControlName="Dni" placeholder="Ingrese el DNI" />
+        <input type="text" id="Dni" #DniInput (keyup.enter)="buscarCiudadano(DniInput.value)" class="form-control" formControlName="Dni" placeholder="Ingrese el DNI" />
 
         <div *ngIf="
             incidenteForm.get('Dni')?.invalid &&
@@ -43,8 +43,8 @@
             </option>
         </select>
         <div *ngIf="
-            incidenteForm.get('Areas_Servicios')?.invalid &&
-            incidenteForm.get('Areas_Servicios')?.touched
+            incidenteForm.get('Id_Areas_Servicios')?.invalid &&
+            incidenteForm.get('Id_Areas_Servicios')?.touched
           " class="error">
             El área de servicio es obligatoria.
         </div>
@@ -58,8 +58,8 @@
             </option>
         </select>
         <div *ngIf="
-            incidenteForm.get('Tipos_Incidentes')?.invalid &&
-            incidenteForm.get('Tipos_Incidentes')?.touched
+            incidenteForm.get('Id_Tipos_Incidentes')?.invalid &&
+            incidenteForm.get('Id_Tipos_Incidentes')?.touched
           " class="error">
             El tipo de incidente es obligatorio.
         </div>
@@ -92,7 +92,6 @@
 
     <label><input type="checkbox" name="conRegistros"> Con Registros</label>
 
-    <button type="submit">Buscar</button>
+    <button type="submit" (click)="buscarCiudadano(DniInput.value)">Buscar</button>
     <button type="button">Registrar</button>
-    <button type="button">Exportar</button>
 </form>

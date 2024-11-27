@@ -107,9 +107,11 @@ export class GrupoComponent implements OnInit {
   // Método para manejar el envío del formulario de creación de grupos
   submitForm() {
     if (this.grupoForm.valid) {
-      const rolData = this.grupoForm.value;  // Se obtienen los valores del formulario
-      this.database.altaGrupo(rolData).subscribe({
+      const grupoData = this.grupoForm.value;  // Se obtienen los valores del formulario
+      console.log(grupoData);
+      this.database.altaGrupo(grupoData).subscribe({
         next: (response) => {
+          console.log(response)
           if (response && response['resultado'] === 'OK') {
             alert('Rol creado con éxito');  // Se muestra un mensaje de éxito
             this.grupoForm.reset();  // Se resetea el formulario
