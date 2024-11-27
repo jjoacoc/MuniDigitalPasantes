@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatabaseService } from '../../admin/services/database.service';
+import { Timestamp } from 'rxjs';
 
 @Component({
   selector: 'app-registro-incidentes',
@@ -8,6 +9,8 @@ import { DatabaseService } from '../../admin/services/database.service';
   styleUrls: ['./registro-incidentes.component.css'],
 })
 export class RegistroIncidentesComponent implements OnInit {
+
+  
   incidenteForm: FormGroup; // Formulario reactivo para manejar los datos de incidentes
 
   modificarIncidenteForm: FormGroup; // Formulario para modificar incidentes
@@ -20,12 +23,21 @@ export class RegistroIncidentesComponent implements OnInit {
   Prioridad: any[] = []; // Variable para almacenar las areas de servicio recuperados de la base de datos
   TiposIncidentes: any[] = []; // Variable para almacenar las areas de servicio recuperados de la base de datos
   Ciudadanos: any[] = []; // Variable para almacenar las areas de servicio recuperados de la base de datos
-
+  
   constructor(private fb: FormBuilder, private database: DatabaseService) {
+    const ahora = new Date(); // Fecha y hora actual
+
+    const timezoneOffset = ahora.getTimezoneOffset() * 60000; // Offset en milisegundos
+    const fechaLocal = new Date(ahora.getTime() - timezoneOffset); // Ajusta la hora local
+  
+    // Formato ISO local: yyyy-MM-ddTHH:mm
+    const formatoISO = fechaLocal.toISOString().slice(0, 16);
+  
+
     // Inicializamos el formulario con 6 campos: areaServicio, tipoIncidente, prioridad, origen, datetime y observaciones
     this.incidenteForm = this.fb.group({
       // Inicializamos el formulario con 8 campos: dni, nombre, apelldio, sexo, domicilio, barrio, telefono, email
-      Fecha_Hora: ['', Validators.required], // Campo obligatorio
+      Fecha_Hora: [formatoISO,Validators.required], // Campo obligatorio
       Observaciones: ['', Validators.required], // Campo opcional
       Id_Areas_Servicios: ['', Validators.required], // Campo obligatorio
       Id_Tipos_Incidentes: ['', Validators.required], // Campo obligatorio
@@ -181,6 +193,12 @@ export class RegistroIncidentesComponent implements OnInit {
       },
     });
   }
+
+  obtenerFechaHora(Fecha_Hora: any): any {
+    const Incidentes = this.incidentes.find(f => f.Fecha_Hora === Fecha_Hora);
+    return Incidentes ? Incidentes.Fecha_Hora : 'No Existe'; // Si no encuentra el grupo, muestra un mensaje
+  }
+
 
   recuperarAreaServicio() {
     this.database.recuperarAreaServicio().subscribe({
