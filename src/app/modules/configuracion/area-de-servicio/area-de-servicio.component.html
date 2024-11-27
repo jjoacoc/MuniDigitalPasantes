@@ -3,76 +3,65 @@
     <h1>CONFIGURACIÓN ÁREA DE SERVICIO</h1>
   </div>
 
-  <div class="container-general">
-    <!--inicio del select-->
-    <div class="select">
-      <span>Área de Servicio</span>
-
-      <mat-form-field class="mat">
-        <mat-label>Todos</mat-label>
-        <mat-select> </mat-select>
-      </mat-form-field>
-    </div>
-    <!--fin del  select-->
-
-    <div class="flitro">
-      <button mat-stroked-button class="search-button">
-        <mat-icon>search</mat-icon> Filtrar
-      </button>
-    </div>
-    <!--fin del flitro-->
-
-    <div class="botton">
-      <button class="btn-nuevo" (click)="toggleFormulario()">
-        {{ mostrarFormulario ? "Cancelar" : "Nuevo" }}
-      </button>
-    </div>
-
-    <!-- Modal para crear una Nueva Area de Servicio -->
-    <div id="myModal" class="modal" [ngClass]="{ show: mostrarFormulario }">
-      <div class="modal-content">
-        <span class="close" (click)="toggleFormulario()">&times;</span>
-        <form [formGroup]="areaform" (ngSubmit)="submitForm()">
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Nueva Area de Servicio</mat-label>
-            <input matInput type="text" id="Descripcion" class="full-width-input" formControlName="Descripcion"/>
-          </mat-form-field>
-          <button mat-stroked-button class="botton" type="submit">
-            Agregar
-          </button>
-        </form>
-      </div>
-    </div>
+  <div class="botton">
+    <button class="btn-nuevo" (click)="toggleFormulario()">
+      {{ mostrarFormulario ? "Cancelar" : "Nuevo" }}
+    </button>
   </div>
 
+  <!-- Modal para crear una Nueva Area de Servicio -->
+  <div id="myModal" class="modal" [ngClass]="{ show: mostrarFormulario }">
+    <div class="modal-content">
+      <span class="close" (click)="toggleFormulario()">&times;</span>
+      <form [formGroup]="areaform" (ngSubmit)="submitForm()">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Nueva Área de Servicio</mat-label>
+          <input matInput type="text" id="Descripcion" class="full-width-input" formControlName="Descripcion"/>
+        </mat-form-field>
+        <button mat-stroked-button class="botton" type="submit">
+          Agregar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container">
   <div class="table-container">
     <table class="styled-table">
       <thead>
-        <!-- ID Column -->
-        <th>Id Areas de Servicios</th>
-        <!-- Área de Servicio Column -->
-        <th>Areas de Servicios</th>
-        <!-- Total Column -->
-        <th>Total</th>
-        <!-- Tipos de Incidente Column -->
-        <th>Tipos de Incidentes</th>
-        <!-- Buttons Column -->
-        <th></th>
+        <tr>
+          <th>Tipo de Incidente</th>
+          <th>Área de Servicio</th>
+        </tr>
       </thead>
       <tbody>
         <tr *ngFor="let area of AreasServicios">
-          <!-- ID Column -->
-          <td>{{ area.Id_Areas_Servicios }}</td>
-          <!-- Área de Servicio Column -->
-          <td>{{ area.Descripcion }}</td>
-          <!-- Total Column -->
-          <td></td>
-          <!-- Tipos de Incidente Column -->
-          <td></td>
-          <!-- Buttons Column -->
-          <td></td>
+          <td>
+            <button mat-icon-button color="primary" (click)="openTipoIncidenteModal(area)">
+              <mat-icon>add</mat-icon>
+            </button>
+          </td>
+          <td>{{area.Descripcion}}</td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+
+<!-- Modal para crear un nuevo tipo de incidente -->
+<div id="modalTipoIncidente" class="modal" [ngClass]="{ show: mostrarTipoIncidenteForm }">
+  <div class="modal-content">
+    <span class="close" (click)="closeTipoIncidenteModal()">&times;</span>
+    <form [formGroup]="tipoIncidenteForm" (ngSubmit)="submitTipoIncidenteForm()">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Observación (Nombre del tipo de incidente)</mat-label>
+        <input matInput type="text" id="observacion" class="full-width-input" formControlName="observacion"/>
+      </mat-form-field>
+      <button mat-stroked-button class="botton" type="submit">
+        Guardar
+      </button>
+    </form>
+  </div>
+</div>
+

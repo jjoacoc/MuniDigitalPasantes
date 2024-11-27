@@ -6,13 +6,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { CiudadanosRoutingModule } from './ciudadanos-routing.module';
 import { ListadoDeCiudadanosComponent } from './listado-de-ciudadanos/listado-de-ciudadanos.component';
-import { ListarBeneficiosComponent } from './listar-beneficios/listar-beneficios.component';
 
 
 @NgModule({
   declarations: [
     ListadoDeCiudadanosComponent,
-    ListarBeneficiosComponent
   ],
   imports: [
     CommonModule,
@@ -20,8 +18,7 @@ import { ListarBeneficiosComponent } from './listar-beneficios/listar-beneficios
     ReactiveFormsModule 
   ],
   exports:[
-    ListadoDeCiudadanosComponent,
-    ListarBeneficiosComponent
+    ListadoDeCiudadanosComponent
   ]
 })
 export class CiudadanosModule { }

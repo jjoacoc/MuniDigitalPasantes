@@ -4,9 +4,7 @@
   margin: 0 auto;
   padding: 20px;
   border-radius: 8px;
-  min-height: 100vh; /* Hace que el contenedor ocupe toda la altura de la página */
 }
-
 .header {
   margin-bottom: 20px;
 }
@@ -27,13 +25,7 @@
   width: 300px; /* Ajusta el tamaño del campo de filtro */
 }
 
-.add-area-button {
-  margin-left: 20px; /* Espacio entre el form field y el botón */
-}
 
-.filtrar-button {
-  margin-right: 50px; /* Ya no es necesario este margen en la nueva disposición */
-}
 
 .table-container {
   overflow-x: auto;
