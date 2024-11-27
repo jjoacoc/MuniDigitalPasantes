@@ -24,4 +24,15 @@ class AreasServiciosController
         return json_encode($areaServicio);
     }
 
+
+    public function create($data)
+    {
+        $this->areaServicio->Descripcion = $data->Descripcion;
+        if ($this->areaServicio->create()) {
+            return json_encode(["message" => "OK"]);
+        }
+        return json_encode(["message" => "Error al crear el Area de Servicio"]);
+    }
+
+
 }

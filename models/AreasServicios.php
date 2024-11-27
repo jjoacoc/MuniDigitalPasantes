@@ -5,6 +5,8 @@ class Areas_Servicios
 {
     private $conn;
     private $tableAreaServicio = "Areas_Servicios";
+    public $Descripcion;
+
 
     public function __construct($db)
     {
@@ -17,6 +19,15 @@ class Areas_Servicios
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;
+    }
+
+    
+    public function create()
+    {
+        $query = "INSERT INTO " . $this->tableAreaServicio . " (Descripcion) VALUES (:Descripcion)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':Descripcion', $this->Descripcion);
+        return $stmt->execute();
     }
 
 }
