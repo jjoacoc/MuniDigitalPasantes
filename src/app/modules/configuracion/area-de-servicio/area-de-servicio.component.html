@@ -9,39 +9,22 @@
     </button>
   </div>
 
-  <!-- Modal para crear una Nueva Area de Servicio -->
-  <div id="myModal" class="modal" [ngClass]="{ show: mostrarFormulario }">
-    <div class="modal-content">
-      <span class="close" (click)="toggleFormulario()">&times;</span>
-      <form [formGroup]="areaform" (ngSubmit)="submitForm()">
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Nueva Área de Servicio</mat-label>
-          <input matInput type="text" id="Descripcion" class="full-width-input" formControlName="Descripcion"/>
-        </mat-form-field>
-        <button mat-stroked-button class="btn-nuevo" type="submit">
-          Agregar
-        </button>
-      </form>
-    </div>
-  </div>
-</div>
-
 <div class="container">
   <div class="table-container">
     <table class="styled-table">
       <thead>
         <tr>
-          <th>Tipo de Incidente</th>
+          <th>ID</th>
           <th>Área de Servicio</th>
         </tr>
       </thead>
+      
       <tbody>
         <tr *ngFor="let area of AreasServicios">
           <td>
-            <button mat-icon-button color="primary" (click)="openTipoIncidenteModal(area)">
-              <mat-icon>add</mat-icon>
-            </button>
+           {{area.Id_Areas_Servicios}}
           </td>
+          
           <td>{{area.Descripcion}}</td>
         </tr>
       </tbody>
