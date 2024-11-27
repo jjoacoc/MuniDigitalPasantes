@@ -3,9 +3,9 @@
     <h1>CONFIGURACIÓN ÁREA DE SERVICIO</h1>
   </div>
 
-  <div class="botton">
+  <div class="header-container">
     <button class="btn-nuevo" (click)="toggleFormulario()">
-      {{ mostrarFormulario ? "Cancelar" : "Nuevo" }}
+      {{ mostrarFormulario ? 'Cancelar' : 'Nuevo' }}
     </button>
   </div>
 
@@ -18,7 +18,7 @@
           <mat-label>Nueva Área de Servicio</mat-label>
           <input matInput type="text" id="Descripcion" class="full-width-input" formControlName="Descripcion"/>
         </mat-form-field>
-        <button mat-stroked-button class="botton" type="submit">
+        <button mat-stroked-button class="btn-nuevo" type="submit">
           Agregar
         </button>
       </form>
