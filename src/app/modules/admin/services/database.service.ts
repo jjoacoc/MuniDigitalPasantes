@@ -142,6 +142,11 @@ export class DatabaseService {
     const headers = this.createHeaders();
     return this.http.get(`${this.apiUrl}?entity=tiposIncidentes`, { headers });
   }
+  
+  altaTipoIncidente(tipoIncidenteData: any): Observable<any> { 
+    const headers = this.createHeaders(); 
+    return this.http.post(`${this.apiUrl}?entity=tiposIncidentes`, tipoIncidenteData, { headers }); 
+  }
 
   // Método para recuperar todos los grupos desde la base de datos (GET)
   recuperarPrioridad(): Observable<any> {
