@@ -13,7 +13,7 @@ class Ciudadano
     {
         $this->conn = $db;
     }
-    
+    #comentario
     public function getAll()
     {
         $query = "SELECT * FROM " . $this->table;
